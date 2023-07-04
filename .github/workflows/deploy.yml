@@ -4,6 +4,11 @@ on: [push]
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+      contents: write
+      packages: write
 
     steps:
       - name: Checkout
