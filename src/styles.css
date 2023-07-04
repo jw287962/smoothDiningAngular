@@ -24,11 +24,13 @@ nav {
   position: absolute;
   right: 0px;
   bottom: 0px;
+  margin-bottom: 5px;
 }
 nav > a {
   padding: 10px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 22px;
+  font-weight: 400;
   color: var(--text-colorcolor);
 }
 
@@ -37,4 +39,9 @@ nav > a {
   display: flex;
   justify-content: center;
   background-color: var(--nav-background-color);
+  border-bottom: 1px solid #bfc9ca;
+}
+
+.active {
+  font-weight: 800;
 }
