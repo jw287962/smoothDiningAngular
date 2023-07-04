@@ -1,1 +1,7 @@
 <p>login works!</p>
+
+<button (click)="toggleRegister()">
+  <span *ngIf="isRegister === true">Login</span>
+  <span *ngIf="isRegister === false">Register</span>
+</button>
+<app-register *ngIf="isRegister === true"></app-register>
