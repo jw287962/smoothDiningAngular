@@ -15,24 +15,32 @@ export class LoginComponent {
     this.isRegister = !this.isRegister;
     console.log(this.isRegister);
   }
-
-  async handleLogin(e: Event) {
+  handleSubmit(e: Event) {
     e.preventDefault();
-    console.log('handle', e);
-    const result = await fetch(
-      'https://smoothdining.azurewebsites.net/api/login',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: this.username.value,
-          password: this.password.value,
-        }),
+    if (this.isRegister === false) {
+      this.handleLogin('login');
+    } else {
+      this.handleLogin('register');
+    }
+  }
+  async handleLogin(string: string) {
+    try {
+      const result = await fetch(
+        `https://smoothdining.azurewebsites.net/api/${string}`,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            username: this.username.value,
+            password: this.password.value,
+          }),
+        }
+      );
+      console.log(result);
+      if (!result.ok) {
+        throw new Error('failed to login/register');
       }
-    );
-
-    console.log(result, 'form', this.username.value);
+    } catch (e) {
+      console.log({ error: e });
+    }
   }
 }

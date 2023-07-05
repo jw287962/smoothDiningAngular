@@ -3,30 +3,29 @@
     <span *ngIf="isRegister === true">Login</span>
     <span *ngIf="isRegister === false">Register</span>
   </button>
-  <app-register *ngIf="isRegister === true"></app-register>
+  <!-- <app-register *ngIf="isRegister === true"></app-register> -->
 
-  <div *ngIf="isRegister === false">
-    <form (submit)="handleLogin($event)" class="flexcolcenter">
-      <div class="formInput">
-        <label for="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          [formControl]="username"
-        />
-      </div>
-      <div class="formInput">
-        <label for="lname">Password:</label>
-        <input
-          type="text"
-          id="password"
-          name="password"
-          
-          [formControl]="password"
-        />
-      </div>
-      <button type="submit">LOGIN</button>
-    </form>
-  </div>
+  <form (submit)="handleSubmit($event)" class="flexcolcenter">
+    <div class="formInput">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [formControl]="username"
+      />
+    </div>
+    <div class="formInput">
+      <label for="lname">Password:</label>
+      <input
+        type="text"
+        id="password"
+        name="password"
+        [formControl]="password"
+      />
+    </div>
+    <button type="submit" class="primaryColor">
+      {{ isRegister ? "Register" : "Login" }}
+    </button>
+  </form>
 </div>
