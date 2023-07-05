@@ -12,4 +12,14 @@ export class LoginComponent {
     this.isRegister = !this.isRegister;
     console.log(this.isRegister);
   }
+
+  async handleLogin(e: Event) {
+    e.preventDefault();
+    console.log('handle', e);
+    const result = await fetch(
+      'https://smoothdining.azurewebsites.net/api/login'
+    );
+
+    console.log(result);
+  }
 }
