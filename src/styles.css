@@ -16,8 +16,11 @@ body {
   padding: 0px;
   color: var(--text-color);
   font-weight: 800px;
+  margin: 0px;
 }
-
+h1 {
+  margin: 0px;
+}
 nav {
   font-size: 30px;
   max-height: 90px;
@@ -34,14 +37,29 @@ nav > a {
   color: var(--text-colorcolor);
 }
 
-.header {
-  position: relative;
-  display: flex;
+button {
+  width: 100px;
+  background-color: var(--secondary-color);
+  border: 1px solid black;
+  border-radius: 6px;
   justify-content: center;
+  padding: 5px 5px;
+  margin: 10px;
+}
+.header {
+  padding: 10px;
+  height: 55px;
+  position: relative;
   background-color: var(--nav-background-color);
   border-bottom: 1px solid #bfc9ca;
 }
 
 .active {
   font-weight: 800;
+}
+
+.flexcolcenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
