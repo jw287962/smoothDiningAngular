@@ -73,9 +73,7 @@ export class LoginComponent {
   ngOnInit(): void {
     // Perform initialization tasks here
   }
-  handleChange() {
-    console.log(this.FormAuth);
-  }
+  handleChange() {}
   handleSubmit(e: Event) {
     e.preventDefault();
     console.log(this.FormAuth.errors);
@@ -89,21 +87,30 @@ export class LoginComponent {
       this.handleLogin('register');
     }
   }
+
   async handleLogin(string: string) {
+    let body;
     try {
+      if (string === 'login') {
+        body = JSON.stringify({
+          username: this.FormAuth.get('username')?.value,
+          password: this.FormAuth.get('password')?.value,
+        });
+      } else if (string === 'register') {
+        body = JSON.stringify({
+          username: this.FormAuth.get('username')?.value,
+          password: this.FormAuth.get('password')?.value,
+          repeatpassword: this.FormAuth.get('repeatPassword')?.value,
+        });
+      }
       const result = await fetch(`${getBackEndHref()}/api/${string}`, {
         credentials: 'include',
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          username: this.FormAuth.get('username')?.value,
-          password: this.FormAuth.get('password')?.value,
-          repeatpassword: this.FormAuth.get('repeatPassword')?.value,
-        }),
+        body: body,
       });
-
       const responseBody = await result.json();
       this.message = responseBody.message;
 
@@ -112,7 +119,6 @@ export class LoginComponent {
         console.log(responseBody);
         throw new Error(responseBody.message);
       } else {
-        console.log(responseBody);
         if (string === 'login')
           this.cookieService.set('user', responseBody.userID);
       }
