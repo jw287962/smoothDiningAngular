@@ -1,0 +1,10 @@
+<div *ngIf="formData?.invalid" class="alert alert-danger">
+  <div *ngIf="formData?.errors?.['required']">{{ name }} is required.</div>
+  <div *ngIf="formData?.errors?.['minlength']">
+    {{ name }} must be at least
+    {{ formData?.errors?.['minlength'].requiredLength }} characters long.
+  </div>
+  <div *ngIf="formData?.errors?.['passwordsNotMatch']">
+    {{ name }} Must Match
+  </div>
+</div>

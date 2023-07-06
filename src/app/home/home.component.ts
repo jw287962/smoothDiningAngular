@@ -34,9 +34,9 @@ export class HomeComponent {
       const responseBody = await result.json();
       if (!result.ok) {
         console.log(responseBody.message);
+        console.log(responseBody);
         throw new Error(responseBody.message);
       } else {
-        console.log(responseBody);
         this.stores = responseBody.result;
       }
     } catch (e) {
