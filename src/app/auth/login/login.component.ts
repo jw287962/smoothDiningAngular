@@ -1,5 +1,12 @@
-import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, Input, resolveForwardRef } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+interface AuthGroup extends FormGroup {
+  controls: {
+    username: FormControl;
+    password: FormControl;
+  };
+}
 
 @Component({
   selector: 'app-login',
@@ -9,14 +16,43 @@ import { FormControl } from '@angular/forms';
 export class LoginComponent {
   isRegister: Boolean = false;
   // @Input('formControl')
-  username = new FormControl('');
-  password = new FormControl('');
+  // isValid: Boolean = false;
+  responseMessage: string = '';
+  FormAuth: FormGroup;
+
   toggleRegister() {
     this.isRegister = !this.isRegister;
     console.log(this.isRegister);
   }
+  constructor(private cookieService: CookieService) {
+    this.FormAuth = new FormGroup({
+      username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+    }) as AuthGroup;
+  }
+  get username() {
+    return this.FormAuth?.get('username');
+  }
+  ngOnInit(): void {
+    // Perform initialization tasks here
+  }
+  handleChange() {
+    // if (this.username?.value) {
+    // }
+  }
   handleSubmit(e: Event) {
     e.preventDefault();
+    console.log(this.FormAuth.errors);
+    if (this.FormAuth.errors) {
+      return;
+    }
+
     if (this.isRegister === false) {
       this.handleLogin('login');
     } else {
@@ -29,15 +65,33 @@ export class LoginComponent {
         `https://smoothdining.azurewebsites.net/api/${string}`,
         {
           method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify({
-            username: this.username.value,
-            password: this.password.value,
+            username: this.FormAuth.get('username')?.value,
+            password: this.FormAuth.get('password')?.value,
           }),
         }
       );
-      console.log(result);
+      const sid = result.headers.get('set-cookie');
+      if (sid) {
+        this.cookieService.set('sid', sid);
+      }
+
+      // const sid = result.headers.get('sid');
+      // if (sid) {
+      //   localStorage.setItem('sid', sid);
+      // }
+
+      // document.cookie = cookieHeader;
+      const responseBody = await result.json();
       if (!result.ok) {
-        throw new Error('failed to login/register');
+        console.log(result);
+        console.log(responseBody);
+        throw new Error(responseBody.message);
+      } else {
+        console.log(responseBody);
       }
     } catch (e) {
       console.log({ error: e });

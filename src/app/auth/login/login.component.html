@@ -5,24 +5,38 @@
   </button>
   <!-- <app-register *ngIf="isRegister === true"></app-register> -->
 
-  <form (submit)="handleSubmit($event)" class="flexcolcenter">
+  <form
+    (submit)="handleSubmit($event)"
+    class="flexcolcenter"
+    (input)="handleChange()"
+    [formGroup]="FormAuth"
+  >
     <div class="formInput">
-      <label for="username">Username:</label>
+      <label for="username">Username: <span class="minitext">*req</span></label>
       <input
         type="text"
         id="username"
         name="username"
-        [formControl]="username"
+        formControlName="username"
+        required="true"
       />
+      <div *ngIf="username?.invalid" class="alert alert-danger">
+        <div *ngIf="username?.errors?.['required']">Name is required.</div>
+        <div *ngIf="username?.errors?.['minlength']">
+          Name must be at least 4 characters long.
+        </div>
+      </div>
     </div>
     <div class="formInput">
-      <label for="lname">Password:</label>
+      <label for="lname">Password: <span class="minitext">*req</span></label>
       <input
         type="text"
         id="password"
         name="password"
-        [formControl]="password"
+        formControlName="password"
+        required="true"
       />
+      <span class="error"></span>
     </div>
     <button type="submit" class="primaryColor">
       {{ isRegister ? "Register" : "Login" }}

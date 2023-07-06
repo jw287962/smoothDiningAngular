@@ -5,6 +5,7 @@
   --text-color: #273746;
   --background-color: #fbfcfc;
   --nav-background-color: white;
+  --error-color: rgb(255, 92, 92);
 }
 
 [data-theme="dark"] {
@@ -45,18 +46,53 @@ button {
   justify-content: center;
   padding: 10px 5px;
   margin: 10px;
+  font-size: 15px;
+  font-weight: 800;
 }
 
 form,
 form > div > input {
   border: 1px solid rgb(185, 185, 185);
   border-radius: 5px;
+  padding: 4px;
 }
+
 form {
   border-radius: 10px;
   padding: 15px;
+  position: relative;
+  min-width: 300px;
 }
 
+form > div {
+  position: relative;
+  margin: 8px;
+}
+input:invalid {
+  border: 2px solid var(--error-color);
+}
+
+button:active {
+  position: relative;
+  top: 2px;
+}
+
+.alert-danger {
+  color: white;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -15px;
+  font-size: 15px;
+}
+.alert-danger > div {
+  width: fit-content;
+  background-color: var(--error-color);
+  border-radius: 10px;
+  border: 1px solid var(--error-color);
+  padding: 3px;
+  margin: 1px;
+}
 /*NAV HEADER */
 .header {
   padding: 10px;
@@ -78,4 +114,10 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.minitext {
+  font-size: 11px;
+  vertical-align: top;
+  position: relative;
+  right: 0px;
 }

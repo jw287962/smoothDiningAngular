@@ -3,11 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <title>SmoothDiningAngular</title>
-    <base href="/smoothDiningAngular/" id="baseHref" />
+    <base href="/smoothDiningAngular/" id="base" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body>
     <app-root></app-root>
+    <script defer>
+      var base = document.getElementById("base");
+      const currentUrl = window.location.href;
+
+      const deploymentPath = "/smoothDiningAngular/";
+      if (currentUrl.includes(deploymentPath)) {
+      } else {
+        base.href = "/";
+      }
+    </script>
   </body>
 </html>
