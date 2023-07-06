@@ -9,17 +9,23 @@
   <style>:root{--primary-color:#98b8ff;--secondary-color:#cbe4f3;--text-color:#273746;--background-color:#fbfcfc;--nav-background-color:white;--error-color:rgb(255, 92, 92)}body{padding:0;color:var(--text-color);font-weight:800px;margin:0}</style><link rel="stylesheet" href="styles.827fe7492a406537.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.827fe7492a406537.css"></noscript></head>
   <body>
     <app-root></app-root>
-    <!-- <script>
-      var base = document.getElementById("base");
-      const currentUrl = window.location.href;
-
-      console.log(currentUrl);
-      const deploymentPath = "/smoothDiningAngular/";
-      if (currentUrl.includes(deploymentPath)) {
-        console.log(true);
-      } else {
-        base.href = "/";
-      }
-    </script> -->
-  <script src="runtime.5cc1a7597ad3f75d.js" type="module"></script><script src="polyfills.11f4d5c9a1182932.js" type="module"></script><script src="main.f62afbd3dac58a80.js" type="module"></script></body>
+    <script>
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      })(window.location);
+    </script>
+  <script src="runtime.5cc1a7597ad3f75d.js" type="module"></script><script src="polyfills.11f4d5c9a1182932.js" type="module"></script><script src="main.2a55be9ac7006b0e.js" type="module"></script></body>
 </html>
