@@ -28,7 +28,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.header h1')?.textContent).toContain(
-      'Welcome to Smooth Dining'
+      'Smooth Dining'
     );
   });
 });

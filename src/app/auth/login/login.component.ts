@@ -1,4 +1,4 @@
-import { Component, Input, resolveForwardRef } from '@angular/core';
+import { Component, Input, NgModule, resolveForwardRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 interface AuthGroup extends FormGroup {
