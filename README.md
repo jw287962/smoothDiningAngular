@@ -1,3 +1,9 @@
+# Technology
+
+- Angular
+- State: NgRx
+- connected to backend (MONGODB & EXPRESS): https://github.com/jw287962/smoothdining_API
+
 # SmoothDiningAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
