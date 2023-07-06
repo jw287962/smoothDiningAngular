@@ -1,8 +1,12 @@
 <div class="flexcolcenter">
-  <button (click)="toggleRegister()">
-    <span *ngIf="isRegister === true">Login</span>
-    <span *ngIf="isRegister === false">Register</span>
-  </button>
+  <div>
+    <button (click)="toggleRegister()">
+      <span *ngIf="isRegister === true">Login</span>
+      <span *ngIf="isRegister === false">Register</span>
+    </button>
+    <button *ngIf="true" (click)="handleLogout()">Logout</button>
+  </div>
+
   <!-- <app-register *ngIf="isRegister === true"></app-register> -->
 
   <form
@@ -61,5 +65,4 @@
 
     <span *ngIf="message.length > 1"> Note: {{ message }}</span>
   </form>
-  <button type="submit" *ngIf="">Logout</button>
 </div>

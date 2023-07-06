@@ -11,9 +11,10 @@ import { getBaseHref } from 'base-href';
 import { APP_BASE_HREF } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 @NgModule({
   declarations: [AppComponent, NavComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule, AuthModule, StoreModule.forRoot({}, {})],
+  imports: [BrowserModule, AppRoutingModule, AuthModule, StoreModule.forRoot({}, {}), EffectsModule.forRoot([])],
   providers: [{ provide: APP_BASE_HREF, useValue: getBaseHref() }],
   bootstrap: [AppComponent],
 })

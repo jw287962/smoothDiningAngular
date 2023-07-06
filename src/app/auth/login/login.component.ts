@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { getBackEndHref } from 'base-href';
 import { CookieService } from 'ngx-cookie-service';
+import { ApiService } from 'src/store/service/api.service';
 interface AuthGroup extends FormGroup {
   controls: {
     username: FormControl;
@@ -29,7 +30,7 @@ const confirmPasswordValidator: ValidationErrors = (
 
   return null;
 };
-
+//
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -44,8 +45,8 @@ export class LoginComponent {
     console.log(this.isRegister);
   }
   constructor(
-    private cookieService: CookieService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private apiService: ApiService
   ) {
     this.FormAuth = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
@@ -89,39 +90,24 @@ export class LoginComponent {
   }
 
   async handleLogin(string: string) {
-    let body;
     try {
-      if (string === 'login') {
-        body = JSON.stringify({
-          username: this.FormAuth.get('username')?.value,
-          password: this.FormAuth.get('password')?.value,
-        });
-      } else if (string === 'register') {
-        body = JSON.stringify({
-          username: this.FormAuth.get('username')?.value,
-          password: this.FormAuth.get('password')?.value,
-          repeatpassword: this.FormAuth.get('repeatPassword')?.value,
-        });
-      }
-      const result = await fetch(`${getBackEndHref()}/api/${string}`, {
-        credentials: 'include',
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: body,
-      });
-      const responseBody = await result.json();
-      this.message = responseBody.message;
+      const result = await this.apiService.tryLogin(
+        string,
+        this.username?.value,
+        this.password?.value,
+        this.repeatPassword?.value
+      );
 
-      if (!result.ok) {
-        console.log(result);
-        console.log(responseBody);
-        throw new Error(responseBody.message);
-      } else {
-        if (string === 'login')
-          this.cookieService.set('user', responseBody.userID);
-      }
+      this.message = result;
+    } catch (e) {
+      console.log({ error: e });
+    }
+  }
+  async handleLogout() {
+    try {
+      const result = await this.apiService.logout();
+      this.message = result;
+      console.log(result);
     } catch (e) {
       console.log({ error: e });
     }
