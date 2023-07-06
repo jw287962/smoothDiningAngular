@@ -10,22 +10,22 @@
   <body>
     <app-root></app-root>
     <script>
-      (function (l) {
-        if (l.search[1] === "/") {
-          var decoded = l.search
-            .slice(1)
-            .split("&")
-            .map(function (s) {
-              return s.replace(/~and~/g, "&");
-            })
-            .join("?");
-          window.history.replaceState(
-            null,
-            null,
-            l.pathname.slice(0, -1) + decoded + l.hash
-          );
-        }
-      })(window.location);
+      // (function (l) {
+      //   if (l.search[1] === "/") {
+      //     var decoded = l.search
+      //       .slice(1)
+      //       .split("&")
+      //       .map(function (s) {
+      //         return s.replace(/~and~/g, "&");
+      //       })
+      //       .join("?");
+      //     window.history.replaceState(
+      //       null,
+      //       null,
+      //       l.pathname.slice(0, -1) + decoded + l.hash
+      //     );
+      //   }
+      // })(window.location);
     </script>
-  <script src="runtime.5cc1a7597ad3f75d.js" type="module"></script><script src="polyfills.11f4d5c9a1182932.js" type="module"></script><script src="main.e42632759f10bd2a.js" type="module"></script></body>
+  <script src="runtime.5cc1a7597ad3f75d.js" type="module"></script><script src="polyfills.11f4d5c9a1182932.js" type="module"></script><script src="main.0d1d2a54c6897ce7.js" type="module"></script></body>
 </html>
