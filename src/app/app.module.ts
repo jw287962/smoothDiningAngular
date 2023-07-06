@@ -12,7 +12,7 @@ import { APP_BASE_HREF } from '@angular/common';
 @NgModule({
   declarations: [AppComponent, NavComponent],
   imports: [BrowserModule, AppRoutingModule, AuthModule],
-  providers: [{ provide: APP_BASE_HREF, useValue: getBaseHref() }],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
