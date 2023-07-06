@@ -9,17 +9,23 @@
   </head>
   <body>
     <app-root></app-root>
-    <!-- <script>
-      var base = document.getElementById("base");
-      const currentUrl = window.location.href;
-
-      console.log(currentUrl);
-      const deploymentPath = "/smoothDiningAngular/";
-      if (currentUrl.includes(deploymentPath)) {
-        console.log(true);
-      } else {
-        base.href = "/";
-      }
-    </script> -->
+    <script>
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      })(window.location);
+    </script>
   </body>
 </html>

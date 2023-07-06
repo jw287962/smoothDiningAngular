@@ -1,5 +1,6 @@
 import { Component, Input, NgModule, resolveForwardRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { getBackEndHref } from 'base-href';
 import { CookieService } from 'ngx-cookie-service';
 interface AuthGroup extends FormGroup {
   controls: {
@@ -61,23 +62,17 @@ export class LoginComponent {
   }
   async handleLogin(string: string) {
     try {
-      const result = await fetch(
-        `https://smoothdining.azurewebsites.net/api/${string}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: this.FormAuth.get('username')?.value,
-            password: this.FormAuth.get('password')?.value,
-          }),
-        }
-      );
-      const sid = result.headers.get('set-cookie');
-      if (sid) {
-        this.cookieService.set('sid', sid);
-      }
+      const result = await fetch(`${getBackEndHref()}/api/${string}`, {
+        credentials: 'include',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: this.FormAuth.get('username')?.value,
+          password: this.FormAuth.get('password')?.value,
+        }),
+      });
 
       // const sid = result.headers.get('sid');
       // if (sid) {
@@ -86,12 +81,14 @@ export class LoginComponent {
 
       // document.cookie = cookieHeader;
       const responseBody = await result.json();
+
       if (!result.ok) {
         console.log(result);
         console.log(responseBody);
         throw new Error(responseBody.message);
       } else {
         console.log(responseBody);
+        this.cookieService.set('user', responseBody.userID);
       }
     } catch (e) {
       console.log({ error: e });
