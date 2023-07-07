@@ -108,4 +108,12 @@ export class LoginComponent {
       console.log({ error: e });
     }
   }
+
+  processGoogleClick() {
+    if (this.isRegister) {
+      console.log('Sign Up....');
+    } else {
+      console.log('Sign In...');
+    }
+  }
 }

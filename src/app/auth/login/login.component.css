@@ -10,3 +10,9 @@ form > div > label > span {
   right: 10px;
   color: red;
 }
+
+.google {
+  background-color: white;
+  border: 1px solid black;
+  
+}

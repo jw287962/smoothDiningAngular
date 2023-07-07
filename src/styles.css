@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --primary-color: #98b8ff;
+  --primary-color: #0099ff;
   --secondary-color: #cbe4f3;
   --text-color: #273746;
   --background-color: #fbfcfc;
@@ -114,6 +114,11 @@ button:active {
 /* HELPER CSS */
 .primaryColor {
   background-color: var(--primary-color);
+  color: white;
+}
+
+.wideButton {
+  width: 300px;
 }
 .flexcolcenter {
   display: flex;
@@ -131,4 +136,8 @@ button:active {
   vertical-align: top;
   position: relative;
   right: 0px;
+}
+
+.lowerFontWeight {
+  font-weight: 400;
 }

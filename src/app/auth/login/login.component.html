@@ -65,4 +65,15 @@
 
     <span *ngIf="message.length > 1"> Note: {{ message }}</span>
   </form>
+
+  <button
+    type="submit"
+    class="wideButton google"
+    (click)="processGoogleClick()"
+  >
+    <span class="lowerFontWeight">{{
+      isRegister ? "Sign Up with " : "Log in with "
+    }}</span
+    >Google
+  </button>
 </div>
