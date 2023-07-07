@@ -1,7 +1,11 @@
-<div *ngIf="stores" class="allStores flexcolcenter">
+<div *ngIf="true" class="allStores flexcolcenter">
   <div *ngFor="let item of stores">
     <h4>{{ item.address }}</h4>
 
     <button class="storebutton">{{ item.name }}</button>
   </div>
 </div>
+<div>{{ login$ | async }}</div>
+
+<div>Current Count: {{ count$ | async }}</div>
+<button (click)="increment()">+</button>

@@ -12,10 +12,25 @@ import { APP_BASE_HREF } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+
+import { AuthReducer } from 'src/store/reducers/auth.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 @NgModule({
   declarations: [AppComponent, NavComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule, AuthModule, StoreModule.forRoot({}, {}), EffectsModule.forRoot([])],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AuthModule,
+    StoreModule.forRoot({ state: AuthReducer }),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    }),
+  ],
   providers: [{ provide: APP_BASE_HREF, useValue: getBaseHref() }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+// {
+//   metaReducers,
+// }

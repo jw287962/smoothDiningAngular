@@ -1,17 +1,13 @@
-import { Component, Input, NgModule, resolveForwardRef } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   AbstractControl,
-  AbstractControlOptions,
   FormBuilder,
   FormControl,
   FormGroup,
   ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { getBackEndHref } from 'base-href';
-import { CookieService } from 'ngx-cookie-service';
-import { ApiService } from 'src/store/service/api.service';
+import { LoginApiService } from 'src/store/service/login.service';
 interface AuthGroup extends FormGroup {
   controls: {
     username: FormControl;
@@ -46,7 +42,7 @@ export class LoginComponent {
   }
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: ApiService
+    private apiService: LoginApiService
   ) {
     this.FormAuth = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(4)]],

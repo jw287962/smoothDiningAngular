@@ -1,7 +1,14 @@
 import { Component, Input } from '@angular/core';
-import { getBackEndHref } from 'base-href';
-import { CookieService } from 'ngx-cookie-service';
-interface Store {
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { increment } from 'src/store/actions/auth.action';
+import {
+  State,
+  selectCounter,
+  selectLoginBoolean,
+} from 'src/store/reducers/auth.reducer';
+import { LoginApiService } from 'src/store/service/login.service';
+interface StoreInterface {
   address: string;
   state: string;
   name: string;
@@ -13,34 +20,33 @@ interface Store {
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  @Input() stores: Store[] | undefined;
+  login$: Observable<Boolean> = this._store.select(selectLoginBoolean);
+  // state$: Observable<State>;
+  count$: Observable<number> = this._store.select(selectCounter);
+  stores: StoreInterface[] | undefined;
+  // login: boolean = false;
 
-  constructor(private cookieService: CookieService) {
+  constructor(
+    // private cookieService: CookieService,
+    private _loginApiService: LoginApiService,
+    private _store: Store<State>
+  ) {
     this.fetchStores();
   }
 
+  increment() {
+    this._store.dispatch(increment());
+    // this._store.subscribe((state) => {
+    //   console.log(state);
+    //   this.count = state.counter;
+    // });
+  }
+  // this.state$ = this._store.pipe(select((state) => state));
+  ngOnInit() {}
+  ngOnDestroy() {
+    console.log('ngondestroy');
+  }
   async fetchStores() {
-    try {
-      const userId = this.cookieService.get('user');
-      const result = await fetch(`${getBackEndHref()}/api/account/stores`, {
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-          Cookie: `user="${userId}"`,
-        },
-
-        method: 'GET',
-      });
-      const responseBody = await result.json();
-      if (!result.ok) {
-        console.log(responseBody.message);
-        console.log(responseBody);
-        throw new Error(responseBody.message);
-      } else {
-        this.stores = responseBody.result;
-      }
-    } catch (e) {
-      console.log({ error: e });
-    }
+    this.stores = await this._loginApiService.fetchStores();
   }
 }
