@@ -32,7 +32,7 @@
     <div class="formInput">
       <label for="password">Password: <span class="minitext">*req</span></label>
       <input
-        type="text"
+        type="password"
         id="password"
         name="password"
         formControlName="password"
@@ -43,12 +43,24 @@
         [name]="'Password'"
       ></app-form-error>
     </div>
+    <div class="formInput">
+      <label
+        >Remember Me:
+        <input
+          type="checkbox"
+          id="rememberMe"
+          name="rememberMe"
+          value="rememberMe"
+          formControlName="rememberMe"
+        />
+      </label>
+    </div>
     <div class="formInput" *ngIf="isRegister">
       <label for="repeatPassword"
         >Password (2): <span class="minitext">*req</span></label
       >
       <input
-        type="text"
+        type="password"
         id="repeatPassword"
         name="repeatPassword"
         formControlName="repeatPassword"
@@ -59,6 +71,7 @@
         [name]="'Password (2)'"
       ></app-form-error>
     </div>
+
     <button type="submit" class="primaryColor">
       {{ isRegister ? "Register" : "Login" }}
     </button>

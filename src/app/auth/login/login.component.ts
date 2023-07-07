@@ -47,6 +47,7 @@ export class LoginComponent {
     this.FormAuth = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(4)]],
+      rememberMe: [false],
       repeatPassword: [
         '',
         [
@@ -66,14 +67,15 @@ export class LoginComponent {
   get repeatPassword() {
     return this.FormAuth?.get('repeatPassword');
   }
-
+  get rememberMe() {
+    return this.FormAuth?.get('rememberMe');
+  }
   ngOnInit(): void {
     // Perform initialization tasks here
   }
   handleChange() {}
   handleSubmit(e: Event) {
     e.preventDefault();
-    console.log(this.FormAuth.errors);
     if (this.FormAuth.errors) {
       return;
     }
@@ -87,13 +89,16 @@ export class LoginComponent {
 
   async handleLogin(string: string) {
     try {
+      if (this.rememberMe) {
+        console.log('remeber me');
+      }
+
       const result = await this.apiService.tryLogin(
         string,
         this.username?.value,
         this.password?.value,
         this.repeatPassword?.value
       );
-
       this.message = result;
     } catch (e) {
       console.log({ error: e });
