@@ -15,6 +15,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { AuthReducer } from 'src/store/reducers/auth.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CurrStoreModule } from './curr-store/curr-store.module';
 @NgModule({
   declarations: [AppComponent, NavComponent, HomeComponent],
   imports: [
@@ -26,6 +27,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
+    CurrStoreModule,
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: getBaseHref() }],
   bootstrap: [AppComponent],

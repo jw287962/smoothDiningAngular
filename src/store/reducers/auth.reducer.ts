@@ -28,7 +28,7 @@ export const AuthReducer = createReducer(
   initialState,
   on(loginTrue, (state) => ({ ...state, login: true })),
   on(loginFalse, (state) => ({ ...state, login: false })),
-  on(setActiveStore, (state, { storeId }) => ({ ...state, storeId: storeId })),
+  on(setActiveStore, (state, { store }) => ({ ...state, storeId: store })),
   on(increment, (state) => ({ ...state, counter: state.counter + 1 }))
 );
 // const selectState = (state: State) => state;

@@ -5,7 +5,7 @@ export const loginFalse = createAction('[auth Component] loginFalse');
 
 export const setActiveStore = createAction(
   '[Click Store] setActiveStore',
-  props<{ storeId: string }>()
+  props<{ store: string }>()
 );
 
 export const increment = createAction('[counter Component] increment');

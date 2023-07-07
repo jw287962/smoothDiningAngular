@@ -1,11 +1,26 @@
-<div *ngIf="true" class="allStores flexcolcenter">
-  <div *ngFor="let item of stores">
-    <h4>{{ item.address }}</h4>
+<div *ngIf="login$ | async as login">
+  <p *ngIf="login"></p>
+  <p *ngIf="!login">Please Log In.</p>
+</div>
 
-    <button class="storebutton">{{ item.name }}</button>
+<div *ngIf="true" class="allStores flexcolcenter">
+  <div>
+    <button (click)="createStore()">New Store</button>
+  </div>
+
+  <div *ngFor="let item of stores; index as i">
+    <h4>{{ item.address }}</h4>
+    <a
+      routerLink="/store"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      ><button class="storebutton" (click)="clickStore(item._id)">
+        {{ item.name }}
+      </button></a
+    >
   </div>
 </div>
-<div>{{ login$ | async }}</div>
 
-<div>Current Count: {{ count$ | async }}</div>
-<button (click)="increment()">+</button>
+<!--    [attr.data-storeId]="item._id" -->
+<!-- <div>Current Count: {{ count$ | async }}</div>
+<button (click)="increment()">+</button> -->

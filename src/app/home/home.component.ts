@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { increment } from 'src/store/actions/auth.action';
+import { increment, setActiveStore } from 'src/store/actions/auth.action';
 import {
   State,
   selectCounter,
@@ -48,5 +48,13 @@ export class HomeComponent {
   }
   async fetchStores() {
     this.stores = await this._loginApiService.fetchStores();
+  }
+
+  async createStore() {
+    console.log('MAKE STORE');
+  }
+
+  clickStore(storeID: string) {
+    this._store.dispatch(setActiveStore({ store: storeID }));
   }
 }

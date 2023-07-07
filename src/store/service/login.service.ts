@@ -48,17 +48,18 @@ export class LoginApiService {
         body: body,
       });
       const responseBody = await result.json();
-      if (!result.ok) {
-        console.log(result);
-        console.log(responseBody);
+      return this.manageError(responseBody, result);
+      // if (!result.ok) {
+      //   console.log(result);
+      //   console.log(responseBody);
 
-        throw new Error(responseBody.message);
-      } else {
-        this.dispatchLoginTrue();
-        if (string === 'login')
-          this.cookieService.set('user', responseBody.userID);
-        return responseBody.message;
-      }
+      //   throw new Error(responseBody.message);
+      // } else {
+      //   this.dispatchLoginTrue();
+      //   if (string === 'login')
+      //     this.cookieService.set('user', responseBody.userID);
+      //   return responseBody.message;
+      // }
     } catch (e: any) {
       console.log({ error: e });
       return e.message;
@@ -75,15 +76,15 @@ export class LoginApiService {
         },
       });
       const responseBody = await result.json();
-
-      if (!result.ok) {
-        console.log(result);
-        console.log(responseBody);
-        throw new Error(responseBody.message);
-      } else {
-        this.dispatchLoginFalse();
-        return responseBody.message;
-      }
+      return this.manageError(responseBody, result);
+      // if (!result.ok) {
+      //   console.log(result);
+      //   console.log(responseBody);
+      //   throw new Error(responseBody.message);
+      // } else {
+      //   this.dispatchLoginFalse();
+      //   return responseBody.message;
+      // }
     } catch (e: any) {
       console.log({ error: e });
       return e.message;
@@ -103,17 +104,23 @@ export class LoginApiService {
         method: 'GET',
       });
       const responseBody = await result.json();
-      if (!result.ok) {
-        console.log(responseBody.message);
-        console.log(responseBody);
-        this.dispatchLoginFalse();
-        throw new Error(responseBody.message);
-      } else {
-        this.dispatchLoginTrue();
-        return responseBody.result;
-      }
+      return this.manageError(responseBody, result);
     } catch (e) {
       console.log({ error: e });
+    }
+  }
+
+  
+
+  manageError(responseBody: any, result: any) {
+    if (!result.ok) {
+      console.log(responseBody.message);
+      console.log(responseBody);
+      this.dispatchLoginFalse();
+      throw new Error(responseBody.message);
+    } else {
+      this.dispatchLoginTrue();
+      return responseBody.result;
     }
   }
 }
