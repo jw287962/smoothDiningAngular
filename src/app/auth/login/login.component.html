@@ -1,10 +1,14 @@
 <div class="flexcolcenter">
+  <h1>{{ isRegister ? "Register" : "Login" }}</h1>
+
   <div>
-    <button (click)="toggleRegister()">
+    <button (click)="toggleRegister()" *ngIf="!(login$ | async)">
       <span *ngIf="isRegister === true">Login</span>
       <span *ngIf="isRegister === false">Register</span>
     </button>
-    <button *ngIf="true" (click)="handleLogout()">Logout</button>
+    <button *ngIf="login$ | async" (click)="handleLogout()" class="warning">
+      Logout
+    </button>
   </div>
 
   <!-- <app-register *ngIf="isRegister === true"></app-register> -->
@@ -14,6 +18,7 @@
     class="flexcolcenter"
     (input)="handleChange()"
     [formGroup]="FormAuth"
+    *ngIf="!(login$ | async)"
   >
     <div class="formInput">
       <label for="username">Username: <span class="minitext">*req</span></label>
@@ -77,16 +82,16 @@
     </button>
 
     <span *ngIf="message.length > 1"> Note: {{ message }}</span>
+    <div class="line"></div>
+    <button
+      type="button"
+      class="wideButton google"
+      (click)="processGoogleClick()"
+    >
+      <span class="lowerFontWeight">{{
+        isRegister ? "Sign Up with " : "Log in with "
+      }}</span
+      >Google
+    </button>
   </form>
-
-  <button
-    type="submit"
-    class="wideButton google"
-    (click)="processGoogleClick()"
-  >
-    <span class="lowerFontWeight">{{
-      isRegister ? "Sign Up with " : "Log in with "
-    }}</span
-    >Google
-  </button>
 </div>

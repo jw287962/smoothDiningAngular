@@ -34,13 +34,6 @@ export class HomeComponent {
     this.fetchStores();
   }
 
-  increment() {
-    this._store.dispatch(increment());
-    // this._store.subscribe((state) => {
-    //   console.log(state);
-    //   this.count = state.counter;
-    // });
-  }
   // this.state$ = this._store.pipe(select((state) => state));
   ngOnInit() {}
   ngOnDestroy() {

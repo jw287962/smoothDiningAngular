@@ -7,6 +7,9 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectLoginBoolean } from 'src/store/reducers/auth.reducer';
 import { LoginApiService } from 'src/store/service/login.service';
 interface AuthGroup extends FormGroup {
   controls: {
@@ -33,6 +36,7 @@ const confirmPasswordValidator: ValidationErrors = (
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  login$: Observable<boolean> = this._store.select(selectLoginBoolean);
   isRegister: Boolean = false;
   FormAuth: FormGroup;
   message: string = '';
@@ -42,7 +46,8 @@ export class LoginComponent {
   }
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: LoginApiService
+    private apiService: LoginApiService,
+    private _store: Store
   ) {
     this.FormAuth = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(4)]],

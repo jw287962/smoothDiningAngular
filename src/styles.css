@@ -6,6 +6,7 @@
   --background-color: #fbfcfc;
   --nav-background-color: white;
   --error-color: rgb(255, 92, 92);
+  /* --warning: rgb(255, 87, 87); */
 }
 
 [data-theme="dark"] {
@@ -140,4 +141,8 @@ button:active {
 
 .lowerFontWeight {
   font-weight: 400;
+}
+
+.warning {
+  background-color: var(--error-color);
 }
