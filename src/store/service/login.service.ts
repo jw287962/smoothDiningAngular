@@ -49,17 +49,6 @@ export class LoginApiService {
       });
       const responseBody = await result.json();
       return this.manageError(responseBody, result);
-      // if (!result.ok) {
-      //   console.log(result);
-      //   console.log(responseBody);
-
-      //   throw new Error(responseBody.message);
-      // } else {
-      //   this.dispatchLoginTrue();
-      //   if (string === 'login')
-      //     this.cookieService.set('user', responseBody.userID);
-      //   return responseBody.message;
-      // }
     } catch (e: any) {
       console.log({ error: e });
       return e.message;
@@ -77,14 +66,6 @@ export class LoginApiService {
       });
       const responseBody = await result.json();
       return this.manageError(responseBody, result);
-      // if (!result.ok) {
-      //   console.log(result);
-      //   console.log(responseBody);
-      //   throw new Error(responseBody.message);
-      // } else {
-      //   this.dispatchLoginFalse();
-      //   return responseBody.message;
-      // }
     } catch (e: any) {
       console.log({ error: e });
       return e.message;
@@ -110,17 +91,19 @@ export class LoginApiService {
     }
   }
 
-  
-
   manageError(responseBody: any, result: any) {
     if (!result.ok) {
-      console.log(responseBody.message);
-      console.log(responseBody);
+      // console.log(responseBody.message);
+      // console.log(responseBody);
       this.dispatchLoginFalse();
       throw new Error(responseBody.message);
     } else {
       this.dispatchLoginTrue();
-      return responseBody.result;
+      if (responseBody.result) {
+        return responseBody.result;
+      } else {
+        return responseBody.message;
+      }
     }
   }
 }

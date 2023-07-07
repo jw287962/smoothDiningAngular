@@ -120,6 +120,12 @@ button:active {
   flex-direction: column;
   align-items: center;
 }
+
+.flexrowcenter {
+  display: flex;
+  align-items: center;
+  vertical-align: center;
+}
 .minitext {
   font-size: 11px;
   vertical-align: top;
