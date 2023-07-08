@@ -65,7 +65,7 @@ export class LoginApiService {
         },
       });
       const responseBody = await result.json();
-      return this.manageError(responseBody, result);
+      return this.manageError(responseBody, result, true);
     } catch (e: any) {
       console.log({ error: e });
       return e.message;
@@ -91,19 +91,19 @@ export class LoginApiService {
     }
   }
 
-  manageError(responseBody: any, result: any) {
+  manageError(responseBody: any, result: any, logout: boolean = false) {
     if (!result.ok) {
       // console.log(responseBody.message);
       // console.log(responseBody);
       this.dispatchLoginFalse();
       throw new Error(responseBody.message);
     } else {
-      this.dispatchLoginTrue();
-      if (responseBody.result) {
-        return responseBody.result;
+      if (logout) {
+        this.dispatchLoginFalse();
       } else {
-        return responseBody.message;
+        this.dispatchLoginTrue();
       }
+      return responseBody.result || responseBody.message;
     }
   }
 }
