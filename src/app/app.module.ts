@@ -16,6 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthReducer } from 'src/store/reducers/auth.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CurrStoreModule } from './curr-store/curr-store.module';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 @NgModule({
   declarations: [AppComponent, NavComponent, HomeComponent],
   imports: [
@@ -24,6 +25,7 @@ import { CurrStoreModule } from './curr-store/curr-store.module';
     AuthModule,
     StoreModule.forRoot({ state: AuthReducer }),
     EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),

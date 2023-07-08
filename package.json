@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
     "@ngrx/effects": "^16.1.0",
+    "@ngrx/router-store": "^16.1.0",
     "@ngrx/store": "^16.1.0",
     "@ngrx/store-devtools": "^16.1.0",
     "ngx-cookie-service": "^16.0.0",

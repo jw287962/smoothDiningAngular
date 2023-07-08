@@ -10,11 +10,11 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'home', // This is the original '/home' route
+    path: 'home',
     component: HomeComponent,
   },
   {
-    path: 'store', // This is the original '/home' route
+    path: 'store',
     component: StoreViewComponent,
   },
   {
