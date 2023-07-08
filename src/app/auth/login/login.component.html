@@ -94,8 +94,9 @@
       >Google
     </button>
   </form>
-</div>
 
-<div *ngIf="loading$ | async" class="loading">
-  <app-loading></app-loading>
+  <div *ngIf="loading$ | async" class="loading">
+    <app-loading></app-loading>
+  </div>
+  <!-- <app-loading></app-loading> -->
 </div>
