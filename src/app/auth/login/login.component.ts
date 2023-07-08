@@ -9,7 +9,10 @@ import {
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectLoginBoolean } from 'src/store/reducers/auth.reducer';
+import {
+  selectLoadingBoolean,
+  selectLoginBoolean,
+} from 'src/store/reducers/auth.reducer';
 import { LoginApiService } from 'src/store/service/login.service';
 interface AuthGroup extends FormGroup {
   controls: {
@@ -40,6 +43,7 @@ export class LoginComponent {
   isRegister: Boolean = false;
   FormAuth: FormGroup;
   message: string = '';
+  loading$: Observable<boolean> = this._store.select(selectLoadingBoolean);
   toggleRegister() {
     this.isRegister = !this.isRegister;
     console.log(this.isRegister);

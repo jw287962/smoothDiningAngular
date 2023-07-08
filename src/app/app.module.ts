@@ -17,6 +17,8 @@ import { AuthReducer } from 'src/store/reducers/auth.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CurrStoreModule } from './curr-store/curr-store.module';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { LoadingComponent } from './loading/loading.component';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [AppComponent, NavComponent, HomeComponent],
   imports: [
@@ -30,6 +32,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
       maxAge: 25,
     }),
     CurrStoreModule,
+    SharedModule,
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: getBaseHref() }],
   bootstrap: [AppComponent],

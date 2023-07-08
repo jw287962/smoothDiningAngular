@@ -95,3 +95,7 @@
     </button>
   </form>
 </div>
+
+<div *ngIf="loading$ | async" class="loading">
+  <app-loading></app-loading>
+</div>
