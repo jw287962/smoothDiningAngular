@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { getBackEndHref } from 'base-href';
 import { CookieService } from 'ngx-cookie-service';
-import { loginFalse, loginTrue } from '../actions/auth.action';
+import { loadingPage, loginFalse, loginTrue } from '../actions/auth.action';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +17,9 @@ export class LoginApiService {
   dispatchLoginFalse() {
     this.store.dispatch(loginFalse());
   }
+  dispatchLoading(state: boolean) {
+    this.store.dispatch(loadingPage.updateLoading({ loading: state }));
+  }
   async tryLogin(
     string: string,
     username: string,
@@ -25,6 +28,7 @@ export class LoginApiService {
   ) {
     try {
       let body;
+      this.dispatchLoading(true);
 
       if (string === 'login') {
         body = JSON.stringify({
@@ -92,6 +96,7 @@ export class LoginApiService {
   }
 
   manageError(responseBody: any, result: any, logout: boolean = false) {
+    this.dispatchLoading(false);
     if (!result.ok) {
       // console.log(responseBody.message);
       // console.log(responseBody);
