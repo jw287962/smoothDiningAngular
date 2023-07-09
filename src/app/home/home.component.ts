@@ -1,13 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
-import { increment, setActiveStore } from 'src/store/actions/auth.action';
+import { setActiveStore } from 'src/store/actions/auth.action';
 import {
   State,
   selectCounter,
   selectLoginBoolean,
 } from 'src/store/reducers/auth.reducer';
-import { LoginApiService } from 'src/store/service/login.service';
+import { StoreApiService } from 'src/store/service/store.service';
 interface StoreInterface {
   address: string;
   state: string;
@@ -28,8 +29,9 @@ export class HomeComponent {
 
   constructor(
     // private cookieService: CookieService,
-    private _loginApiService: LoginApiService,
-    private _store: Store<State>
+    private _storeService: StoreApiService,
+    private _store: Store<State>,
+    private _cookieService: CookieService
   ) {
     this.fetchStores();
   }
@@ -40,7 +42,7 @@ export class HomeComponent {
     console.log('ngondestroy');
   }
   async fetchStores() {
-    this.stores = await this._loginApiService.fetchStores();
+    this.stores = await this._storeService.fetchStores();
   }
 
   async createStore() {
@@ -48,7 +50,8 @@ export class HomeComponent {
   }
 
   clickStore(storeID: string, storeName: string) {
-    const store = { storeId: storeID, storeName: storeName };
-    this._store.dispatch(setActiveStore({ storeData: { ...store } }));
+    const data = { storeId: storeID, storeName: storeName };
+    this._store.dispatch(setActiveStore({ storeData: data }));
+    this._cookieService.set('storeID', storeID);
   }
 }

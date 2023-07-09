@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import {
   State,
   activeStore,
@@ -8,6 +8,7 @@ import {
 } from 'src/store/reducers/auth.reducer';
 import { Moment } from 'moment';
 import * as moment from 'moment';
+import { StoreApiService } from 'src/store/service/store.service';
 
 @Component({
   selector: 'app-store-view',
@@ -17,8 +18,19 @@ import * as moment from 'moment';
 export class StoreViewComponent {
   private _date: string = moment().format('yyyy-MM-DD');
   storeData$: Observable<activeStore> = this._store.select(selectStoreData);
+  storeDataSubscription: Subscription;
+  constructor(
+    private _store: Store<State>,
+    private _storeService: StoreApiService
+  ) {
+    this.storeDataSubscription = this.storeData$.subscribe(async (data) => {
+      if (data.storeId === '') {
+        const result = await this._storeService.fetchStore();
 
-  constructor(private _store: Store<State>) {}
+        console.log(result);
+      }
+    });
+  }
 
   date() {
     return this._date;
