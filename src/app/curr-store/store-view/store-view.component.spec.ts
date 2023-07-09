@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StoreViewComponent } from './store-view.component';
+import { StoreModule } from '@ngrx/store';
 
 describe('StoreViewComponent', () => {
   let component: StoreViewComponent;
@@ -8,7 +9,8 @@ describe('StoreViewComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [StoreViewComponent]
+      declarations: [StoreViewComponent],
+      imports: [StoreModule.forRoot()],
     });
     fixture = TestBed.createComponent(StoreViewComponent);
     component = fixture.componentInstance;
