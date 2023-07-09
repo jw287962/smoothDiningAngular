@@ -6,8 +6,7 @@ import {
   activeStore,
   selectStoreData,
 } from 'src/store/reducers/auth.reducer';
-import { Moment } from 'moment';
-import * as moment from 'moment';
+import { format, addHours } from 'date-fns';
 import { StoreApiService } from 'src/store/service/store.service';
 
 @Component({
@@ -16,7 +15,7 @@ import { StoreApiService } from 'src/store/service/store.service';
   styleUrls: ['./store-view.component.css'],
 })
 export class StoreViewComponent {
-  private _date: string = moment().format('yyyy-MM-DD');
+  private _date: string = format(new Date(), 'yyyy-MM-dd');
   storeData$: Observable<activeStore> = this._store.select(selectStoreData);
   storeDataSubscription: Subscription;
   constructor(
@@ -35,12 +34,11 @@ export class StoreViewComponent {
   date() {
     return this._date;
   }
-  handleViewDate() {
-    console.log(this._date);
-    this._date;
-  }
 
   handleDateUpdate(e: any) {
-    this._date = moment(`${e.target.value}`).format('yyyy-MM-DD');
+    this._date = format(
+      addHours(new Date(`${e.target.value}`), 5),
+      'yyyy-MM-dd'
+    );
   }
 }
