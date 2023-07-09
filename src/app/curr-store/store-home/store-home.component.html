@@ -5,11 +5,14 @@
     routerLinkActive="active"
     ariaCurrentWhenActive="page"
   >
-    <h1 class="header-text separation">
-      {{ (storeData$ | async)?.storeName }}
-    </h1>
+    <button class="wide primary-color header">
+      <h1 class="">
+        {{ (storeData$ | async)?.storeName }}
+      </h1>
+    </button>
   </a>
   <!-- <form class="flx-row-center date-form"> -->
+  <div class="separation"></div>
   <input
     class="date"
     type="date"
@@ -23,7 +26,7 @@
     routerLinkActive="active"
     ariaCurrentWhenActive="page"
   >
-    <button class="primary-color wide tall">
+    <button class="wide tall">
       <h3>VIEW INFORMATION</h3>
     </button>
   </a>
