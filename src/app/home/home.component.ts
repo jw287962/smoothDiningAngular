@@ -47,7 +47,8 @@ export class HomeComponent {
     console.log('MAKE STORE');
   }
 
-  clickStore(storeID: string) {
-    this._store.dispatch(setActiveStore({ store: storeID }));
+  clickStore(storeID: string, storeName: string) {
+    const store = { storeId: storeID, storeName: storeName };
+    this._store.dispatch(setActiveStore({ storeData: { ...store } }));
   }
 }

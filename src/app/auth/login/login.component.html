@@ -1,5 +1,5 @@
-<div class="flexcolcenter">
-  <div *ngIf="!(login$ | async)" class="flexcolcenter">
+<div class="flex-col-center">
+  <div *ngIf="!(login$ | async)" class="flex-col-center">
     <h1>{{ isRegister ? "Register" : "Login" }}</h1>
 
     <button (click)="toggleRegister()">
@@ -15,13 +15,15 @@
 
   <form
     (submit)="handleSubmit($event)"
-    class="flexcolcenter"
+    class="flex-col-center"
     (input)="handleChange()"
     [formGroup]="FormAuth"
     *ngIf="!(login$ | async)"
   >
-    <div class="formInput">
-      <label for="username">Username: <span class="minitext">*req</span></label>
+    <div class="form-input">
+      <label for="username"
+        >Username: <span class="mini-text">*req</span></label
+      >
       <input
         type="text"
         id="username"
@@ -34,8 +36,10 @@
         [name]="'Username'"
       ></app-form-error>
     </div>
-    <div class="formInput">
-      <label for="password">Password: <span class="minitext">*req</span></label>
+    <div class="form-input">
+      <label for="password"
+        >Password: <span class="mini-text">*req</span></label
+      >
       <input
         type="password"
         id="password"
@@ -48,7 +52,7 @@
         [name]="'Password'"
       ></app-form-error>
     </div>
-    <div class="formInput">
+    <div class="form-input">
       <label
         >Remember Me:
         <input
@@ -60,9 +64,9 @@
         />
       </label>
     </div>
-    <div class="formInput" *ngIf="isRegister">
+    <div class="form-input" *ngIf="isRegister">
       <label for="repeatPassword"
-        >Password (2): <span class="minitext">*req</span></label
+        >Password (2): <span class="mini-text">*req</span></label
       >
       <input
         type="password"
@@ -77,14 +81,14 @@
       ></app-form-error>
     </div>
 
-    <button type="submit" class="primaryColor">
+    <button type="submit" class="primary-color">
       {{ isRegister ? "Register" : "Login" }}
     </button>
 
     <span *ngIf="message.length > 1"> Note: {{ message }}</span>
     <div class="line"></div>
     <button type="button" class="wide google" (click)="processGoogleClick()">
-      <span class="lowerFontWeight">{{
+      <span class="lower-font-weight">{{
         isRegister ? "Sign Up with " : "Log in with "
       }}</span
       >Google

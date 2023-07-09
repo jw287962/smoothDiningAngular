@@ -1,7 +1,7 @@
 <div *ngIf="login$ | async as login">
-  <div *ngIf="login" class="allStores flexcolcenter">
+  <div *ngIf="login" class="all-stores flex-col-center">
     <div>
-      <button (click)="createStore()">New Store</button>
+      <button (click)="createStore()">Add Store</button>
     </div>
 
     <div *ngFor="let item of stores; index as i">
@@ -10,7 +10,7 @@
         routerLink="/store"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
-        ><button class="storebutton" (click)="clickStore(item._id)">
+        ><button class="store-button" (click)="clickStore(item._id, item.name)">
           {{ item.name }}
         </button></a
       >
