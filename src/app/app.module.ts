@@ -8,7 +8,11 @@ import { NavComponent } from './nav/nav.component';
 import { AuthModule } from './auth/auth.module';
 
 import { getBaseHref } from 'base-href';
-import { APP_BASE_HREF } from '@angular/common';
+import {
+  APP_BASE_HREF,
+  HashLocationStrategy,
+  LocationStrategy,
+} from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -34,7 +38,10 @@ import { SharedModule } from './shared/shared.module';
     CurrStoreModule,
     SharedModule,
   ],
-  providers: [{ provide: APP_BASE_HREF, useValue: getBaseHref() }],
+  providers: [
+    { provide: APP_BASE_HREF, useValue: getBaseHref() },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
