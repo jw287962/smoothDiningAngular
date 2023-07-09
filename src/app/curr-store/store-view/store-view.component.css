@@ -1,0 +1,22 @@
+.store-view {
+  position: relative;
+}
+.date-form {
+  display: flex;
+  justify-content: center;
+}
+.date {
+  margin-top: 10px;
+  padding: 8px;
+  color: black;
+  opacity: calc(75%);
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-size: 1.4rem;
+}
+
+.separation {
+  min-width: 400px;
+  width: 50%;
+}

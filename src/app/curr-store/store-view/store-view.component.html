@@ -1,1 +1,21 @@
-<p>store-view works!</p>
+<div class="flex-col-center store-view">
+  <h1 class="header-text separation">{{ (storeData$ | async)?.storeName }}</h1>
+  <!-- <form class="flx-row-center date-form"> -->
+  <input
+    class="date"
+    type="date"
+    [value]="date()"
+    name="date"
+    (change)="handleDateUpdate($event)"
+  />
+  <!-- </form> -->
+  <button class="primary-color wide tall" (click)="handleViewDate()">
+    <h3>VIEW INFORMATION</h3>
+  </button>
+
+  <!-- <button><span class="fontEmphasis">+</span> Waiter</button> -->
+  <div class="separation"></div>
+
+  <button class="wide tall"><h3>View All Waiters</h3></button>
+  <button><span class="font-emphasis">+</span> Waiter</button>
+</div>
