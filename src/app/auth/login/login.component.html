@@ -1,15 +1,15 @@
 <div class="flexcolcenter">
-  <h1>{{ isRegister ? "Register" : "Login" }}</h1>
+  <div *ngIf="!(login$ | async)" class="flexcolcenter">
+    <h1>{{ isRegister ? "Register" : "Login" }}</h1>
 
-  <div>
-    <button (click)="toggleRegister()" *ngIf="!(login$ | async)">
-      <span *ngIf="isRegister === true">Login</span>
-      <span *ngIf="isRegister === false">Register</span>
-    </button>
-    <button *ngIf="login$ | async" (click)="handleLogout()" class="warning">
-      Logout
+    <button (click)="toggleRegister()">
+      <span>{{ !isRegister ? "Register" : "Login" }}</span>
+      <!-- <span *ngIf="isRegister === false">Register</span> -->
     </button>
   </div>
+  <button *ngIf="login$ | async" (click)="handleLogout()" class="warning">
+    Logout
+  </button>
 
   <!-- <app-register *ngIf="isRegister === true"></app-register> -->
 
@@ -83,11 +83,7 @@
 
     <span *ngIf="message.length > 1"> Note: {{ message }}</span>
     <div class="line"></div>
-    <button
-      type="button"
-      class="wideButton google"
-      (click)="processGoogleClick()"
-    >
+    <button type="button" class="wide google" (click)="processGoogleClick()">
       <span class="lowerFontWeight">{{
         isRegister ? "Sign Up with " : "Log in with "
       }}</span
@@ -98,5 +94,7 @@
   <div *ngIf="loading$ | async" class="loading">
     <app-loading></app-loading>
   </div>
-  <!-- <app-loading></app-loading> -->
+  <h4 *ngIf="login$ | async" (click)="handleLogout()" class="">
+    Welcome to Smooth Dining!
+  </h4>
 </div>
