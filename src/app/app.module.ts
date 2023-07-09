@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './shared/nav/nav.component';
 import { AuthModule } from './auth/auth.module';
 
 import { getBaseHref } from 'base-href';
@@ -21,7 +21,7 @@ import { AuthReducer } from 'src/store/reducers/auth.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CurrStoreModule } from './curr-store/curr-store.module';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { LoadingComponent } from './loading/loading.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [AppComponent, NavComponent, HomeComponent],
