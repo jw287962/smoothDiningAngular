@@ -39,12 +39,12 @@ nav {
   bottom: 0px;
   margin-bottom: 5px;
 }
-nav > a {
+a {
   padding: 10px;
   text-decoration: none;
   font-size: 22px;
   font-weight: 400;
-  color: var(--text-colorcolor);
+  color: var(--text-color);
 }
 
 button {
@@ -163,4 +163,8 @@ button:active {
 
 .warning {
   background-color: var(--error-color);
+}
+.separation {
+  min-width: 400px;
+  width: 50%;
 }
