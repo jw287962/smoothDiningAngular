@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { StoreViewComponent } from './curr-store/store-view/store-view.component';
+import { DayViewComponent } from './curr-store/day-view/day-view.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -13,10 +14,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
-  {
-    path: 'store',
-    component: StoreViewComponent,
-  },
+
   {
     path: '', // Empty path, this will be the new default route
     redirectTo: 'home', // Redirect to the original '/home' route
