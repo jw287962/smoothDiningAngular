@@ -81,7 +81,7 @@ export class StoreApiService {
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
-            Cookie: `storeid=${store}`,
+            Cookie: `'storeid'='${store}'`,
           },
           mode: 'cors',
           method: 'GET',
