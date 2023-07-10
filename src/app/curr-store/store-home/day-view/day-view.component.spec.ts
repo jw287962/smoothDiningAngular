@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DayViewComponent } from './day-view.component';
+import { StoreApiService } from 'src/store/service/store.service';
+import { StoreModule } from '@ngrx/store';
 
 describe('DayViewComponent', () => {
   let component: DayViewComponent;
@@ -8,7 +10,8 @@ describe('DayViewComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DayViewComponent]
+      declarations: [DayViewComponent],
+      imports: [StoreModule.forRoot()],
     });
     fixture = TestBed.createComponent(DayViewComponent);
     component = fixture.componentInstance;
