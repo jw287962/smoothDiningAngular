@@ -73,16 +73,18 @@ export class StoreApiService {
   }
   // WAITERS
   async fetchWaiters() {
+    const store = this.getStoreCookie();
+
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('set-cookie', `storeid=${store}`);
+    console.log(myHeaders.forEach((ele) => console.log(ele)));
     try {
-      const store = this.getStoreCookie();
       const result = await fetch(
         `${getBackEndHref()}/api/account/store/waiters`,
         {
           credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-            Cookie: `'storeid'='${store}'`,
-          },
+          headers: myHeaders,
           mode: 'cors',
           method: 'GET',
         }
