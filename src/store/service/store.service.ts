@@ -121,7 +121,7 @@ export class StoreApiService {
         }
       );
       const responseBody = await result.json();
-      return this._helper.manageError(responseBody, result) || responseBody;
+      return this._helper.manageError(responseBody, result);
     } catch (e) {
       console.log({ error: e });
     }
