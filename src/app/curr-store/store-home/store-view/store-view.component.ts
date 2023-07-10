@@ -28,7 +28,7 @@ interface waiterFormGroup extends FormGroup {
 })
 export class StoreViewComponent {
   FormAuth: FormGroup;
-
+  error: string = '';
   constructor(
     private formBuilder: FormBuilder,
     private _store: Store<State>,
@@ -37,7 +37,7 @@ export class StoreViewComponent {
     this.FormAuth = this.formBuilder.group({
       fullname: ['', [Validators.required]],
       birthday: [null],
-      maxActive: [null],
+      maxActive: [undefined],
     }) as waiterFormGroup;
   }
 
@@ -54,8 +54,9 @@ export class StoreViewComponent {
   async addNewWaiter(
     name: string = this.getFullName?.value,
     birth: Date = this.getBirthday?.value,
-    maxTable: number = this.getBirthday?.value
+    maxTable: number = this.getMaxActive?.value || undefined
   ) {
+    console.log('addwaiter');
     const result = await this._storeApiService.addWaiters(
       name,
       birth,

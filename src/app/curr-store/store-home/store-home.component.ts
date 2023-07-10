@@ -28,7 +28,7 @@ export class StoreHomeComponent {
       if (data.storeId === '') {
         const result = await this._storeService.fetchStore();
 
-        console.log(result);
+        // console.log(result);
       }
     });
   }
