@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Store } from '@ngrx/store';
 import {
   State,
@@ -7,6 +13,13 @@ import {
 } from 'src/store/reducers/auth.reducer';
 // import { format, addHours } from 'date-fns';
 import { StoreApiService } from 'src/store/service/store.service';
+interface waiterFormGroup extends FormGroup {
+  controls: {
+    fullname: FormControl;
+    birthday: FormControl;
+    maxActive: FormControl;
+  };
+}
 
 @Component({
   selector: 'app-store-view',
@@ -14,11 +27,41 @@ import { StoreApiService } from 'src/store/service/store.service';
   styleUrls: ['./store-view.component.css'],
 })
 export class StoreViewComponent {
-  // private _date: string = format(new Date(), 'yyyy-MM-dd');
-  // storeData$: Observable<activeStore> = this._store.select(selectStoreData);
-  // storeDataSubscription: Subscription;
+  FormAuth: FormGroup;
+
   constructor(
+    private formBuilder: FormBuilder,
     private _store: Store<State>,
-    private _storeService: StoreApiService
-  ) {}
+    private _storeApiService: StoreApiService
+  ) {
+    this.FormAuth = this.formBuilder.group({
+      fullname: ['', [Validators.required]],
+      birthday: [null],
+      maxActive: [null],
+    }) as waiterFormGroup;
+  }
+
+  get getFullName() {
+    return this.FormAuth.get('fullname');
+  }
+  get getBirthday() {
+    return this.FormAuth.get('birthday');
+  }
+  get getMaxActive() {
+    return this.FormAuth.get('maxActive');
+  }
+
+  async addNewWaiter(
+    name: string = this.getFullName?.value,
+    birth: Date = this.getBirthday?.value,
+    maxTable: number = this.getBirthday?.value
+  ) {
+    const result = await this._storeApiService.addWaiters(
+      name,
+      birth,
+      maxTable
+    );
+
+    console.log(result);
+  }
 }
