@@ -9,6 +9,7 @@ import {
   selectLoginBoolean,
 } from 'src/store/reducers/auth.reducer';
 import { StoreApiService } from 'src/store/service/store.service';
+import { cookieOptions } from 'src/store/service/types';
 interface StoreInterface {
   address: string;
   state: string;
@@ -28,7 +29,6 @@ export class HomeComponent {
   // login: boolean = false;
 
   constructor(
-    // private cookieService: CookieService,
     private _storeService: StoreApiService,
     private _store: Store<State>,
     private _cookieService: CookieService
@@ -52,6 +52,6 @@ export class HomeComponent {
   clickStore(storeID: string, storeName: string) {
     const data = { storeId: storeID, storeName: storeName };
     this._store.dispatch(setActiveStore({ storeData: data }));
-    this._cookieService.set('storeid', storeID);
+    this._cookieService.set('storeid', storeID, cookieOptions);
   }
 }
