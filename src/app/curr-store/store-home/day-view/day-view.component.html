@@ -1,0 +1,18 @@
+<div class="separation"></div>
+<div class="flex-col-center">
+  <form>
+    <input type="search" />
+    <div class="dropdown" *ngIf="waiters && waiters.length > 0">
+      <button *ngFor="let waiter of waiters">{{ waiter.name }}</button>
+    </div>
+  </form>
+  <button class="wide primary-color">Add Waiter To List</button>
+  <div class="flex-row-center waiterContainer">
+    <div class="container">
+      <h3>Name filler</h3>
+    </div>
+    <div class="container">
+      <div class="boxes"></div>
+    </div>
+  </div>
+</div>
