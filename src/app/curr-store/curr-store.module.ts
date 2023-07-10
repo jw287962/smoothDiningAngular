@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { CurrStoreRoutingModule } from './curr-store-routing.module';
 import { StoreHomeComponent } from './store-home/store-home.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { WaiterActiveRowComponent } from './store-home/day-view/waiter-active-row/waiter-active-row.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ActiveWaiterComponent,
     DayViewComponent,
     StoreHomeComponent,
+    WaiterActiveRowComponent,
   ],
   imports: [CommonModule, CurrStoreRoutingModule, ReactiveFormsModule],
 })
