@@ -1,8 +1,11 @@
 .all-stores {
   min-width: 500px;
+  font-size: 25px;
 }
 
 .store-button {
   min-width: 200px;
+  width: fit-content;
   padding: 15px;
+  font-size: 20px;
 }

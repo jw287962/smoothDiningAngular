@@ -1,9 +1,4 @@
-.form-input {
-  display: flex;
-  flex-direction: column;
-  padding: 3px;
-  width: 200px;
-}
+
 
 form > div > label > span {
   position: absolute;
