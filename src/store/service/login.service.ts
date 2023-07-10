@@ -58,7 +58,7 @@ export class LoginApiService {
         body: body,
       });
       const responseBody = await result.json();
-      return this._helper.manageError(responseBody, result);
+      return this._helper.manageError(responseBody, result, !isLogin);
     } catch (e: any) {
       console.log({ error: e });
       return e.message;
