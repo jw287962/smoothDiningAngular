@@ -1,6 +1,40 @@
 <div class="flex-col-center store-view">
-  <div class="separation"></div>
-
   <button class="wide tall"><h3>View All Waiters</h3></button>
   <button><span class="font-emphasis">+</span> Waiter</button>
+
+  <form class="add-waiter" (submit)="addNewWaiter()" [formGroup]="FormAuth">
+    <div class="form-input">
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        formControlName="fullname"
+        required="true"
+      />
+      <!-- <app-form-error
+        [formData]="fullname"
+        [name]="'Fullname'"
+      ></app-form-error> -->
+    </div>
+
+    <div class="form-input">
+      <label for="birthday">Birthday:</label>
+      <input
+        type="date"
+        id="birthday"
+        name="birthday"
+        formControlName="birthday"
+      />
+    </div>
+    <div class="form-input">
+      <label for="maxactive">Max Active Table:</label>
+      <input
+        type="number"
+        id="maxactive"
+        name="maxactive"
+        formControlName="maxActive"
+      />
+    </div>
+  </form>
 </div>
