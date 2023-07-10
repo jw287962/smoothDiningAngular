@@ -28,9 +28,10 @@ export class DayViewComponent {
     if (this.timeout) {
       clearTimeout(this.timeout);
     }
+    const search = (e?.target as HTMLInputElement).value.toLowerCase();
+
     this.timeout = setTimeout(() => {
       this.filteredWaiter = this.waiters?.filter((ele) => {
-        const search = (e?.target as HTMLInputElement).value;
         return ele.name.toLowerCase().indexOf(search) != -1;
       });
     }, 300);
