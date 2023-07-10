@@ -20,9 +20,18 @@ export class DayViewComponent {
   }
 
   async fetchWaiters() {
-    const result = await this._storeService.fetchWaiters();
-    this.waiters = result;
-    this.filteredWaiter = result;
+    try {
+      const result = await this._storeService.fetchWaiters();
+      if (result.error) {
+        console.log(result);
+      } else {
+        this.waiters = result;
+        this.filteredWaiter = result;
+      }
+    } catch (e) {
+      console.log(e);
+      
+    }
   }
 
   async ngOnInit() {}

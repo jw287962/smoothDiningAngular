@@ -74,7 +74,6 @@ export class StoreApiService {
   async fetchWaiters() {
     try {
       const store = this.getStoreCookie();
-      console.log(store);
       const result = await fetch(
         `${getBackEndHref()}/api/account/store/waiters`,
         {
