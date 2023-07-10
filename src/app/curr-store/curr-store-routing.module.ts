@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StoreViewComponent } from './store-view/store-view.component';
-import { DayViewComponent } from './day-view/day-view.component';
+import { StoreViewComponent } from './store-home/store-view/store-view.component';
+import { DayViewComponent } from './store-home/day-view/day-view.component';
 import { StoreHomeComponent } from './store-home/store-home.component';
 import { HomeComponent } from '../home/home.component';
 
