@@ -8,10 +8,13 @@ import { waiterInterface } from 'src/store/service/types';
   styleUrls: ['./day-view.component.css'],
 })
 export class DayViewComponent {
+  // maybe I can make key value pairs of name: {waiterInterface}
   waiters?: waiterInterface[];
   filteredWaiter?: waiterInterface[];
   searchName: string = '';
   timeout?: any;
+
+  dailyActiveWaiter: waiterInterface[] = [];
   constructor(private _storeService: StoreApiService) {
     this.fetchWaiters();
   }
@@ -39,5 +42,24 @@ export class DayViewComponent {
 
   clickPerson(name: string) {
     this.searchName = name;
+  }
+
+  addActiveToday() {
+    if (
+      this.dailyActiveWaiter.some((ele) => {
+        return ele.name === ele.name;
+      })
+    ) {
+      console.log('repeat');
+      return;
+    }
+    const found = this.filteredWaiter?.find((ele) => {
+      return ele.name === this.searchName;
+    });
+
+    if (found) {
+      this.dailyActiveWaiter.push(found);
+      // and make a post request to create new shift for person .
+    }
   }
 }

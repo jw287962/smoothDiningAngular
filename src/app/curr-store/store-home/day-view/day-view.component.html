@@ -1,5 +1,5 @@
 <div class="flex-col-center">
-  <form class="searchForm">
+  <form class="searchForm" (submit)="addActiveToday()">
     <button class="wide primary-color">Add Waiter To List</button>
 
     <div>
@@ -23,12 +23,6 @@
       </button>
     </div>
   </form>
-  <div class="flex-row-center waiterContainer">
-    <div class="container">
-      <h3>Name filler</h3>
-    </div>
-    <div class="container">
-      <div class="boxes"></div>
-    </div>
-  </div>
+
+  <app-waiter-active-row></app-waiter-active-row>
 </div>
