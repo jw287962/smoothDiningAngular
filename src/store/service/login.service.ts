@@ -10,7 +10,7 @@ import { Helper } from './helpers';
 })
 export class LoginApiService {
   constructor(
-    private _cookieService: CookieService,
+    // private _cookieService: CookieService,
     private _store: Store,
     private _helper: Helper
   ) {}

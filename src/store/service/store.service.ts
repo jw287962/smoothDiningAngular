@@ -41,7 +41,7 @@ export class StoreApiService {
   async fetchStore() {
     try {
       const userId = this._cookieService.get('user');
-      const storeID = this._cookieService.get('storeID');
+      const storeID = this._cookieService.get('storeid');
       const result = await fetch(
         `${getBackEndHref()}/api/account/store/${storeID}`,
         {
@@ -59,6 +59,35 @@ export class StoreApiService {
         storeName: responseBody.store.name,
         storeId: responseBody.store._id,
       });
+      return this._helper.manageError(responseBody, result) || responseBody;
+    } catch (e) {
+      console.log({ error: e });
+    }
+  }
+  // WAITERS
+  async fetchWaiters() {
+    try {
+      const store = this._cookieService.get('storeid');
+      console.log(store);
+      const result = await fetch(
+        `${getBackEndHref()}/api/account/store/waiters`,
+        {
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            Cookie: `storeid="${store}"`,
+          },
+
+          method: 'GET',
+        }
+      );
+      const responseBody = await result.json();
+      if (responseBody.ok) {
+        this.dispatchStore({
+          storeName: responseBody.store.name,
+          storeId: responseBody.store._id,
+        });
+      }
       return this._helper.manageError(responseBody, result) || responseBody;
     } catch (e) {
       console.log({ error: e });
