@@ -34,7 +34,7 @@ export class StoreApiService {
 
         headers: {
           'Content-Type': 'application/json',
-          Cookie: `user="${userId}"`,
+          // Cookie: `user="${userId}"`,
         },
 
         method: 'GET',
@@ -77,7 +77,7 @@ export class StoreApiService {
 
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('set-cookie', `storeid=${store}`);
+    // myHeaders.append('Cookie', `storeid=${store}`);
     console.log(myHeaders.forEach((ele) => console.log(ele)));
     try {
       const result = await fetch(
@@ -118,7 +118,7 @@ export class StoreApiService {
 
           headers: {
             'Content-Type': 'application/json',
-            Cookie: `storeid=${store}`,
+            // Cookie: `storeid=${store}`,
           },
           body: body,
         }
