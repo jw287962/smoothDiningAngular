@@ -56,13 +56,17 @@ export class StoreViewComponent {
     birth: Date = this.getBirthday?.value,
     maxTable: number = this.getMaxActive?.value || undefined
   ) {
-    console.log('addwaiter');
-    const result = await this._storeApiService.addWaiters(
-      name,
-      birth,
-      maxTable
-    );
-
-    console.log(result);
+    try {
+      const result = await this._storeApiService.addWaiters(
+        name,
+        birth,
+        maxTable
+      );
+      if (result.errors) {
+        this.error = result.message;
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
