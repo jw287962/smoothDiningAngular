@@ -16,12 +16,19 @@ export class StoreApiService {
     private _store: Store
   ) {}
 
+  getStoreCookie() {
+    return this._cookieService.get('storeid');
+  }
+
+  getUserCookie() {
+    return this._cookieService.get('user');
+  }
   dispatchStore(data: activeStore) {
     this._store.dispatch(setActiveStore({ storeData: data }));
   }
   async fetchStores() {
     try {
-      const userId = this._cookieService.get('user');
+      const userId = this.getStoreCookie();
       const result = await fetch(`${getBackEndHref()}/api/account/stores`, {
         credentials: 'include',
         headers: {
@@ -40,8 +47,7 @@ export class StoreApiService {
 
   async fetchStore() {
     try {
-      const userId = this._cookieService.get('user');
-      const storeID = this._cookieService.get('storeid');
+      const storeID = this.getStoreCookie();
       const result = await fetch(
         `${getBackEndHref()}/api/account/store/${storeID}`,
         {
@@ -67,8 +73,7 @@ export class StoreApiService {
   // WAITERS
   async fetchWaiters() {
     try {
-      const store = this._cookieService.get('storeid');
-      console.log(store);
+      const store = this.getStoreCookie();
       const result = await fetch(
         `${getBackEndHref()}/api/account/store/waiters`,
         {
@@ -88,6 +93,34 @@ export class StoreApiService {
           storeId: responseBody.store._id,
         });
       }
+      return this._helper.manageError(responseBody, result) || responseBody;
+    } catch (e) {
+      console.log({ error: e });
+    }
+  }
+
+  async addWaiters(name: string, birth: Date, maxTable: number) {
+    try {
+      const store = this.getStoreCookie();
+      const body = JSON.stringify({
+        name: name,
+        birth: birth,
+        maxActiveTableForPermission: maxTable,
+      });
+      const result = await fetch(
+        `${getBackEndHref()}/api/account/store/waiters`,
+        {
+          credentials: 'include',
+          method: 'post',
+
+          headers: {
+            'Content-Type': 'application/json',
+            Cookie: `storeid="${store}"`,
+          },
+          body: body,
+        }
+      );
+      const responseBody = await result.json();
       return this._helper.manageError(responseBody, result) || responseBody;
     } catch (e) {
       console.log({ error: e });
