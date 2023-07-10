@@ -31,6 +31,7 @@ export class StoreApiService {
       const userId = this.getStoreCookie();
       const result = await fetch(`${getBackEndHref()}/api/account/stores`, {
         credentials: 'include',
+
         headers: {
           'Content-Type': 'application/json',
           Cookie: `user="${userId}"`,
@@ -80,9 +81,9 @@ export class StoreApiService {
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
-            Cookie: `storeid="${store}"`,
+            Cookie: `storeid=${store}`,
           },
-
+          mode: 'cors',
           method: 'GET',
         }
       );
@@ -115,7 +116,7 @@ export class StoreApiService {
 
           headers: {
             'Content-Type': 'application/json',
-            Cookie: `storeid="${store}"`,
+            Cookie: `storeid=${store}`,
           },
           body: body,
         }
