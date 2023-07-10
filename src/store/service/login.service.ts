@@ -26,7 +26,7 @@ export class LoginApiService {
     this._store.dispatch(loadingPage.updateLoading({ loading: state }));
   }
   async tryLogin(
-    string: string,
+    isLogin: boolean,
     username: string,
     password: string,
     repeatPassword: string = ''
@@ -34,18 +34,19 @@ export class LoginApiService {
     try {
       let body;
       this.dispatchLoading(true);
-
-      if (string === 'login') {
+      let string = 'login';
+      if (isLogin) {
         body = JSON.stringify({
           username: username,
           password: password,
         });
-      } else if (string === 'register') {
+      } else {
         body = JSON.stringify({
           username: username,
           password: password,
           repeatpassword: repeatPassword,
         });
+        string = 'register';
       }
 
       const result = await fetch(`${getBackEndHref()}/api/${string}`, {

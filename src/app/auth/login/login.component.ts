@@ -40,7 +40,7 @@ const confirmPasswordValidator: ValidationErrors = (
 })
 export class LoginComponent {
   login$: Observable<boolean> = this._store.select(selectLoginBoolean);
-  isRegister: Boolean = false;
+  isRegister: boolean = false;
   FormAuth: FormGroup;
   message: string = '';
   loading$: Observable<boolean> = this._store.select(selectLoadingBoolean);
@@ -89,21 +89,17 @@ export class LoginComponent {
       return;
     }
 
-    if (this.isRegister === false) {
-      this.handleLogin('login');
-    } else {
-      this.handleLogin('register');
-    }
+    this.handleLogin(this.isRegister);
   }
 
-  async handleLogin(string: string) {
+  async handleLogin(isLogin: boolean) {
     try {
       if (this.rememberMe) {
         console.log('remeber me');
       }
 
       const result = await this.apiService.tryLogin(
-        string,
+        !isLogin,
         this.username?.value,
         this.password?.value,
         this.repeatPassword?.value
@@ -129,5 +125,16 @@ export class LoginComponent {
     } else {
       console.log('Sign In...');
     }
+  }
+
+  processTestAccount() {
+    this.FormAuth?.setValue({
+      username: 'admin',
+      password: 'password@',
+      rememberMe: false,
+      repeatPassword: '',
+    });
+
+    this.handleLogin(false);
   }
 }
