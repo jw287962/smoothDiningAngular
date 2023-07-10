@@ -20,19 +20,21 @@ export class Helper {
   }
 
   manageError(responseBody: any, result: any, logout: boolean = false) {
+    const value =
+      responseBody.result || responseBody.message || responseBody.error;
     this.dispatchLoading(false);
+    // console.log(result);
+    // console.log(responseBody);
     if (!result.ok) {
-      // console.log(responseBody.message);
-      // console.log(responseBody);
-      this.dispatchLoginFalse();
-      throw new Error(responseBody.message);
+      if (result.status === 401) this.dispatchLoginFalse();
+      throw new Error(value);
     } else {
       if (logout) {
         this.dispatchLoginFalse();
       } else {
         this.dispatchLoginTrue();
       }
-      return responseBody.result || responseBody.message;
+      return value;
     }
   }
 }
