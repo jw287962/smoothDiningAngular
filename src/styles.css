@@ -39,8 +39,10 @@ nav {
   bottom: 0px;
   margin-bottom: 5px;
 }
-a {
+nav > a {
   padding: 10px;
+}
+a {
   text-decoration: none;
   font-size: 22px;
   font-weight: 400;
