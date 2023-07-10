@@ -35,13 +35,14 @@ a {
 }
 .minimize-button {
   margin: 1px;
+  padding: 2px;
 
   position: absolute;
   background-color: var(--background-color);
   width: 15px;
-  padding: 2px;
   vertical-align: middle;
   text-align: center;
   right: 0px;
+  color: rgb(95, 95, 95);
   transform: rotate(90deg);
 }

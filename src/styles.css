@@ -170,3 +170,15 @@ button:active {
   min-width: 400px;
   width: 50%;
 }
+
+.radius {
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  min-width: 200px;
+}
