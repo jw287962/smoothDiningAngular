@@ -87,7 +87,8 @@ button:active {
   position: relative;
   top: 2px;
 }
-
+p {
+}
 .alert-danger {
   color: white;
   font-weight: 800;
@@ -96,13 +97,14 @@ button:active {
   margin-bottom: -15px;
   font-size: 15px;
 }
-.alert-danger > div {
+.alert-danger > * {
   width: fit-content;
   background-color: var(--error-color);
   border-radius: 10px;
   border: 1px solid var(--error-color);
   padding: 3px;
   margin: 1px;
+  max-width: 500px;
 }
 /*NAV HEADER */
 .header {
