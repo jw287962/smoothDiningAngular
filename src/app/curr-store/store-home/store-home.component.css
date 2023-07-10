@@ -26,3 +26,22 @@ a {
 .separation {
   margin-top: -20px;
 }
+.minimize {
+  min-height: 20px;
+  display: none;
+}
+.homeContainer {
+  position: relative;
+}
+.minimize-button {
+  margin: 1px;
+
+  position: absolute;
+  background-color: var(--background-color);
+  width: 15px;
+  padding: 2px;
+  vertical-align: middle;
+  text-align: center;
+  right: 0px;
+  transform: rotate(90deg);
+}

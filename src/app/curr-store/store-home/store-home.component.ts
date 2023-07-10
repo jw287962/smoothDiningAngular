@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import {  Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { addHours, format } from 'date-fns';
 import { Observable, Subscription } from 'rxjs';
-import { State, activeStore, selectStoreData } from 'src/store/reducers/auth.reducer';
+import {
+  State,
+  activeStore,
+  selectStoreData,
+} from 'src/store/reducers/auth.reducer';
 import { StoreApiService } from 'src/store/service/store.service';
 
 @Component({
@@ -14,6 +18,8 @@ export class StoreHomeComponent {
   private _date: string = format(new Date(), 'yyyy-MM-dd');
   storeData$: Observable<activeStore> = this._store.select(selectStoreData);
   storeDataSubscription: Subscription;
+  toggleMini: boolean = false;
+
   constructor(
     private _store: Store<State>,
     private _storeService: StoreApiService
@@ -36,5 +42,9 @@ export class StoreHomeComponent {
       addHours(new Date(`${e.target.value}`), 5),
       'yyyy-MM-dd'
     );
+  }
+
+  processView() {
+    this.toggleMini = !this.toggleMini;
   }
 }

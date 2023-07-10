@@ -1,5 +1,6 @@
 <div class="flex-col-center">
   <!-- <button><span class="fontEmphasis">+</span> Waiter</button> -->
+
   <a
     routerLink="/store/home"
     routerLinkActive="active"
@@ -12,24 +13,30 @@
     </button>
   </a>
   <!-- <form class="flx-row-center date-form"> -->
-  <div class="separation"></div>
-  <input
-    class="date"
-    type="date"
-    [value]="date()"
-    name="date"
-    (change)="handleDateUpdate($event)"
-  />
-  <!-- MIGHT NEED TO @OUTPUT MY DATE DATA -->
-  <a
-    routerLink="/store/day"
-    routerLinkActive="active"
-    ariaCurrentWhenActive="page"
-  >
-    <button class="wide tall primary-color">
-      <h3>VIEW INFORMATION</h3>
-    </button>
-  </a>
+  <div class="flex-col-center homeContainer">
+    <div class="separation"></div>
+
+    <button class="minimize-button" (click)="processView()">></button>
+    <div class="flex-col-center" [ngClass]="{ minimize: toggleMini }">
+      <input
+        class="date"
+        type="date"
+        [value]="date()"
+        name="date"
+        (change)="handleDateUpdate($event)"
+      />
+      <!-- MIGHT NEED TO @OUTPUT MY DATE DATA -->
+      <a
+        routerLink="/store/day"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+      >
+        <button class="wide tall primary-color">
+          <h3>VIEW INFORMATION</h3>
+        </button>
+      </a>
+    </div>
+  </div>
 
   <router-outlet></router-outlet>
 </div>
