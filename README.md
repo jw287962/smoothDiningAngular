@@ -3,7 +3,10 @@
 - Angular
 - State: NgRx
 - connected to backend (MONGODB & EXPRESS): https://github.com/jw287962/smoothdining_API
+- a random account: username: admin , password: password@
 
+Username cannot repeat 
+Name in same store cannot repeat
 # SmoothDiningAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
