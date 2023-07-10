@@ -52,7 +52,7 @@
         [name]="'Password'"
       ></app-form-error>
     </div>
-    <div class="form-input">
+    <div class="form-input" *ngIf="!isRegister">
       <label
         >Remember Me:
         <input
@@ -92,6 +92,10 @@
         isRegister ? "Sign Up with " : "Log in with "
       }}</span
       >Google
+    </button>
+    <button type="button" class="wide google" (click)="processTestAccount()">
+      user: <span class="lower-font-weight">admin</span> | pass:
+      <span class="lower-font-weight">password@</span>
     </button>
   </form>
 
