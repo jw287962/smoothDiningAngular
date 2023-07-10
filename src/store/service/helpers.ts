@@ -21,7 +21,7 @@ export class Helper {
 
   manageError(responseBody: any, result: any, logout: boolean = false) {
     const value =
-      responseBody.result || responseBody.message || responseBody.error;
+      responseBody.error || responseBody.result || responseBody.message;
     this.dispatchLoading(false);
     // console.log(result);
     // console.log(responseBody);

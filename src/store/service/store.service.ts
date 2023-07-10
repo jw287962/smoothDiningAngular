@@ -99,13 +99,13 @@ export class StoreApiService {
     }
   }
 
-  async addWaiters(name: string, birth: Date, maxTable: number) {
+  async addWaiters(name: string, birth?: Date, maxTable?: number) {
     try {
       const store = this.getStoreCookie();
       const body = JSON.stringify({
         name: name,
-        birth: birth,
-        maxActiveTableForPermission: maxTable,
+        birthdate: birth || undefined,
+        maxActiveTableForPermission: maxTable || undefined,
       });
       const result = await fetch(
         `${getBackEndHref()}/api/account/store/waiters`,
