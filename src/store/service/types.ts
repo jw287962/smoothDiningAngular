@@ -1,10 +1,10 @@
 export interface waiterInterface {
   name: string;
-  birthdate: Date;
+  birthdate?: Date;
   preferences?: {
-    maxActiveTableForPermission: number;
-    waitToSitUntilEntreeOut: { min: number };
+    maxActiveTableForPermission?: number;
+    // waitToSitUntilEntreeOut: { min: number };
   };
-  store: string;
-  status: Boolean;
+  // store: string;
+  // status: Boolean;
 }
