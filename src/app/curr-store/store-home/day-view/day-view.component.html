@@ -1,13 +1,24 @@
 <div class="flex-col-center">
-  <form class="waiterForm">
+  <form class="searchForm">
     <button class="wide primary-color">Add Waiter To List</button>
 
     <div>
       <label for="search">Name: </label>
-      <input type="search" name="search" id="search" />
+      <input
+        (input)="processChange($event)"
+        type="search"
+        name="search"
+        id="search"
+        value="{{ searchName }}"
+      />
     </div>
-    <div class="dropdown" *ngIf="waiters && waiters.length > 0">
-      <button *ngFor="let waiter of waiters" class="dropdownselector">
+    <div class="dropdown" *ngIf="filteredWaiter && filteredWaiter.length > 0">
+      <button
+        type="button"
+        *ngFor="let waiter of filteredWaiter"
+        class="dropdownselector"
+        (click)="clickPerson(waiter.name)"
+      >
         {{ waiter.name }}
       </button>
     </div>
