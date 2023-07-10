@@ -7,6 +7,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
 import { CurrStoreRoutingModule } from './curr-store-routing.module';
 import { StoreHomeComponent } from './store-home/store-home.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,6 @@ import { StoreHomeComponent } from './store-home/store-home.component';
     DayViewComponent,
     StoreHomeComponent,
   ],
-  imports: [CommonModule, CurrStoreRoutingModule],
+  imports: [CommonModule, CurrStoreRoutingModule, ReactiveFormsModule],
 })
 export class CurrStoreModule {}
