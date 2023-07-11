@@ -74,7 +74,9 @@ export class StoreApiService {
     try {
       // const storeID = this.getStoreCookie();
       const result = await fetch(
-        `${getBackEndHref()}/api/account/store/${this.currentStore.storeId}`,
+        `${getBackEndHref()}/api/account/store/${
+          this.currentStore.storeId || this.getStoreCookie()
+        }`,
         {
           credentials: 'include',
           headers: {
@@ -86,10 +88,13 @@ export class StoreApiService {
         }
       );
       const responseBody = await result.json();
-      this.dispatchStore({
-        storeName: responseBody.store.name,
-        storeId: responseBody.store._id,
-      });
+      if (!this.currentStore.storeId) {
+        this.dispatchStore({
+          storeName: responseBody.store.name,
+          storeId: responseBody.store._id,
+        });
+      }
+
       return this._helper.manageError(responseBody, result) || responseBody;
     } catch (e) {
       console.log({ error: e });

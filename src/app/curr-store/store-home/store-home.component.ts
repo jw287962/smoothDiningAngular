@@ -19,14 +19,18 @@ export class StoreHomeComponent {
   storeData$: Observable<activeStore> = this._store.select(selectStoreData);
   storeDataSubscription: Subscription;
   toggleMini: boolean = false;
-
+  lastStoreData: activeStore = { storeId: '', storeName: '' };
   constructor(
     private _store: Store<State>,
     private _storeService: StoreApiService
   ) {
     this.storeDataSubscription = this.storeData$.subscribe(async (data) => {
-      
+      if (this.lastStoreData.storeId === data.storeId) {
+        return;
+      }
+      this.lastStoreData = data;
       // I can check data bfore dispatch for change.
+      
       const result = await this._storeService.fetchStore();
       // console.log(result);
     });
