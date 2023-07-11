@@ -102,7 +102,7 @@ export class StoreApiService {
   }
   // WAITERS
   async fetchWaiters() {
-    const store = this.getStoreCookie();
+    const store = this.getStoreCookie() || this.currentStore.storeId;
 
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
