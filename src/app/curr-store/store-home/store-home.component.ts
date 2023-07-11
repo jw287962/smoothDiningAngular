@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { addHours, format } from 'date-fns';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable, Subscription } from 'rxjs';
 import {
   State,
@@ -30,7 +31,7 @@ export class StoreHomeComponent {
       // console.log(result);
     });
   }
-  async ngOnInt() {
+  async ngOnInit() {
     if (this.lastStoreData.storeId === '') {
       // on refresh it should be empty
       const result = await this._storeService.fetchStore();

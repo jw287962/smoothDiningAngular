@@ -88,7 +88,7 @@ export class StoreApiService {
         }
       );
       const responseBody = await result.json();
-      if (!this.currentStore.storeId) {
+      if (this.currentStore.storeId === '') {
         this.dispatchStore({
           storeName: responseBody.store.name,
           storeId: responseBody.store._id,
@@ -117,6 +117,7 @@ export class StoreApiService {
           headers: myHeaders,
           mode: 'cors',
           method: 'GET',
+          // cache: 'no-store',
         }
       );
       const responseBody = await result.json();
