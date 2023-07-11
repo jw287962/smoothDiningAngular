@@ -52,6 +52,5 @@ export class HomeComponent {
   clickStore(storeID: string, storeName: string) {
     const data = { storeId: storeID, storeName: storeName };
     this._store.dispatch(setActiveStore({ storeData: data }));
-    // this._cookieService.set('storeid', storeID, cookieOptions);
   }
 }

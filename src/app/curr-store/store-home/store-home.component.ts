@@ -29,7 +29,9 @@ export class StoreHomeComponent {
       // console.log(result);
     });
   }
-
+  ngOnDestroy() {
+    this.storeDataSubscription.unsubscribe();
+  }
   date() {
     return this._date;
   }

@@ -4,21 +4,33 @@ import { getBackEndHref } from 'base-href';
 import { CookieService } from 'ngx-cookie-service';
 import { Helper } from './helpers';
 import { setActiveStore } from '../actions/auth.action';
-import { activeStore } from '../reducers/auth.reducer';
+import { activeStore, selectStoreData } from '../reducers/auth.reducer';
+import { Observable, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StoreApiService {
   myHeaders = new Headers();
+  currentStore: activeStore = { storeName: '', storeId: '' };
+
+  storeDataSub: Subscription;
+  activeStore$: Observable<activeStore> = this._store.select(selectStoreData);
   constructor(
     private _cookieService: CookieService,
     private _helper: Helper,
     private _store: Store
   ) {
     this.createHeaderWithStore();
+    this.storeDataSub = this.activeStore$.subscribe(async (data) => {
+      this.currentStore = data;
+      return data;
+      // console.log(result);
+    });
   }
-
+  ngOnDestroy() {
+    this.storeDataSub.unsubscribe();
+  }
   getStoreCookie() {
     return this._cookieService.get('storeid');
   }
@@ -37,6 +49,9 @@ export class StoreApiService {
   }
   async fetchStores() {
     try {
+      this.activeStore$.subscribe((data) => {
+        data;
+      });
       const userId = this.getStoreCookie();
       const result = await fetch(`${getBackEndHref()}/api/account/stores/`, {
         credentials: 'include',
@@ -57,9 +72,9 @@ export class StoreApiService {
 
   async fetchStore() {
     try {
-      const storeID = this.getStoreCookie();
+      // const storeID = this.getStoreCookie();
       const result = await fetch(
-        `${getBackEndHref()}/api/account/store/${storeID}`,
+        `${getBackEndHref()}/api/account/store/${this.currentStore.storeId}`,
         {
           credentials: 'include',
           headers: {
