@@ -17,26 +17,31 @@ import { StoreApiService } from 'src/store/service/store.service';
 export class StoreHomeComponent {
   private _date: string = format(new Date(), 'yyyy-MM-dd');
   storeData$: Observable<activeStore> = this._store.select(selectStoreData);
-  storeDataSubscription: Subscription;
+  // storeDataSubscription: Subscription;
   toggleMini: boolean = false;
   lastStoreData: activeStore = { storeId: '', storeName: '' };
   constructor(
     private _store: Store<State>,
     private _storeService: StoreApiService
   ) {
-    this.storeDataSubscription = this.storeData$.subscribe(async (data) => {
-      if (this.lastStoreData.storeId === data.storeId) {
-        return;
-      }
-      this.lastStoreData = data;
-      // I can check data bfore dispatch for change.
-      
-      const result = await this._storeService.fetchStore();
-      // console.log(result);
-    });
+    // this.storeDataSubscription = this.storeData$.subscribe(async (data) => {
+    //   if (
+    //     this.lastStoreData.storeId === data.storeId &&
+    //     this.lastStoreData.storeId !== ''
+    //   ) {
+    //     return;
+    //   }
+    //   this.lastStoreData = data;
+    //   // I can check data bfore dispatch for change.
+    //   // console.log(result);
+    // });
+  }
+  async ngOnInt() {
+    const result = await this._storeService.fetchStore();
+    this.lastStoreData = result;
   }
   ngOnDestroy() {
-    this.storeDataSubscription.unsubscribe();
+    // this.storeDataSubscription.unsubscribe();
   }
   date() {
     return this._date;
