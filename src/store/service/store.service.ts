@@ -91,7 +91,7 @@ export class StoreApiService {
     console.log(myHeaders.forEach((ele) => console.log(ele)));
     try {
       const result = await fetch(
-        `${getBackEndHref()}/api/account/store/waiters/${store}`,
+        `${getBackEndHref()}/api/account/store/waiters`,
         {
           credentials: 'include',
           headers: myHeaders,
