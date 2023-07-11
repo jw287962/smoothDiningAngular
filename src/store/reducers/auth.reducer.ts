@@ -36,10 +36,15 @@ export const AuthReducer = createReducer(
   initialState,
   on(loginTrue, (state) => ({ ...state, login: true })),
   on(loginFalse, (state) => ({ ...state, login: false })),
-  on(setActiveStore, (state, { storeData }) => ({
-    ...state,
-    activeStore: storeData,
-  })),
+  on(setActiveStore, (state, { storeData }) => {
+    if (state.activeStore?.storeId === storeData?.storeId) {
+      return state;
+    }
+    return {
+      ...state,
+      activeStore: storeData,
+    };
+  }),
   on(increment, (state) => ({ ...state, counter: state.counter + 1 })),
   on(loadingPage.updateLoading, (state, { loading }) => ({
     ...state,

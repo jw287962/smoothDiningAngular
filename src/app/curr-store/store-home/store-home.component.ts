@@ -25,6 +25,8 @@ export class StoreHomeComponent {
     private _storeService: StoreApiService
   ) {
     this.storeDataSubscription = this.storeData$.subscribe(async (data) => {
+      
+      // I can check data bfore dispatch for change.
       const result = await this._storeService.fetchStore();
       // console.log(result);
     });
