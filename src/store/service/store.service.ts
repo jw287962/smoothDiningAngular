@@ -10,11 +10,14 @@ import { activeStore } from '../reducers/auth.reducer';
   providedIn: 'root',
 })
 export class StoreApiService {
+  myHeaders = new Headers();
   constructor(
     private _cookieService: CookieService,
     private _helper: Helper,
     private _store: Store
-  ) {}
+  ) {
+    this.createHeaderWithStore();
+  }
 
   getStoreCookie() {
     return this._cookieService.get('storeid');
@@ -26,10 +29,16 @@ export class StoreApiService {
   dispatchStore(data: activeStore) {
     this._store.dispatch(setActiveStore({ storeData: data }));
   }
+
+  createHeaderWithStore() {
+    const store = this.getStoreCookie();
+    this.myHeaders.append('Content-Type', 'application/json');
+    this.myHeaders.append('storeid', store);
+  }
   async fetchStores() {
     try {
       const userId = this.getStoreCookie();
-      const result = await fetch(`${getBackEndHref()}/api/account/stores`, {
+      const result = await fetch(`${getBackEndHref()}/api/account/stores/`, {
         credentials: 'include',
 
         headers: {
@@ -77,11 +86,12 @@ export class StoreApiService {
 
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('storeid', store);
     // myHeaders.append('Cookie', `storeid=${store}`);
     console.log(myHeaders.forEach((ele) => console.log(ele)));
     try {
       const result = await fetch(
-        `${getBackEndHref()}/api/account/store/waiters`,
+        `${getBackEndHref()}/api/account/store/waiters/${store}`,
         {
           credentials: 'include',
           headers: myHeaders,
@@ -104,7 +114,6 @@ export class StoreApiService {
 
   async addWaiters(name: string, birth?: Date, maxTable?: number) {
     try {
-      const store = this.getStoreCookie();
       const body = JSON.stringify({
         name: name,
         birthdate: birth || undefined,
