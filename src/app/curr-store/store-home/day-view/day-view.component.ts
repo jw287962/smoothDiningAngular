@@ -13,12 +13,19 @@ export class DayViewComponent {
   filteredWaiter?: waiterInterface[];
   searchName: string = '';
   timeout?: any;
-
+  currentShiftNumber: number = 0;
+  sectionNumber: number = 0;
   dailyActiveWaiter: waiterInterface[] = [];
+
   constructor(private _storeService: StoreApiService) {
     this.fetchWaiters();
+    this.getActiveWaiters();
   }
-
+  async getActiveWaiters() {
+    const result = await this._storeService.getCurrentShift();
+    console.log(result);
+    this.dailyActiveWaiter.push(result[this.currentShiftNumber]);
+  }
   async fetchWaiters() {
     try {
       const result = await this._storeService.fetchWaiters();
@@ -30,7 +37,6 @@ export class DayViewComponent {
       }
     } catch (e) {
       console.log(e);
-      
     }
   }
 
@@ -53,22 +59,33 @@ export class DayViewComponent {
     this.searchName = name;
   }
 
-  addActiveToday() {
-    if (
-      this.dailyActiveWaiter.some((ele) => {
-        return ele.name === ele.name;
-      })
-    ) {
-      console.log('repeat');
-      return;
-    }
+  updateSectionNumber(e: any) {
+    this.sectionNumber = e.target.value;
+  }
+
+  async addActiveToday(e: Event, shiftSection: number) {
+    e.preventDefault();
+    // if (
+    //   this.dailyActiveWaiter.some((ele) => {
+    //     return ele.name === this.searchName;
+    //   })
+    // ) {
+    //   console.log('repeat');
+    //   return;
+    // }
     const found = this.filteredWaiter?.find((ele) => {
       return ele.name === this.searchName;
     });
 
     if (found) {
-      this.dailyActiveWaiter.push(found);
+      // this.dailyActiveWaiter.push(found);
+      const result = await this._storeService.createWaiterShift(
+        found._id,
+        this.currentShiftNumber,
+        shiftSection
+      );
       // and make a post request to create new shift for person .
     }
+    this.getActiveWaiters();
   }
 }

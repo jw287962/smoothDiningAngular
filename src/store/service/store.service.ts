@@ -146,10 +146,7 @@ export class StoreApiService {
           credentials: 'include',
           method: 'post',
 
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.getAuthBearer()}`,
-          },
+          headers: this.getHeaders(),
           body: body,
         }
       );
@@ -158,5 +155,52 @@ export class StoreApiService {
     } catch (e) {
       console.log({ error: e });
     }
+  }
+
+  async createWaiterShift(
+    waiterID: string,
+    shiftNumber: number,
+    shiftSection: number
+  ) {
+    try {
+      const body = JSON.stringify({
+        section: shiftSection,
+        shiftNumber: shiftNumber,
+      });
+      const result = await fetch(
+        `${getBackEndHref()}/api/account/store/shifts/${waiterID}`,
+        {
+          credentials: 'include',
+          method: 'post',
+
+          headers: this.getHeaders({ storeid: this.getStoreCookie() }),
+          body: body,
+        }
+      );
+      const responseBody = await result.json();
+      return this._helper.manageError(responseBody, result);
+    } catch (e) {}
+  }
+
+  async getCurrentShift() {
+    try {
+      const date = new Date();
+      console.log(date.toISOString());
+      // console.log(date);
+      // const body = JSON.stringify({});
+      const result = await fetch(
+        `${getBackEndHref()}/api/account/store/shifts/${date.toISOString()}`,
+        {
+          credentials: 'include',
+          method: 'get',
+
+          headers: this.getHeaders(),
+          // body: body,
+        }
+      );
+      const responseBody = await result.json();
+      console.log(result, responseBody);
+      return this._helper.manageError(responseBody, result);
+    } catch (e) {}
   }
 }

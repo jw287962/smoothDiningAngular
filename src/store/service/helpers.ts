@@ -26,7 +26,7 @@ export class Helper {
     this.dispatchLoading(false);
     // console.log(result);
     // console.log(responseBody);
-    if (!result.ok) {
+    if (!result.ok || responseBody.error) {
       console.log(result);
       console.log(responseBody);
       if (result.status === 401) this.dispatchLoginFalse();

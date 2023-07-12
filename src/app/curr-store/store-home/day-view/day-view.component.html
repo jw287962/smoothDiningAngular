@@ -1,8 +1,8 @@
 <div class="flex-col-center">
-  <form class="searchForm" (submit)="addActiveToday()">
+  <form class="searchForm" (submit)="addActiveToday($event, sectionNumber)">
     <button class="wide primary-color">Add Waiter To List</button>
 
-    <div>
+    <div class="form-input">
       <label for="search">Name: </label>
       <input
         (input)="processChange($event)"
@@ -10,6 +10,17 @@
         name="search"
         id="search"
         value="{{ searchName }}"
+      />
+    </div>
+    <div class="form-input">
+      <label for="section">Section: </label>
+      <input
+        (change)="updateSectionNumber($event)"
+        type="number"
+        name="section"
+        id="section"
+        value="{{ sectionNumber }}"
+        min="0"
       />
     </div>
     <div class="dropdown" *ngIf="filteredWaiter && filteredWaiter.length > 0">

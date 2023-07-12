@@ -1,6 +1,7 @@
 import { CookieOptions } from 'ngx-cookie-service';
 
 export interface waiterInterface {
+  _id: string;
   name: string;
   birthdate?: Date;
   preferences?: {
