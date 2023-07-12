@@ -62,6 +62,10 @@ a {
     min-width: var(--mobileWidth);
     width: 95vw;
   }
+  .headers > .headerText {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .separation {
     min-width: var(--mobileWidth);
     width: 95%;
