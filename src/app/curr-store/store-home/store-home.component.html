@@ -6,7 +6,7 @@
     routerLinkActive="active"
     ariaCurrentWhenActive="page"
   >
-    <button class="wide headers">
+    <button class="headers">
       <h1 class="">
         {{ (storeData$ | async)?.storeName }}
       </h1>
@@ -14,9 +14,10 @@
   </a>
   <!-- <form class="flx-row-center date-form"> -->
   <div class="flex-col-center homeContainer">
-    <div class="separation"></div>
+    <div class="separation">
+      <button class="minimize-button" (click)="processView()">></button>
+    </div>
 
-    <button class="minimize-button" (click)="processView()">></button>
     <div class="flex-col-center" [ngClass]="{ minimize: toggleMini }">
       <input
         class="date"

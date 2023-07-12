@@ -6,6 +6,8 @@
   --background-color: #fbfcfc;
   --nav-background-color: white;
   --error-color: rgb(255, 92, 92);
+  --wideButton: 300px;
+
   /* --warning: rgb(255, 87, 87); */
 }
 
@@ -56,7 +58,7 @@ button {
   border-radius: 6px;
   justify-content: center;
   padding: 10px 5px;
-  margin: 10px;
+  margin: 10px 0px;
   font-size: 15px;
   font-weight: 800;
 }
@@ -126,8 +128,6 @@ p {
   min-width: 500px;
 }
 .separation {
-  padding: 10px;
-  border-bottom: 2px solid rgb(179, 179, 179);
 }
 .primary-color {
   background-color: var(--primary-color);
@@ -141,6 +141,7 @@ p {
   height: 50px;
 }
 .flex-col-center {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -183,4 +184,9 @@ p {
   flex-direction: column;
   padding: 3px;
   min-width: 200px;
+}
+
+@media (max-width: 450px) {
+  /* .wide {
+  } */
 }
