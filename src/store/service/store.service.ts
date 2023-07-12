@@ -42,6 +42,17 @@ export class StoreApiService {
     this._store.dispatch(setActiveStore({ storeData: data }));
   }
 
+  getAuthBearer() {
+    return this._cookieService.get('Authorization');
+  }
+
+  getHeaders() {
+    return {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.getAuthBearer()}`,
+    };
+  }
+
   createHeaderWithStore() {
     const store = this.getStoreCookie();
     this.myHeaders.append('Content-Type', 'application/json');
@@ -49,17 +60,14 @@ export class StoreApiService {
   }
   async fetchStores() {
     try {
-      this.activeStore$.subscribe((data) => {
-        data;
-      });
-      const userId = this.getStoreCookie();
+      // this.activeStore$.subscribe((data) => {
+      //   data;
+      // });
+      // const userId = this.getStoreCookie();
       const result = await fetch(`${getBackEndHref()}/api/account/stores/`, {
         credentials: 'include',
 
-        headers: {
-          'Content-Type': 'application/json',
-          // Cookie: `user="${userId}"`,
-        },
+        headers: this.getHeaders(),
 
         method: 'GET',
       });
@@ -79,10 +87,7 @@ export class StoreApiService {
         }`,
         {
           credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-            // Cookie: `user="${userId}"`,
-          },
+          headers: this.getHeaders(),
 
           method: 'GET',
         }
@@ -102,19 +107,13 @@ export class StoreApiService {
   }
   // WAITERS
   async fetchWaiters() {
-    const store = this.getStoreCookie() || this.currentStore.storeId;
-
-    const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('storeid', store);
-    // myHeaders.append('Cookie', `storeid=${store}`);
-    console.log(myHeaders.forEach((ele) => console.log(ele)));
+    // const store = this.getStoreCookie() || this.currentStore.storeId;
     try {
       const result = await fetch(
         `${getBackEndHref()}/api/account/store/waiters`,
         {
           credentials: 'include',
-          headers: myHeaders,
+          headers: this.getHeaders(),
           mode: 'cors',
           method: 'GET',
           // cache: 'no-store',
@@ -148,7 +147,7 @@ export class StoreApiService {
 
           headers: {
             'Content-Type': 'application/json',
-            // Cookie: `storeid=${store}`,
+            Authorization: `Bearer ${this.getAuthBearer()}`,
           },
           body: body,
         }

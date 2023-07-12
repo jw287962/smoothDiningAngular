@@ -4,13 +4,14 @@ import { getBackEndHref } from 'base-href';
 import { CookieService } from 'ngx-cookie-service';
 import { loadingPage, loginFalse, loginTrue } from '../actions/auth.action';
 import { Helper } from './helpers';
+import { cookieOptions } from './types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginApiService {
   constructor(
-    // private _cookieService: CookieService,
+    private _cookieService: CookieService,
     private _store: Store,
     private _helper: Helper
   ) {}
@@ -58,6 +59,10 @@ export class LoginApiService {
         body: body,
       });
       const responseBody = await result.json();
+
+      const auth = result.headers.get('x-access-token') || '';
+      this._cookieService.set('Authorization', auth, cookieOptions);
+
       return this._helper.manageError(responseBody, result, !isLogin);
     } catch (e: any) {
       console.log({ error: e });
@@ -67,11 +72,13 @@ export class LoginApiService {
 
   async logout() {
     try {
+      const token = this._cookieService.get('Authorization');
       const result = await fetch(`${getBackEndHref()}/api/logout`, {
         credentials: 'include',
         method: 'get',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
       });
       const responseBody = await result.json();
