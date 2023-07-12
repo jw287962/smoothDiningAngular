@@ -46,10 +46,11 @@ export class StoreApiService {
     return this._cookieService.get('Authorization');
   }
 
-  getHeaders() {
+  getHeaders(extra: {} = {}) {
     return {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.getAuthBearer()}`,
+      ...extra,
     };
   }
 
@@ -107,13 +108,13 @@ export class StoreApiService {
   }
   // WAITERS
   async fetchWaiters() {
-    // const store = this.getStoreCookie() || this.currentStore.storeId;
+    const store = this.getStoreCookie() || this.currentStore.storeId;
     try {
       const result = await fetch(
         `${getBackEndHref()}/api/account/store/waiters`,
         {
           credentials: 'include',
-          headers: this.getHeaders(),
+          headers: this.getHeaders({ storeid: store }),
           mode: 'cors',
           method: 'GET',
           // cache: 'no-store',
@@ -140,7 +141,7 @@ export class StoreApiService {
         maxActiveTableForPermission: maxTable || undefined,
       });
       const result = await fetch(
-        `${getBackEndHref()}/api/account/store/waiters`,
+        `${getBackEndHref()}/api/account/store/waiters/`,
         {
           credentials: 'include',
           method: 'post',
