@@ -34,8 +34,8 @@ export class DayViewComponent {
       if (result.error) {
         console.log(result);
       } else {
-        this.waiters = result.result;
-        this.filteredWaiter = result.result;
+        this.waiters = handleResponseBody(result);
+        this.filteredWaiter = handleResponseBody(result);
       }
     } catch (e) {
       console.log(e);
@@ -86,6 +86,7 @@ export class DayViewComponent {
         this.currentShiftNumber,
         shiftSection
       );
+      console.log('result', result);
       this.formError = handleResponseBody(result);
 
       // and make a post request to create new shift for person .
