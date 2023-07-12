@@ -33,6 +33,9 @@
         {{ waiter.name }}
       </button>
     </div>
+    <div class="alert alert-danger" *ngIf="formError">
+      <span>{{ formError }}</span>
+    </div>
   </form>
 
   <app-waiter-active-row></app-waiter-active-row>
