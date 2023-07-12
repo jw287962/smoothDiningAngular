@@ -34,16 +34,7 @@ h6 {
 h1 {
   font-weight: 800;
 }
-nav {
-  font-size: 30px;
-  max-height: 90px;
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
-}
-nav > a {
-  padding: 10px;
-}
+
 a {
   text-decoration: none;
   font-size: 22px;
@@ -74,6 +65,7 @@ form {
   border-radius: 10px;
   padding: 15px;
   position: relative;
+  max-width: 450px;
 }
 
 form > div {
@@ -117,7 +109,7 @@ button:active {
 }
 /*NAV HEADER */
 .header {
-  padding: 10px;
+  padding: 5px 0px;
   height: 60px;
   position: relative;
   background-color: var(--nav-background-color);
@@ -211,6 +203,10 @@ button:active {
 
   .wide {
     width: min(90vw, 300px);
+  }
+
+  form {
+    max-width: 90vw;
   }
   /* .header {
     display: flex;

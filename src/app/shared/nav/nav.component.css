@@ -7,3 +7,13 @@
   vertical-align: center;
   margin-top: 3px;
 }
+nav {
+  font-size: 30px;
+  max-height: 90px;
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+}
+nav > a {
+  padding: 10px;
+}

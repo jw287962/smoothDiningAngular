@@ -1,6 +1,7 @@
-.radius {
-}
-
 .form-input > input {
   width: 100%;
+}
+
+.add-waiter {
+  width: min(300px, 90vw);
 }
