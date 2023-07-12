@@ -1,11 +1,9 @@
 <div *ngIf="login$ | async as login">
   <div *ngIf="login" class="all-stores flex-col-center">
-    <div>
-      <button (click)="createStore()">Add Store</button>
-    </div>
+    <h2 class="header-text">Your Stores:</h2>
+    <div class="separation"></div>
 
     <div *ngFor="let item of stores; index as i">
-      <h4>{{ item.address }}</h4>
       <a
         routerLink="/store/home"
         routerLinkActive="active"
@@ -17,6 +15,10 @@
           {{ item.name }}
         </button></a
       >
+      <h4>{{ item.address }}</h4>
+    </div>
+    <div>
+      <button (click)="createStore()">Add Store</button>
     </div>
   </div>
   <p *ngIf="!login">Please Log In.</p>

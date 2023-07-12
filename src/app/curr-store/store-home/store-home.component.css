@@ -25,12 +25,7 @@ a {
   background-color: var(--background-color);
   border: 2px solid black;
 }
-.separation {
-  position: relative;
-  margin-top: -20px;
-  padding: 10px 0px;
-  border-bottom: 1px solid rgb(179, 179, 179);
-}
+
 .minimize {
   min-height: 20px;
   display: none;
@@ -52,8 +47,7 @@ a {
   right: 0px;
   top: 20px;
 }
-
-@media (max-width: 450px) {
+@media (max-width: 500px) {
   ::root {
     --mobileWidth: fit-content;
   }
@@ -62,12 +56,9 @@ a {
     min-width: var(--mobileWidth);
     width: 95vw;
   }
-  .headers > .headerText {
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .separation {
-    min-width: var(--mobileWidth);
-    width: 95%;
-  }
+
+  /* .header {
+    display: flex;
+    flex-direction: row;
+  } */
 }

@@ -21,6 +21,7 @@ body {
   color: var(--text-color);
   font-weight: 800px;
   margin: 0px;
+  min-width: 300px;
 }
 h1,
 h2,
@@ -39,7 +40,6 @@ nav {
   position: absolute;
   right: 0px;
   bottom: 0px;
-  margin-bottom: 5px;
 }
 nav > a {
   padding: 10px;
@@ -74,7 +74,6 @@ form {
   border-radius: 10px;
   padding: 15px;
   position: relative;
-  min-width: 300px;
 }
 
 form > div {
@@ -89,8 +88,16 @@ button:active {
   position: relative;
   top: 2px;
 }
-p {
+
+.separation {
+  position: relative;
+  margin-top: -20px;
+  padding: 10px 0px;
+  border-bottom: 1px solid rgb(179, 179, 179);
+  min-width: 400px;
+  width: 50%;
 }
+
 .alert-danger {
   color: white;
   font-weight: 800;
@@ -111,7 +118,7 @@ p {
 /*NAV HEADER */
 .header {
   padding: 10px;
-  height: 55px;
+  height: 60px;
   position: relative;
   background-color: var(--nav-background-color);
   border-bottom: 1px solid #bfc9ca;
@@ -125,9 +132,11 @@ p {
 
 .header-text {
   text-align: center;
-  min-width: 500px;
+  min-width: 450px;
 }
-.separation {
+.header-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .primary-color {
   background-color: var(--primary-color);
@@ -169,10 +178,6 @@ p {
 .warning {
   background-color: var(--error-color);
 }
-.separation {
-  min-width: 400px;
-  width: 50%;
-}
 
 .radius {
   border-radius: 5px;
@@ -186,7 +191,29 @@ p {
   min-width: 200px;
 }
 
-@media (max-width: 450px) {
-  /* .wide {
+@media (max-width: 500px) {
+  ::root {
+    --mobileWidth: 100vw;
+  }
+  .header {
+    width: var(--mobileWidth);
+    width: 100%;
+  }
+
+  .header-text {
+    min-width: var(--mobileWidth);
+  }
+
+  .separation {
+    min-width: var(--mobileWidth);
+    width: 95%;
+  }
+
+  .wide {
+    width: min(90vw, 300px);
+  }
+  /* .header {
+    display: flex;
+    flex-direction: row;
   } */
 }
