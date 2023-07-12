@@ -37,7 +37,7 @@ export class Helper {
       } else {
         this.dispatchLoginTrue();
       }
-      return value;
+      return responseBody;
     }
   }
 }
