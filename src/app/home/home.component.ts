@@ -9,7 +9,7 @@ import {
   selectLoginBoolean,
 } from 'src/store/reducers/auth.reducer';
 import { StoreApiService } from 'src/store/service/store.service';
-import { cookieOptions } from 'src/store/service/types';
+import { cookieOptions, handleResponseBody } from 'src/store/service/types';
 interface StoreInterface {
   address: string;
   state: string;
@@ -42,7 +42,8 @@ export class HomeComponent {
     console.log('ngondestroy');
   }
   async fetchStores() {
-    this.stores = await this._storeService.fetchStores();
+    const result = await this._storeService.fetchStores();
+    this.stores = handleResponseBody(result);
   }
 
   async createStore() {

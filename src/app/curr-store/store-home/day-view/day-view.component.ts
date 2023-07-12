@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { EventType } from '@angular/router';
 import { StoreApiService } from 'src/store/service/store.service';
-import { waiterInterface } from 'src/store/service/types';
+import { handleResponseBody, waiterInterface } from 'src/store/service/types';
 @Component({
   selector: 'app-day-view',
   templateUrl: './day-view.component.html',
@@ -16,6 +16,8 @@ export class DayViewComponent {
   currentShiftNumber: number = 0;
   sectionNumber: number = 0;
   dailyActiveWaiter: waiterInterface[] = [];
+
+  formError: string = '';
 
   constructor(private _storeService: StoreApiService) {
     this.fetchWaiters();
@@ -32,8 +34,8 @@ export class DayViewComponent {
       if (result.error) {
         console.log(result);
       } else {
-        this.waiters = result;
-        this.filteredWaiter = result;
+        this.waiters = result.result;
+        this.filteredWaiter = result.result;
       }
     } catch (e) {
       console.log(e);
@@ -84,6 +86,8 @@ export class DayViewComponent {
         this.currentShiftNumber,
         shiftSection
       );
+      this.formError = handleResponseBody(result);
+
       // and make a post request to create new shift for person .
     }
     this.getActiveWaiters();

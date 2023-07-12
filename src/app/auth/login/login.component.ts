@@ -14,6 +14,7 @@ import {
   selectLoginBoolean,
 } from 'src/store/reducers/auth.reducer';
 import { LoginApiService } from 'src/store/service/login.service';
+import { handleResponseBody } from 'src/store/service/types';
 interface AuthGroup extends FormGroup {
   controls: {
     username: FormControl;
@@ -104,7 +105,7 @@ export class LoginComponent {
         this.password?.value,
         this.repeatPassword?.value
       );
-      this.message = result;
+      this.message = handleResponseBody(result);
     } catch (e) {
       console.log({ error: e });
     }
@@ -112,7 +113,7 @@ export class LoginComponent {
   async handleLogout() {
     try {
       const result = await this.apiService.logout();
-      this.message = result;
+      this.message = handleResponseBody(result);
       console.log(result);
     } catch (e) {
       console.log({ error: e });
