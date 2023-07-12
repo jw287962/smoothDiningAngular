@@ -22,5 +22,5 @@ type Result = {
   result: any;
 };
 export const handleResponseBody = (result: Result): any => {
-  return result.error || result.result || result.message;
+  return result.error || result.result || result.message || result;
 };
