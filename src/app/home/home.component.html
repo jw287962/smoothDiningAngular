@@ -10,7 +10,10 @@
         routerLink="/store/home"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
-        ><button class="store-button" (click)="clickStore(item._id, item.name)">
+        ><button
+          class="store-button primary-color"
+          (click)="clickStore(item._id, item.name)"
+        >
           {{ item.name }}
         </button></a
       >
