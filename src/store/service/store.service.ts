@@ -164,8 +164,8 @@ export class StoreApiService {
   ) {
     try {
       const body = JSON.stringify({
-        section: shiftSection,
         shiftNumber: shiftNumber,
+        section: shiftSection,
       });
       const result = await fetch(
         `${getBackEndHref()}/api/account/store/shifts/${waiterID}`,
@@ -182,14 +182,15 @@ export class StoreApiService {
     } catch (e) {}
   }
 
-  async getCurrentShift() {
+  async getCurrentShift(date: Date) {
     try {
-      const date = new Date();
+      console.log(date);
+      const dateFinal = date || new Date();
       console.log(date.toISOString());
       // console.log(date);
       // const body = JSON.stringify({});
       const result = await fetch(
-        `${getBackEndHref()}/api/account/store/shifts/${date.toISOString()}`,
+        `${getBackEndHref()}/api/account/store/shifts/${dateFinal.toISOString()}`,
         {
           credentials: 'include',
           method: 'get',
