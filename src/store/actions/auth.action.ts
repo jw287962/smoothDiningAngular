@@ -25,6 +25,18 @@ export const loadingPage = createActionGroup({
     'Update Loading': props<{ loading: boolean }>(),
 
     // defining an event with payload using the props factory
-    // 'Query Changed': (query: string) => ({ query }),
+  },
+});
+
+export const setActiveDate = createActionGroup({
+  source: 'Date Component',
+  events: {
+    // defining an event without payload using the `emptyProps` function
+    Opened: emptyProps(),
+
+    // defining an event with payload using the `props` function
+    'Update Date': props<{ date: string }>(),
+
+    // defining an event with payload using the props factory
   },
 });
