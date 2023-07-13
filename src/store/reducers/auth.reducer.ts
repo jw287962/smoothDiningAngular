@@ -9,8 +9,10 @@ import {
   loadingPage,
   loginFalse,
   loginTrue,
+  setActiveDate,
   setActiveStore,
 } from '../actions/auth.action';
+import { addHours, format } from 'date-fns';
 
 export type activeStore = {
   storeId: string;
@@ -21,11 +23,12 @@ export interface State {
   activeStore: activeStore;
   counter: number;
   loading: boolean;
+  selectedDate: string;
 }
 export const initialState: State = {
   login: false,
   activeStore: { storeId: '', storeName: '' },
-
+  selectedDate: format(new Date(), 'yyyy-MM-dd'),
   counter: 0,
   loading: false,
 };
@@ -49,6 +52,10 @@ export const AuthReducer = createReducer(
   on(loadingPage.updateLoading, (state, { loading }) => ({
     ...state,
     loading: loading,
+  })),
+  on(setActiveDate.updateDate, (state, { date }) => ({
+    ...state,
+    selectedDate: date,
   }))
 );
 // const selectState = (state: State) => state;
