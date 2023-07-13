@@ -92,7 +92,7 @@ button:active {
   padding: 10px 0px;
   border-bottom: 1px solid rgb(179, 179, 179);
   min-width: 400px;
-  width: 50%;
+  width: 70%;
 }
 
 .alert-danger {
@@ -197,7 +197,7 @@ button:active {
   }
   .header {
     width: var(--mobileWidth);
-    width: 100%;
+    width: 98%;
   }
 
   .header-text {
@@ -206,7 +206,7 @@ button:active {
 
   .separation {
     min-width: var(--mobileWidth);
-    width: 95%;
+    width: 90%;
   }
 
   .wide {

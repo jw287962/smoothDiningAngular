@@ -1,5 +1,8 @@
-<div class="flex-col-center">
-  <form class="searchForm" (submit)="addActiveToday($event, sectionNumber)">
+<div class="flex-col-center shift-create-view">
+  <form
+    class="searchForm flex-col-center"
+    (submit)="addActiveToday($event, sectionNumber)"
+  >
     <h2 class="black">Create Shifts</h2>
     <div class="form-input">
       <label for="search">Search: </label>
@@ -12,7 +15,10 @@
         placeholder="Name | Click Options Below"
       />
     </div>
-    <div class="dropdown" *ngIf="filteredWaiter && filteredWaiter.length > 0">
+    <div
+      class="dropdown flex-col-center"
+      *ngIf="filteredWaiter && filteredWaiter.length > 0"
+    >
       <button
         type="button"
         *ngFor="let waiter of filteredWaiter"
@@ -54,16 +60,17 @@
     </div>
     <button class="wide primary-color">Add Waiter to Day's Shift</button>
   </form>
+  <div class="flex-col-center">
+    <button class="primary-color">Start (Need to Implement)</button>
+    <h2 class="shift-title">
+      Waiters ({{ dailyActiveWaiter.length }}) for Shift Number:
+      {{ displayShiftNumber }}
+    </h2>
 
-  <button class="primary-color">Start (Need to Implement)</button>
-  <h2 class="shift-title">
-    Waiters ({{ dailyActiveWaiter.length }}) for Shift Number:
-    {{ displayShiftNumber }}
-  </h2>
-
-  <div class="gridActiveWaiters">
-    <div *ngFor="let activeWorker of dailyActiveWaiter">
-      <app-waiter-active-row [waiter]="activeWorker"></app-waiter-active-row>
+    <div class="gridActiveWaiters">
+      <div *ngFor="let activeWorker of dailyActiveWaiter">
+        <app-waiter-active-row [waiter]="activeWorker"></app-waiter-active-row>
+      </div>
     </div>
   </div>
 </div>

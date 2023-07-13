@@ -17,3 +17,10 @@ nav {
 nav > a {
   padding: 10px;
 }
+
+@media (max-width: 450px) {
+  .header {
+    margin: 4px;
+    width: 95%;
+  }
+}
