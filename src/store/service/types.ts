@@ -11,6 +11,15 @@ export interface waiterInterface {
   // store: string;
   // status: Boolean;
 }
+
+export interface shiftInterface {
+  date: Date;
+  section: number;
+  waiter: string;
+  store: string;
+  shiftNumber: number; //for Grouping
+  shiftTables: {};
+}
 export const cookieOptions: CookieOptions = {
   secure: true, // Mark the cookie as secure
   sameSite: 'None', // Set SameSite attribute to None
