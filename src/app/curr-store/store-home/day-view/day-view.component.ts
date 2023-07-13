@@ -1,6 +1,10 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectStoreDate } from 'src/store/reducers/auth.reducer';
 import { StoreApiService } from 'src/store/service/store.service';
 import {
+  fixDateTimeOffset,
   handleResponseBody,
   shiftInterface,
   waiterInterface,
@@ -20,19 +24,26 @@ export class DayViewComponent {
   sectionNumber: number = 1;
   dailyActiveWaiter: shiftInterface[] = [];
 
+  activeDate: Observable<string> = this._store.select(selectStoreDate);
   formError: string = '';
 
   constructor(
+    private _store: Store,
     private _storeService: StoreApiService,
     private cdr: ChangeDetectorRef
   ) {
     this.fetchWaiters();
     this.getActiveWaiters();
   }
-  async getActiveWaiters() {
-    const result = await this._storeService.getCurrentShift(new Date());
-    console.log(result);
-    this.dailyActiveWaiter = [...result.result[this.shiftNumber]];
+  getActiveWaiters() {
+    this.activeDate.subscribe(async (date) => {
+      const result = await this._storeService.getCurrentShift(
+        fixDateTimeOffset(date)
+      );
+      console.log(result);
+      this.dailyActiveWaiter = [...result.result[this.shiftNumber]];
+    });
+
     // this.cdr.detectChanges();
   }
   async fetchWaiters() {

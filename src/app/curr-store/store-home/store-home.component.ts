@@ -51,7 +51,6 @@ export class StoreHomeComponent {
       addHours(new Date(`${e.target.value}`), 5),
       'yyyy-MM-dd'
     );
-    console.log('date update');
     this._store.dispatch(setActiveDate.updateDate({ date: this._date }));
   }
 

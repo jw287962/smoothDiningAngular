@@ -50,8 +50,14 @@
     </div>
   </form>
 
-  <button class="primary-color">Start</button>
-  <div *ngFor="let activeWorker of dailyActiveWaiter">
-    <app-waiter-active-row [waiter]="activeWorker"></app-waiter-active-row>
+  <button class="primary-color">Start (Need to Implement Link)</button>
+  <h3>
+    Waiters ({{ dailyActiveWaiter.length }}) on Shift Number: {{ shiftNumber }}
+  </h3>
+
+  <div class="gridActiveWaiters">
+    <div *ngFor="let activeWorker of dailyActiveWaiter">
+      <app-waiter-active-row [waiter]="activeWorker"></app-waiter-active-row>
+    </div>
   </div>
 </div>
