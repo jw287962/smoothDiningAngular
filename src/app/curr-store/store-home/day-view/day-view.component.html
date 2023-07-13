@@ -1,7 +1,6 @@
 <div class="flex-col-center">
   <form class="searchForm" (submit)="addActiveToday($event, sectionNumber)">
-    <button class="wide primary-color">Add Waiter To List</button>
-
+    
     <div class="form-input">
       <label for="search">Name: </label>
       <input
@@ -48,6 +47,7 @@
     <div class="alert alert-danger" *ngIf="formError">
       <span>{{ formError }}</span>
     </div>
+    <button class="wide primary-color">Add Waiter To List</button>
   </form>
 
   <button class="primary-color">Start (Need to Implement Link)</button>

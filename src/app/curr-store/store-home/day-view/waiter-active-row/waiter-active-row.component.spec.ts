@@ -8,7 +8,7 @@ describe('WaiterActiveRowComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [WaiterActiveRowComponent]
+      declarations: [WaiterActiveRowComponent],
     });
     fixture = TestBed.createComponent(WaiterActiveRowComponent);
     component = fixture.componentInstance;
