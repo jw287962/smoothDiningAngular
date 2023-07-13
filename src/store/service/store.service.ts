@@ -186,8 +186,8 @@ export class StoreApiService {
     try {
       console.log(date);
       const dateFinal = date || new Date();
-      console.log(date.toISOString());
       // console.log(date);
+      console.log(dateFinal.toDateString());
       // const body = JSON.stringify({});
       const result = await fetch(
         `${getBackEndHref()}/api/account/store/shifts/${dateFinal.toISOString()}`,
