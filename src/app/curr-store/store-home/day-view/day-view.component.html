@@ -5,7 +5,7 @@
     <div class="form-input">
       <label for="search">Name: </label>
       <input
-        (input)="processChange($event)"
+        (input)="processChangeSearchName($event)"
         type="search"
         name="search"
         id="search"
@@ -20,8 +20,20 @@
         name="section"
         id="section"
         value="{{ sectionNumber }}"
-        min="0"
+        min="1"
       />
+    </div>
+    <div class="shiftNumber">
+      <button type="button" (click)="subtractShiftNumber()" class="mini">
+        Back
+      </button>
+      <button type="button" (click)="updateShift()" class="primary-color">
+        Shift Number: <br />
+        {{ shiftNumber }}
+      </button>
+      <button type="button" (click)="addShiftNumber()" class="mini">
+        Next
+      </button>
     </div>
     <div class="dropdown" *ngIf="filteredWaiter && filteredWaiter.length > 0">
       <button
@@ -38,5 +50,8 @@
     </div>
   </form>
 
-  <app-waiter-active-row></app-waiter-active-row>
+  <button class="primary-color">Start</button>
+  <div *ngFor="let activeWorker of dailyActiveWaiter">
+    <app-waiter-active-row [waiter]="activeWorker"></app-waiter-active-row>
+  </div>
 </div>

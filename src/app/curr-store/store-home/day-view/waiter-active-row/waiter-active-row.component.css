@@ -1,11 +1,26 @@
 .waiterContainer {
   justify-content: center;
 }
-.container {
+
+.containerName {
+  width: 100px;
+  justify-content: space-around;
+  margin-bottom: 5px;
+}
+.container,
+.containerName {
   border: 1px solid black;
   padding: 10px;
   min-height: 100px;
   display: flex;
   align-items: center;
   border-radius: 5px;
+}
+.section {
+  font-weight: 900;
+  color: rgb(255, 0, 0);
+}
+
+h3 {
+  text-align: center;
 }

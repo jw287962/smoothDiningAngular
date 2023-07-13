@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
-import { EventType } from '@angular/router';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { StoreApiService } from 'src/store/service/store.service';
-import { handleResponseBody, waiterInterface } from 'src/store/service/types';
+import {
+  handleResponseBody,
+  shiftInterface,
+  waiterInterface,
+} from 'src/store/service/types';
 @Component({
   selector: 'app-day-view',
   templateUrl: './day-view.component.html',
@@ -13,20 +16,24 @@ export class DayViewComponent {
   filteredWaiter?: waiterInterface[];
   searchName: string = '';
   timeout?: any;
-  currentShiftNumber: number = 0;
-  sectionNumber: number = 0;
-  dailyActiveWaiter: waiterInterface[] = [];
+  shiftNumber: number = 0;
+  sectionNumber: number = 1;
+  dailyActiveWaiter: shiftInterface[] = [];
 
   formError: string = '';
 
-  constructor(private _storeService: StoreApiService) {
+  constructor(
+    private _storeService: StoreApiService,
+    private cdr: ChangeDetectorRef
+  ) {
     this.fetchWaiters();
     this.getActiveWaiters();
   }
   async getActiveWaiters() {
-    const result = await this._storeService.getCurrentShift();
+    const result = await this._storeService.getCurrentShift(new Date());
     console.log(result);
-    this.dailyActiveWaiter.push(result[this.currentShiftNumber]);
+    this.dailyActiveWaiter = [...result.result[this.shiftNumber]];
+    // this.cdr.detectChanges();
   }
   async fetchWaiters() {
     try {
@@ -44,7 +51,7 @@ export class DayViewComponent {
 
   async ngOnInit() {}
 
-  processChange(e: Event) {
+  processChangeSearchName(e: Event) {
     if (this.timeout) {
       clearTimeout(this.timeout);
     }
@@ -65,15 +72,9 @@ export class DayViewComponent {
     this.sectionNumber = e.target.value;
   }
 
-  async addActiveToday(e: Event, shiftSection: number) {
+  async addActiveToday(e: Event, sectionNumber: number) {
     e.preventDefault();
-    // if (
-    //   this.dailyActiveWaiter.some((ele) => {
-    //     return ele.name === this.searchName;
-    //   })
-    // ) {
-    //   console.log('repeat');
-    //   return;
+    console.log('add active today');
     // }
     const found = this.filteredWaiter?.find((ele) => {
       return ele.name === this.searchName;
@@ -83,14 +84,29 @@ export class DayViewComponent {
       // this.dailyActiveWaiter.push(found);
       const result = await this._storeService.createWaiterShift(
         found._id,
-        this.currentShiftNumber,
-        shiftSection
+        this.shiftNumber,
+        sectionNumber
       );
       console.log('result', result);
       this.formError = handleResponseBody(result);
 
       // and make a post request to create new shift for person .
     }
+    this.getActiveWaiters();
+  }
+
+  subtractShiftNumber() {
+    if (this.shiftNumber <= 0) {
+      return;
+    }
+    this.shiftNumber--;
+  }
+
+  addShiftNumber() {
+    this.shiftNumber++;
+  }
+
+  updateShift() {
     this.getActiveWaiters();
   }
 }
