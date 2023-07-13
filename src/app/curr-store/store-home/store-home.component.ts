@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { addHours, format } from 'date-fns';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, Subscription } from 'rxjs';
+import { setActiveDate } from 'src/store/actions/auth.action';
 import {
   State,
   activeStore,
@@ -50,6 +51,8 @@ export class StoreHomeComponent {
       addHours(new Date(`${e.target.value}`), 5),
       'yyyy-MM-dd'
     );
+    console.log('date update');
+    this._store.dispatch(setActiveDate.updateDate({ date: this._date }));
   }
 
   processView() {

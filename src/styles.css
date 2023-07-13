@@ -42,7 +42,8 @@ a {
   color: var(--text-color);
 }
 
-button {
+button,
+.button-style {
   width: 100px;
   background-color: var(--secondary-color);
   border: 1px solid white;
@@ -137,6 +138,9 @@ button:active {
 
 .wide {
   width: 300px;
+}
+.mini {
+  width: 50px;
 }
 .tall {
   height: 50px;
