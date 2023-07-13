@@ -43,8 +43,11 @@ export class DayViewComponent {
       const result = await this._storeService.getCurrentShift(
         fixDateTimeOffset(date)
       );
-      console.log(result);
-      this.dailyActiveWaiter = [...result.result[this.shiftNumber]];
+      try {
+        this.dailyActiveWaiter = [...result.result?.[this.shiftNumber]];
+      } catch (e) {
+        this.dailyActiveWaiter = [];
+      }
       if (this.dailyActiveWaiter) {
         this.displayShiftNumber = this.shiftNumber;
       }
