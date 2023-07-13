@@ -1,15 +1,26 @@
 <div class="flex-col-center">
   <form class="searchForm" (submit)="addActiveToday($event, sectionNumber)">
-    
+    <h2 class="black">Create Shifts</h2>
     <div class="form-input">
-      <label for="search">Name: </label>
+      <label for="search">Search: </label>
       <input
         (input)="processChangeSearchName($event)"
         type="search"
         name="search"
         id="search"
         value="{{ searchName }}"
+        placeholder="Name | Click Options Below"
       />
+    </div>
+    <div class="dropdown" *ngIf="filteredWaiter && filteredWaiter.length > 0">
+      <button
+        type="button"
+        *ngFor="let waiter of filteredWaiter"
+        class="dropdownselector"
+        (click)="clickPerson(waiter.name)"
+      >
+        {{ waiter.name }}
+      </button>
     </div>
     <div class="form-input">
       <label for="section">Section: </label>
@@ -22,28 +33,22 @@
         min="1"
       />
     </div>
-    <div class="shiftNumber">
-      <button type="button" (click)="subtractShiftNumber()" class="mini">
-        Back
-      </button>
-      <button type="button" (click)="updateShift()" class="primary-color">
-        Shift Number: <br />
-        {{ shiftNumber }}
-      </button>
-      <button type="button" (click)="addShiftNumber()" class="mini">
-        Next
-      </button>
+    <div class="flex-col-center">
+      <label>Shift Number:</label>
+      <div class="shiftNumber">
+        <button type="button" (click)="subtractShiftNumber()" class="mini">
+          Back
+        </button>
+        <button type="button" (click)="updateShift()" class="primary-color">
+          (Update Shift View) <br />
+          {{ shiftNumber }}
+        </button>
+        <button type="button" (click)="addShiftNumber()" class="mini">
+          Next
+        </button>
+      </div>
     </div>
-    <div class="dropdown" *ngIf="filteredWaiter && filteredWaiter.length > 0">
-      <button
-        type="button"
-        *ngFor="let waiter of filteredWaiter"
-        class="dropdownselector"
-        (click)="clickPerson(waiter.name)"
-      >
-        {{ waiter.name }}
-      </button>
-    </div>
+
     <div class="alert alert-danger" *ngIf="formError">
       <span>{{ formError }}</span>
     </div>
@@ -52,7 +57,8 @@
 
   <button class="primary-color">Start (Need to Implement Link)</button>
   <h3>
-    Waiters ({{ dailyActiveWaiter.length }}) on Shift Number: {{ shiftNumber }}
+    Waiters ({{ dailyActiveWaiter.length }}) on Shift Number:
+    {{ displayShiftNumber }}
   </h3>
 
   <div class="gridActiveWaiters">

@@ -18,11 +18,14 @@ export class DayViewComponent {
   // maybe I can make key value pairs of name: {waiterInterface}
   waiters?: waiterInterface[];
   filteredWaiter?: waiterInterface[];
-  searchName: string = '';
+  dailyActiveWaiter: shiftInterface[] = [];
+
   timeout?: any;
+
+  searchName: string = '';
   shiftNumber: number = 0;
   sectionNumber: number = 1;
-  dailyActiveWaiter: shiftInterface[] = [];
+  displayShiftNumber: number = 0;
 
   activeDate: Observable<string> = this._store.select(selectStoreDate);
   formError: string = '';
@@ -42,6 +45,9 @@ export class DayViewComponent {
       );
       console.log(result);
       this.dailyActiveWaiter = [...result.result[this.shiftNumber]];
+      if (this.dailyActiveWaiter) {
+        this.displayShiftNumber = this.shiftNumber;
+      }
     });
 
     // this.cdr.detectChanges();

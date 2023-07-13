@@ -34,7 +34,9 @@ h6 {
 h1 {
   font-weight: 800;
 }
-
+.black {
+  color: black;
+}
 a {
   text-decoration: none;
   font-size: 22px;
@@ -76,7 +78,9 @@ form > div {
 input:invalid {
   border: 2px solid var(--error-color);
 }
-
+label {
+  font-weight: 600;
+}
 button:active {
   position: relative;
   top: 2px;
