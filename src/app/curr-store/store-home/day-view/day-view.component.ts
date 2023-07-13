@@ -30,6 +30,7 @@ export class DayViewComponent {
   activeDate: Observable<string> = this._store.select(selectStoreDate);
   formError: string = '';
 
+  activeDateCopy: string = '';
   constructor(
     private _store: Store,
     private _storeService: StoreApiService,
@@ -43,6 +44,7 @@ export class DayViewComponent {
       const result = await this._storeService.getCurrentShift(
         fixDateTimeOffset(date)
       );
+      this.activeDateCopy = date;
       try {
         this.dailyActiveWaiter = [...result.result?.[this.shiftNumber]];
       } catch (e) {
@@ -105,7 +107,8 @@ export class DayViewComponent {
       const result = await this._storeService.createWaiterShift(
         found._id,
         this.shiftNumber,
-        sectionNumber
+        sectionNumber,
+        fixDateTimeOffset(this.activeDateCopy)
       );
       console.log('result', result);
       this.formError = handleResponseBody(result);

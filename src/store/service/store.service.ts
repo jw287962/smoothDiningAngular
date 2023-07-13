@@ -160,15 +160,20 @@ export class StoreApiService {
   async createWaiterShift(
     waiterID: string,
     shiftNumber: number,
-    shiftSection: number
+    shiftSection: number,
+    date: Date | undefined = undefined
   ) {
     try {
       const body = JSON.stringify({
         shiftNumber: shiftNumber,
         section: shiftSection,
       });
+      console.log(date);
+
       const result = await fetch(
-        `${getBackEndHref()}/api/account/store/shifts/${waiterID}`,
+        `${getBackEndHref()}/api/account/store/shifts/${waiterID}${
+          date ? `/${date.toISOString()}` : ''
+        }`,
         {
           credentials: 'include',
           method: 'post',
