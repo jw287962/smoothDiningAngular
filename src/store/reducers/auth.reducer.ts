@@ -86,3 +86,6 @@ export const selectStoreData = createSelector(selectState, (state: State) => {
   return state.activeStore;
 });
 // selectLoginBoolean(initialState);
+export const selectStoreDate = createSelector(selectState, (state: State) => {
+  return state.selectedDate;
+});
