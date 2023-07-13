@@ -1,3 +1,4 @@
+import { addHours } from 'date-fns';
 import { CookieOptions } from 'ngx-cookie-service';
 
 export interface waiterInterface {
@@ -33,3 +34,7 @@ type Result = {
 export const handleResponseBody = (result: Result): any => {
   return result.error || result.result || result.message || result;
 };
+
+export function fixDateTimeOffset(date: string) {
+  return addHours(new Date(date), 5);
+}
