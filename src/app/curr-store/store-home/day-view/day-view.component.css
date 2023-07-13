@@ -6,7 +6,7 @@
 .dropdown {
   display: flex;
   flex-direction: column;
-  max-height: 200px;
+  max-height: 150px;
   overflow-y: scroll;
 }
 .dropdown::-webkit-scrollbar {
@@ -44,4 +44,9 @@
 }
 .form-input > label {
   text-align: left;
+}
+
+.shift-title {
+  margin: 0px;
+  padding: 10px;
 }

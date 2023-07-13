@@ -52,14 +52,14 @@
     <div class="alert alert-danger" *ngIf="formError">
       <span>{{ formError }}</span>
     </div>
-    <button class="wide primary-color">Add Waiter To List</button>
+    <button class="wide primary-color">Add Waiter to Day's Shift</button>
   </form>
 
-  <button class="primary-color">Start (Need to Implement Link)</button>
-  <h3>
-    Waiters ({{ dailyActiveWaiter.length }}) on Shift Number:
+  <button class="primary-color">Start (Need to Implement)</button>
+  <h2 class="shift-title">
+    Waiters ({{ dailyActiveWaiter.length }}) for Shift Number:
     {{ displayShiftNumber }}
-  </h3>
+  </h2>
 
   <div class="gridActiveWaiters">
     <div *ngFor="let activeWorker of dailyActiveWaiter">
