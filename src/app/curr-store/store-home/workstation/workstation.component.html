@@ -1,1 +1,10 @@
-<p>workstation works!</p>
+<div class="gridActiveWaiters">
+  <div *ngFor="let activeWorkerShift of activeWaiter">
+    <app-waiter-active-row
+      [waiter]="activeWorkerShift"
+      [showShifts]="true"
+    ></app-waiter-active-row>
+
+    <div class="separation"></div>
+  </div>
+</div>
