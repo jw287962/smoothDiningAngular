@@ -13,8 +13,9 @@
 .container,
 .waiter-data,
 .mini-grid {
-  border: 1px solid black;
-  padding: 10px;
+  border: var(--light-line-color);
+  padding: 8px;
+  margin: 2px;
   display: flex;
   align-items: center;
   border-radius: 5px;
