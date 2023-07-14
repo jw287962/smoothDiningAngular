@@ -7,6 +7,10 @@ import {
 
 export const loginTrue = createAction('[auth Component] loginTrue');
 export const loginFalse = createAction('[auth Component] loginFalse');
+export const shiftNumber = createAction(
+  '[ActiveShift Component] shiftNumber',
+  props<{ shiftNumber: number }>()
+);
 
 export const setActiveStore = createAction(
   '[Click Store] setActiveStore',

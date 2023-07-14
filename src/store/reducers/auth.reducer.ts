@@ -11,6 +11,7 @@ import {
   loginTrue,
   setActiveDate,
   setActiveStore,
+  shiftNumber,
 } from '../actions/auth.action';
 import { addHours, format } from 'date-fns';
 
@@ -25,6 +26,7 @@ export interface State {
   login: boolean;
   activeStore: activeStore;
   // activeWaiters: any[];
+  shiftNumber: number;
   counter: number;
   loading: boolean;
   selectedDate: string;
@@ -35,6 +37,7 @@ export const initialState: State = {
   selectedDate: format(new Date(), 'yyyy-MM-dd'),
   counter: 0,
   loading: false,
+  shiftNumber: 0,
   // activeWaiters: [],
 };
 
@@ -61,6 +64,10 @@ export const AuthReducer = createReducer(
   on(setActiveDate.updateDate, (state, { date }) => ({
     ...state,
     selectedDate: date,
+  })),
+  on(shiftNumber, (state, { shiftNumber }) => ({
+    ...state,
+    shiftNumber: shiftNumber,
   }))
 );
 // const selectState = (state: State) => state;
@@ -93,4 +100,7 @@ export const selectStoreData = createSelector(selectState, (state: State) => {
 // selectLoginBoolean(initialState);
 export const selectStoreDate = createSelector(selectState, (state: State) => {
   return state.selectedDate;
+});
+export const selectShiftNumber = createSelector(selectState, (state: State) => {
+  return state.shiftNumber;
 });
