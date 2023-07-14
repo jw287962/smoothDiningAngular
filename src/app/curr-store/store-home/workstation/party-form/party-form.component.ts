@@ -48,7 +48,7 @@ export class PartyFormComponent {
     const value = this.partyFormGroup.get('size')?.value || 0;
     const update = value + number;
 
-    if (value != undefined && update >= 0) {
+    if (value != undefined && update >= 1) {
       this.partyFormGroup.patchValue({
         size: update,
       });
@@ -69,5 +69,6 @@ export class PartyFormComponent {
       reservationDate: '',
     };
     this._storeAPI.createParty(generic, partyData);
+    this.togglePartyForm();
   }
 }

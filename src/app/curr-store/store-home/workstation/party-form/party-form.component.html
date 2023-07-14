@@ -1,4 +1,5 @@
 <form class="party-form flex-col-center" [formGroup]="partyFormGroup">
+  <span class="submission-info"></span>
   <button (click)="togglePartyForm()">X</button>
   <div>
     <h1>Create Party:</h1>
@@ -23,7 +24,7 @@
     <label for="size">Party: <span class="mini-text">*req</span> </label>
 
     <div class="number-input">
-      <button (click)="updatePartySize(0)" class="mini">0</button>
+      <button (click)="updatePartySize(1)" class="mini">1</button>
       <button (click)="addPartySize(-1)" class="number-button">-</button>
 
       <input
@@ -33,7 +34,7 @@
         required="true"
         formControlName="size"
         value="3"
-        min="0"
+        min="1"
       />
       <button (click)="addPartySize(1)" class="number-button">+</button>
       <button (click)="updatePartySize(20)" class="mini">20</button>
