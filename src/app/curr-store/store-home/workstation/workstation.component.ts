@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { toggleBackgroundHidden } from 'src/store/actions/auth.action';
 import {
   selectShiftNumber,
   selectStoreDate,
@@ -9,6 +10,7 @@ import { StoreApiService } from 'src/store/service/store.service';
 import {
   fixDateTimeOffset,
   getActiveWaiterFromShiftNumber,
+  partyInterface,
   shiftInterface,
   waiterInterface,
 } from 'src/store/service/types';
@@ -25,6 +27,7 @@ export class WorkstationComponent {
   shiftNumber: Observable<number> = this._store.select(selectShiftNumber);
   activeShiftNumber: number = 0;
 
+  showParty: boolean = false;
   constructor(private _store: Store, private _storeAPI: StoreApiService) {
     this.date.subscribe(async (date) => {
       this.activeDate = date;
@@ -50,5 +53,18 @@ export class WorkstationComponent {
       result,
       this.activeShiftNumber
     );
+  }
+
+  dispatchBackground() {
+    if (this.showParty) {
+      this._store.dispatch(toggleBackgroundHidden.setTrue());
+    } else {
+      this._store.dispatch(toggleBackgroundHidden.setFalse());
+    }
+  }
+
+  togglePartyForm() {
+    this.showParty = !this.showParty;
+    this.dispatchBackground();
   }
 }

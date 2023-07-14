@@ -1,0 +1,43 @@
+<form class="party-form flex-col-center">
+  <div>
+    <h1>Create Party:</h1>
+    <div
+      class="info"
+      (mouseenter)="toggleInfo(true)"
+      (mouseleave)="toggleInfo(false)"
+    >
+      i
+    </div>
+    <span *ngIf="showInfo" class="show-info"
+      >Generic only requires Party Size</span
+    >
+  </div>
+
+  <div class="form-input">
+    <label for="name">Name: <span class="mini-text"></span></label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      formControlName="username"
+      required="true"
+    />
+    <!-- <app-form-error [formData]="username" [name]="'Username'"></app-form-error> -->
+  </div>
+  <div class="form-input">
+    <label for="size">Party Size: <span class="mini-text">*req</span></label>
+    <input
+      type="number"
+      id="size"
+      name="size"
+      formControlName="size"
+      required="true"
+      value="3"
+    />
+    <!-- <app-form-error [formData]="username" [name]="'Username'"></app-form-error> -->
+    <div>
+      <button (click)="addParty(true)">+ Generic</button>
+      <button (click)="addParty(false)">+ Party</button>
+    </div>
+  </div>
+</form>
