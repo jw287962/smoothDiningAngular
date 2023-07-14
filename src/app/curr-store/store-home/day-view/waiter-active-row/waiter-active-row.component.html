@@ -1,9 +1,14 @@
-<div class="waiterContainer">
-  <div class="containerName flex-col-center">
-    <h3>{{ waiter?.waiter[0]?.name || "none" }}</h3>
+<div class="flex-row-center waiter-container">
+  <div class="waiter-data flex-col-center">
+    <h3>{{ waiter?.waiter?.[0]?.name || "" }}</h3>
     <h3 class="section">{{ waiter?.section }}</h3>
   </div>
   <!-- <div class="container">
     <div class="boxes"></div>
   </div> -->
+  <div *ngIf="showShifts === true" class="grid-box-waiters">
+    <div *ngFor="let store of waiter?.shiftTables" class="mini-grid">
+      <div></div>
+    </div>
+  </div>
 </div>
