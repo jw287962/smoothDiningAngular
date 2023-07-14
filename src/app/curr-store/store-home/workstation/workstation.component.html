@@ -1,11 +1,17 @@
-<div class="gridActiveWaiters">
+<div class="gridActiveWaiters flex-col-center">
   <div class="flex-row-center">
-    <button (click)="togglePartyForm()">Add Party</button>
+    <div class="shift-buttons">
+      <button type="button" (click)="decreaseShiftNumber()"><</button>
+      <button type="button" (click)="increaseShiftNumber()">></button>
+    </div>
+    <div>
+      <button (click)="togglePartyForm()">Add Party</button>
+      <div class="party-list"></div>
+    </div>
     <app-party-form
       *ngIf="showParty"
       [togglePartyForm]="togglePartyForm"
     ></app-party-form>
-    <div class="party-list"></div>
   </div>
 
   <div *ngFor="let activeWorkerShift of activeWaiter">

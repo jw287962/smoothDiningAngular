@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { toggleBackgroundHidden } from 'src/store/actions/auth.action';
+import {
+  shiftNumber,
+  toggleBackgroundHidden,
+} from 'src/store/actions/auth.action';
 import {
   selectShiftNumber,
   selectStoreDate,
@@ -43,6 +46,10 @@ export class WorkstationComponent {
     this.getActiveWaiters();
   }
 
+  ngOnDestroy() {
+    this._store.dispatch(shiftNumber({ shiftNumber: this.activeShiftNumber }));
+  }
+
   async getActiveWaiters() {
     const result = await this._storeAPI.getCurrentShift(
       fixDateTimeOffset(this.activeDate)
@@ -68,6 +75,17 @@ export class WorkstationComponent {
     this.dispatchBackground();
   };
 
+  increaseShiftNumber() {
+    if (this.activeWaiter.length === 0) {
+      return;
+    }
+    console.log('increase');
+  }
+  decreaseShiftNumber() {
+    if (this.activeShiftNumber === 0) {
+      return;
+    }
 
-
+    console.log('decreaseShift');
+  }
 }
