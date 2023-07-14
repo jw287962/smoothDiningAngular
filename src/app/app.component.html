@@ -6,8 +6,13 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<div class="{{ (toggleBackground | async) ? 'hide-background' : '' }}">
-  <!-- <div>{{ toggleBackground | async }}</div> -->
-  <app-nav class="navbar"></app-nav>
-  <router-outlet></router-outlet>
-</div>
+<body id="{{ (toggleBackground | async) ? 'hide-background' : '' }}">
+  <div id="{{ (toggleBackground | async) ? 'hide-background' : '' }}">
+    <!-- <div>{{ toggleBackground | async }}</div> -->
+    <app-nav
+      id="{{ (toggleBackground | async) ? 'hide-background' : '' }}"
+      class="navbar"
+    ></app-nav>
+    <router-outlet></router-outlet>
+  </div>
+</body>

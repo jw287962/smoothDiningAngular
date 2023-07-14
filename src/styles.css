@@ -22,6 +22,8 @@ body {
   font-weight: 800px;
   margin: 0px;
   min-width: 300px;
+  position: relative;
+  background-color: var(--nav-background-color);
 }
 h1,
 h2,
@@ -117,7 +119,6 @@ button:active {
   padding: 5px 0px;
   height: 60px;
   position: relative;
-  background-color: var(--nav-background-color);
   border-bottom: 1px solid #bfc9ca;
 }
 /* ACTIVE NAV LINK */
@@ -191,9 +192,6 @@ button:active {
   min-width: 200px;
 }
 
-.hide-background {
-  background-color: rgba(0, 0, 0, 0.5);
-}
 @media (max-width: 500px) {
   ::root {
     --mobileWidth: 100vw;
