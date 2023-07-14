@@ -1,7 +1,10 @@
 <div class="gridActiveWaiters">
   <div class="flex-row-center">
     <button (click)="togglePartyForm()">Add Party</button>
-    <app-party-form *ngIf="showParty"></app-party-form>
+    <app-party-form
+      *ngIf="showParty"
+      [togglePartyForm]="togglePartyForm"
+    ></app-party-form>
     <div class="party-list"></div>
   </div>
 

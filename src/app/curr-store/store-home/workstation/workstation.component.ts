@@ -55,16 +55,16 @@ export class WorkstationComponent {
     );
   }
 
-  dispatchBackground() {
+  dispatchBackground = () => {
     if (this.showParty) {
       this._store.dispatch(toggleBackgroundHidden.setTrue());
     } else {
       this._store.dispatch(toggleBackgroundHidden.setFalse());
     }
-  }
-
-  togglePartyForm() {
+  };
+  togglePartyForm = () => {
     this.showParty = !this.showParty;
+
     this.dispatchBackground();
-  }
+  };
 }

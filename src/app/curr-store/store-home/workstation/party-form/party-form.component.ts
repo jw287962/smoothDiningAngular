@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { toggleBackgroundHidden } from 'src/store/actions/auth.action';
@@ -11,6 +11,7 @@ import { StoreApiService } from 'src/store/service/store.service';
   styleUrls: ['./party-form.component.css'],
 })
 export class PartyFormComponent {
+  @Input() togglePartyForm!: () => void;
   showInfo: boolean = false;
 
   date: Observable<string> = this._store.select(selectStoreDate);
@@ -19,6 +20,7 @@ export class PartyFormComponent {
   activeShiftNumber: number = 0;
 
   showParty: boolean = false;
+
   constructor(private _store: Store, private _storeAPI: StoreApiService) {
     this.date.subscribe(async (date) => {
       this.activeDate = date;
