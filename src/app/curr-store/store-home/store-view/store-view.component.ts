@@ -13,6 +13,7 @@ import {
 } from 'src/store/reducers/auth.reducer';
 // import { format, addHours } from 'date-fns';
 import { StoreApiService } from 'src/store/service/store.service';
+import { handleResponseBody } from 'src/store/service/types';
 interface waiterFormGroup extends FormGroup {
   controls: {
     fullname: FormControl;
@@ -62,9 +63,7 @@ export class StoreViewComponent {
         birth,
         maxTable
       );
-      if (result.errors) {
-        this.error = result.message;
-      }
+      this.error = handleResponseBody(result);
     } catch (e) {
       console.log(e);
     }
