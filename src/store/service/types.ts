@@ -22,6 +22,14 @@ export interface shiftInterface {
   shiftNumber: number; //for Grouping
   shiftTables: any[];
 }
+
+export interface partyInterface {
+  name?: string;
+  partySize: number;
+  phoneNumber?: string;
+  reservationDate?: string;
+  reservationDateTime?: Date;
+}
 export const cookieOptions: CookieOptions = {
   secure: true, // Mark the cookie as secure
   sameSite: 'None', // Set SameSite attribute to None
