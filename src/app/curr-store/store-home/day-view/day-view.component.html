@@ -29,6 +29,13 @@
       </button>
     </div>
     <div class="form-input">
+      <button
+        type="button"
+        (click)="addSectionNumber(-1)"
+        class="number-button"
+      >
+        -
+      </button>
       <label for="section">Section: </label>
       <input
         (change)="updateSectionNumber($event)"
@@ -38,6 +45,9 @@
         value="{{ sectionNumber }}"
         min="1"
       />
+      <button type="button" (click)="addSectionNumber(1)" class="number-button">
+        +
+      </button>
     </div>
     <div class="flex-col-center">
       <label>Shift Number:</label>

@@ -128,7 +128,12 @@ export class DayViewComponent {
     }
     this.shiftNumber--;
   }
-
+  addSectionNumber(number: number) {
+    if (this.sectionNumber === 0 && number === -1) {
+      return;
+    }
+    this.sectionNumber += number;
+  }
   addShiftNumber() {
     this.shiftNumber++;
   }
