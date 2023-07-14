@@ -1,0 +1,19 @@
+<div class="number-input flex-col-center">
+  <label for="{{ for }}">{{ label }}: </label>
+
+  <div>
+    <button type="button" (click)="addNumberValue(-1)" class="number-button">
+      -
+    </button>
+    <input
+      type="number"
+      name="{{ for }}"
+      id="{{ for }}"
+      min="1"
+      value="{{ number }}"
+    />
+    <button type="button" (click)="addNumberValue(1)" class="number-button">
+      +
+    </button>
+  </div>
+</div>
