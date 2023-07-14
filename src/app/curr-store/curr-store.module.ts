@@ -9,6 +9,7 @@ import { StoreHomeComponent } from './store-home/store-home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WaiterActiveRowComponent } from './store-home/day-view/waiter-active-row/waiter-active-row.component';
 import { WorkstationComponent } from './store-home/workstation/workstation.component';
+import { PartyFormComponent } from './store-home/workstation/party-form/party-form.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { WorkstationComponent } from './store-home/workstation/workstation.compo
     StoreHomeComponent,
     WaiterActiveRowComponent,
     WorkstationComponent,
+    PartyFormComponent,
   ],
   imports: [CommonModule, CurrStoreRoutingModule, ReactiveFormsModule],
 })
