@@ -12,8 +12,10 @@ import {
   setActiveDate,
   setActiveStore,
   shiftNumber,
+  toggleBackgroundHidden,
 } from '../actions/auth.action';
 import { addHours, format } from 'date-fns';
+import { tr } from 'date-fns/locale';
 
 export type activeStore = {
   storeId: string;
@@ -29,6 +31,7 @@ export interface State {
   shiftNumber: number;
   counter: number;
   loading: boolean;
+  toggleBackgroundHidden: boolean;
   selectedDate: string;
 }
 export const initialState: State = {
@@ -38,6 +41,7 @@ export const initialState: State = {
   counter: 0,
   loading: false,
   shiftNumber: 0,
+  toggleBackgroundHidden: false,
   // activeWaiters: [],
 };
 
@@ -68,6 +72,14 @@ export const AuthReducer = createReducer(
   on(shiftNumber, (state, { shiftNumber }) => ({
     ...state,
     shiftNumber: shiftNumber,
+  })),
+  on(toggleBackgroundHidden.setFalse, (state) => ({
+    ...state,
+    toggleBackgroundHidden: false,
+  })),
+  on(toggleBackgroundHidden.setTrue, (state) => ({
+    ...state,
+    toggleBackgroundHidden: true,
   }))
 );
 // const selectState = (state: State) => state;
@@ -104,3 +116,10 @@ export const selectStoreDate = createSelector(selectState, (state: State) => {
 export const selectShiftNumber = createSelector(selectState, (state: State) => {
   return state.shiftNumber;
 });
+
+export const selectBackgroundView = createSelector(
+  selectState,
+  (state: State) => {
+    return state.toggleBackgroundHidden;
+  }
+);

@@ -191,6 +191,9 @@ button:active {
   min-width: 200px;
 }
 
+.hide-background {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 @media (max-width: 500px) {
   ::root {
     --mobileWidth: 100vw;

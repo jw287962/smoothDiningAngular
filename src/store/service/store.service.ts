@@ -6,6 +6,7 @@ import { Helper } from './helpers';
 import { setActiveStore } from '../actions/auth.action';
 import { activeStore, selectStoreData } from '../reducers/auth.reducer';
 import { Observable, Subscription } from 'rxjs';
+import { partyInterface } from './types';
 
 @Injectable({
   providedIn: 'root',
@@ -202,6 +203,27 @@ export class StoreApiService {
 
           headers: this.getHeaders(),
           // body: body,
+        }
+      );
+      const responseBody = await result.json();
+      return this._helper.manageError(responseBody, result);
+    } catch (e) {}
+  }
+
+  async createParty(generic: boolean = false, partyData: partyInterface) {
+    try {
+      // const dateFinal = date || new Date();
+      const body = JSON.stringify(partyData);
+      const result = await fetch(
+        `${getBackEndHref()}/api/account/store/party${
+          generic ? '/generic' : ''
+        }`,
+        {
+          credentials: 'include',
+          method: 'get',
+
+          headers: this.getHeaders(),
+          body: body,
         }
       );
       const responseBody = await result.json();

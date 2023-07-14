@@ -6,5 +6,8 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<app-nav class="navbar"></app-nav>
-<router-outlet></router-outlet>
+<div class="{{ (toggleBackground | async) ? 'hide-background' : '' }}">
+  <!-- <div>{{ toggleBackground | async }}</div> -->
+  <app-nav class="navbar"></app-nav>
+  <router-outlet></router-outlet>
+</div>

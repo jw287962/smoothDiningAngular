@@ -7,6 +7,7 @@ import {
 
 export const loginTrue = createAction('[auth Component] loginTrue');
 export const loginFalse = createAction('[auth Component] loginFalse');
+
 export const shiftNumber = createAction(
   '[ActiveShift Component] shiftNumber',
   props<{ shiftNumber: number }>()
@@ -23,7 +24,7 @@ export const loadingPage = createActionGroup({
   source: 'Loading Component',
   events: {
     // defining an event without payload using the `emptyProps` function
-    Opened: emptyProps(),
+    // Opened: emptyProps(),
 
     // defining an event with payload using the `props` function
     'Update Loading': props<{ loading: boolean }>(),
@@ -36,10 +37,21 @@ export const setActiveDate = createActionGroup({
   source: 'Date Component',
   events: {
     // defining an event without payload using the `emptyProps` function
-    Opened: emptyProps(),
+    // Opened: emptyProps(),
 
     // defining an event with payload using the `props` function
     'Update Date': props<{ date: string }>(),
+    // defining an event with payload using the props factory
+  },
+});
+
+export const toggleBackgroundHidden = createActionGroup({
+  source: 'Hide Background',
+  events: {
+    // defining an event without payload using the `emptyProps` function
+    setTrue: emptyProps(),
+    // defining an event with payload using the `props` function
+    setFalse: emptyProps(),
     // defining an event with payload using the props factory
   },
 });
