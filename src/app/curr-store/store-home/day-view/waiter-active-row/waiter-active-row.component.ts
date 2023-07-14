@@ -1,5 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { shiftInterface, waiterInterface } from 'src/store/service/types';
+import {
+  partyInterface,
+  shiftInterface,
+  waiterInterface,
+} from 'src/store/service/types';
 
 @Component({
   selector: 'app-waiter-active-row',
@@ -9,13 +13,31 @@ import { shiftInterface, waiterInterface } from 'src/store/service/types';
 export class WaiterActiveRowComponent {
   @Input() waiter!: shiftInterface;
   @Input() showShifts: boolean = false;
+
+  viewCurrentPartyDetail: partyInterface = {
+    name: '',
+    partySize: 0,
+    phoneNumber: '',
+    reservationDate: '',
+  };
   constructor() {}
 
   ngOnInit() {
     // this.waiter.shiftTables.fill(1, this.waiter.shiftTables.length, 20);
     const currLength = this.waiter.shiftTables.length;
     for (let i = currLength; i < 24; i++) {
-      this.waiter.shiftTables.push({});
+      if (i < 5) {
+        this.waiter.shiftTables.push({
+          name: 'test',
+          partySize: 5,
+          phoneNumber: '',
+          reservationDate: '07-15-2023',
+        });
+      } else this.waiter.shiftTables.push({});
     }
+  }
+
+  set setCurrentParty(party: partyInterface) {
+    this.viewCurrentPartyDetail = party;
   }
 }

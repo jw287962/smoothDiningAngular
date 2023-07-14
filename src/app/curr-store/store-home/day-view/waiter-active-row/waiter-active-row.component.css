@@ -14,8 +14,7 @@
 .waiter-data,
 .mini-grid {
   border: var(--light-line-color);
-  padding: 8px;
-  margin: 2px;
+  padding: 5px;
   display: flex;
   align-items: center;
   border-radius: 5px;
@@ -25,9 +24,9 @@
   min-height: 100px;
 }
 .mini-grid {
-  height: 30px;
-  width: 30px;
-
+  height: 35px;
+  width: 35px;
+  color: var(--text-color);
   /* grid-template-columns: 1fr, 1fr, 1fr; */
 }
 /* GRID PARTIES */
@@ -60,4 +59,7 @@
 }
 h3 {
   text-align: center;
+}
+
+.party {
 }

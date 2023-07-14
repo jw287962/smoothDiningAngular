@@ -2,7 +2,8 @@
 :root {
   --primary-color: #0099ff;
   --secondary-color: #cbe4f3;
-  --text-color: #273746;
+  --text-color: black;
+  --light-text-color: #0d0e0f;
   --background-color: #fbfcfc;
   --nav-background-color: white;
   --error-color: rgb(255, 92, 92);
@@ -16,6 +17,7 @@
 [data-theme="dark"] {
   --background-color: black;
   --text-color: white;
+  --light-text-color: #c9c9c9;
 }
 body {
   margin: 0px;
