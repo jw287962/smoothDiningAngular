@@ -54,7 +54,7 @@ button,
   border-radius: 6px;
   justify-content: center;
   padding: 10px 5px;
-  margin: 10px 0px;
+  margin: 10px 2px;
   font-size: 15px;
   font-weight: 800;
 }
@@ -86,6 +86,32 @@ label {
 button:active {
   position: relative;
   top: 2px;
+}
+
+/* input NUMBERS BUTTON */
+.number-input {
+  display: flex;
+  flex-direction: row;
+  border: 0;
+  align-items: center;
+}
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  width: 30px;
+  margin: 5px;
+  padding: 2px;
+  border: none;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 800;
+  color: #0099ff;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 
 .separation {

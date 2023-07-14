@@ -10,6 +10,7 @@ import {
   selectStoreData,
 } from 'src/store/reducers/auth.reducer';
 import { StoreApiService } from 'src/store/service/store.service';
+import { formatYYYYMMDD } from 'src/store/service/types';
 
 @Component({
   selector: 'app-store-home',
@@ -37,7 +38,6 @@ export class StoreHomeComponent {
       // on refresh it should be empty
       const result = await this._storeService.fetchStore();
       this.lastStoreData = result;
-      
     }
   }
   ngOnDestroy() {
@@ -48,10 +48,7 @@ export class StoreHomeComponent {
   }
 
   handleDateUpdate(e: any) {
-    this._date = format(
-      addHours(new Date(`${e.target.value}`), 5),
-      'yyyy-MM-dd'
-    );
+    this._date = formatYYYYMMDD(e.target.value, 5);
     this._store.dispatch(setActiveDate.updateDate({ date: this._date }));
   }
 

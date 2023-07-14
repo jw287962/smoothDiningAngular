@@ -1,4 +1,4 @@
-<form class="party-form flex-col-center">
+<form class="party-form flex-col-center" [formGroup]="partyFormGroup">
   <button (click)="togglePartyForm()">X</button>
   <div>
     <h1>Create Party:</h1>
@@ -16,29 +16,54 @@
 
   <div class="form-input">
     <label for="name">Name: <span class="mini-text"></span></label>
-    <input
-      type="text"
-      id="username"
-      name="username"
-      formControlName="username"
-      required="true"
-    />
+    <input type="text" id="name" name="name" formControlName="name" />
     <!-- <app-form-error [formData]="username" [name]="'Username'"></app-form-error> -->
   </div>
-  <div class="form-input">
-    <label for="size">Party Size: <span class="mini-text">*req</span></label>
-    <input
-      type="number"
-      id="size"
-      name="size"
-      formControlName="size"
-      required="true"
-      value="3"
-    />
-    <!-- <app-form-error [formData]="username" [name]="'Username'"></app-form-error> -->
-    <div>
-      <button (click)="addParty(true)">+ Generic</button>
-      <button (click)="addParty(false)">+ Party</button>
+  <div class="flex-col-center">
+    <label for="size">Party: <span class="mini-text">*req</span> </label>
+
+    <div class="number-input">
+      <button (click)="updatePartySize(0)" class="mini">0</button>
+      <button (click)="addPartySize(-1)" class="number-button">-</button>
+
+      <input
+        type="number"
+        id="size"
+        name="size"
+        required="true"
+        formControlName="size"
+        value="3"
+        min="0"
+      />
+      <button (click)="addPartySize(1)" class="number-button">+</button>
+      <button (click)="updatePartySize(20)" class="mini">20</button>
     </div>
+  </div>
+  <div class="flex-row-center party-button">
+    <button (click)="addPartySize(-4)" class="mini">-4</button>
+    <button (click)="addPartySize(4)" class="mini">+4</button>
+  </div>
+  <div class="form-input">
+    <label for="number">Phone: </label>
+    <input type="tel" id="phone" name="phone" formControlName="phone" />
+  </div>
+  <div class="form-input">
+    <label for="date">Date: </label>
+    <input type="date" id="date" name="date" formControlName="date" />
+  </div>
+
+  <div class="form-input">
+    <label for="datetime">Time: </label>
+    <input
+      type="time"
+      id="datetime"
+      name="datetime"
+      formControlName="datetime"
+    />
+  </div>
+  <!-- <app-form-error [formData]="username" [name]="'Username'"></app-form-error> -->
+  <div>
+    <button (click)="addParty(true)">+ Generic</button>
+    <button (click)="addParty(false)">+ Party</button>
   </div>
 </form>

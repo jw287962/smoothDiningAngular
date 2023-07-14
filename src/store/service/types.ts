@@ -57,3 +57,12 @@ export function getActiveWaiterFromShiftNumber(result: any, shiftNum: number) {
     return [];
   }
 }
+
+export function formatYYYYMMDD(string: string = '', hours: number = 0) {
+  let date;
+  if (string === '') {
+    date = new Date();
+  } else date = new Date(string);
+
+  return format(addHours(date, hours), 'yyyy-MM-dd');
+}

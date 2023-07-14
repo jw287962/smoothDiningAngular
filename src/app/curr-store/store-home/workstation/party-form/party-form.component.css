@@ -28,7 +28,27 @@
   position: absolute;
   width: 100vw;
 }
+.mini {
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+.number-button {
+  border: 1px solid grey;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  padding: 0px;
 
+  font-size: 30px;
+  background-color: white;
+}
+.party-button {
+  margin: -10px;
+  margin-top: -20px;
+}
 @media (max-width: 500px) {
   .party-form {
     padding: 0px;
