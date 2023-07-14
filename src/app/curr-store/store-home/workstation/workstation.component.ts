@@ -67,4 +67,7 @@ export class WorkstationComponent {
 
     this.dispatchBackground();
   };
+
+
+
 }

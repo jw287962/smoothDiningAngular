@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { addHours, format } from 'date-fns';
+import { tr } from 'date-fns/locale';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, Subscription } from 'rxjs';
 import { setActiveDate } from 'src/store/actions/auth.action';
@@ -27,6 +28,8 @@ export class StoreHomeComponent {
     private _store: Store<State>,
     private _storeService: StoreApiService
   ) {
+    this.toggleMini = false;
+
     this.storeDataSubscription = this.storeData$.subscribe(async (data) => {
       this.lastStoreData = data;
       // I can check data bfore dispatch for change.
@@ -54,5 +57,13 @@ export class StoreHomeComponent {
 
   processView() {
     this.toggleMini = !this.toggleMini;
+  }
+  onRouterLinkActive(e: boolean) {
+    console.log(e);
+    if (!e) {
+      this.toggleMini = true;
+    } else {
+      this.toggleMini = false;
+    }
   }
 }

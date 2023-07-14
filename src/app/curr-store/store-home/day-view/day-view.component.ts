@@ -136,4 +136,6 @@ export class DayViewComponent {
   updateShift() {
     this.getActiveWaiters();
   }
+
+  minimize() {}
 }

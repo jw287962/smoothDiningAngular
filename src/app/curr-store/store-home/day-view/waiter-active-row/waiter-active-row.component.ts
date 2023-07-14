@@ -9,19 +9,13 @@ import { shiftInterface, waiterInterface } from 'src/store/service/types';
 export class WaiterActiveRowComponent {
   @Input() waiter!: shiftInterface;
   @Input() showShifts: boolean = false;
-  constructor() {
-    // console.log(this.waiter);
-    // console.log(this.waiter?.waiter?.[0]);
-  }
+  constructor() {}
 
   ngOnInit() {
-    console.log(this.showShifts);
     // this.waiter.shiftTables.fill(1, this.waiter.shiftTables.length, 20);
     const currLength = this.waiter.shiftTables.length;
     for (let i = currLength; i < 24; i++) {
       this.waiter.shiftTables.push({});
     }
-
-    console.log(this.waiter);
   }
 }

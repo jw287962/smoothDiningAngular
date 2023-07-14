@@ -5,6 +5,7 @@
     routerLink="/store/home"
     routerLinkActive="active"
     ariaCurrentWhenActive="page"
+    (isActiveChange)="this.onRouterLinkActive($event)"
   >
     <button class="headers">
       <h1 class="header-text">
@@ -31,6 +32,7 @@
         routerLink="/store/day"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
+        (isActiveChange)="this.onRouterLinkActive($event)"
       >
         <button class="wide tall primary-color">
           <h3>VIEW DATE INFO</h3>
