@@ -87,7 +87,24 @@ button:active {
   position: relative;
   top: 2px;
 }
+/* form */
+.form-input {
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  min-width: 200px;
+}
 
+.number-button {
+  border: 1px solid grey;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  padding: 0px;
+
+  font-size: 30px;
+  background-color: white;
+}
 /* input NUMBERS BUTTON */
 .number-input {
   display: flex;
@@ -209,13 +226,6 @@ input[type="number"]::-webkit-outer-spin-button {
 .radius {
   border-radius: 5px;
   border: 1px solid black;
-}
-
-.form-input {
-  display: flex;
-  flex-direction: column;
-  padding: 3px;
-  min-width: 200px;
 }
 
 @media (max-width: 500px) {
