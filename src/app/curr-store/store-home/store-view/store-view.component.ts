@@ -52,6 +52,9 @@ export class StoreViewComponent {
     return this.FormAuth.get('maxActive');
   }
 
+  setMaxActive(num: number) {
+    this.FormAuth.patchValue({ maxActive: num });
+  }
   async addNewWaiter(
     name: string = this.getFullName?.value,
     birth: Date = this.getBirthday?.value,
@@ -67,5 +70,9 @@ export class StoreViewComponent {
     } catch (e) {
       console.log(e);
     }
+  }
+
+  handleEmit(num: number) {
+    this.setMaxActive(num);
   }
 }

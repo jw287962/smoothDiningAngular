@@ -10,14 +10,17 @@ export class NumberInputComponent {
   @Input() for: string = '';
 
   @Input() minimum: number = 0;
+  @Input() default: number = 0;
 
   @Output() numberEmit = new EventEmitter<number>();
-  number: number = 1;
+  number: number = 0;
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit() {
+    this.number = this.default;
     this.numberEmit.emit(this.number);
   }
-
   addNumberValue(number: number) {
     if (this.number === this.minimum && number === -1) {
       return;
