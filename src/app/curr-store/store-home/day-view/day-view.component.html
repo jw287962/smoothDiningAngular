@@ -28,7 +28,7 @@
         {{ waiter.name }}
       </button>
     </div>
-    <div class="form-input">
+    <!-- <div class="form-input">
       <button
         type="button"
         (click)="addSectionNumber(-1)"
@@ -48,7 +48,12 @@
       <button type="button" (click)="addSectionNumber(1)" class="number-button">
         +
       </button>
-    </div>
+    </div> -->
+    <app-number-input
+      (numberEmit)="handleValue($event)"
+      [label]="'Section'"
+      [for]="'section'"
+    ></app-number-input>
     <div class="flex-col-center">
       <label>Shift Number:</label>
       <div class="shiftNumber">

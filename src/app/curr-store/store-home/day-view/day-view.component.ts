@@ -61,6 +61,11 @@ export class DayViewComponent {
 
     // this.cdr.detectChanges();
   }
+
+  handleValue(e: any) {
+    console.log(e);
+    this.sectionNumber = e;
+  }
   async fetchWaiters() {
     try {
       const result = await this._storeService.fetchWaiters();
@@ -94,13 +99,13 @@ export class DayViewComponent {
     this.searchName = name;
   }
 
-  updateSectionNumber(e: any) {
-    this.sectionNumber = e.target.value;
-  }
+  // updateSectionNumber(e: any) {
+  //   this.sectionNumber = e.target.value;
+  // }
 
   async addActiveToday(e: Event, sectionNumber: number) {
     e.preventDefault();
-    console.log('add active today');
+    console.log('add active today', sectionNumber);
     // }
     const found = this.filteredWaiter?.find((ele) => {
       return ele.name === this.searchName;
