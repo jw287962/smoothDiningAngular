@@ -19,6 +19,7 @@
 ul {
   display: flex;
   flex-direction: column;
+  padding: 15px;
 }
 
 .noliststyle {
@@ -28,6 +29,9 @@ ul {
 ul > li {
   font-size: 20px;
   list-style: none;
+}
+ul > li > ul > li {
+  padding: 10px 20px;
 }
 h2 {
   text-align: center;
