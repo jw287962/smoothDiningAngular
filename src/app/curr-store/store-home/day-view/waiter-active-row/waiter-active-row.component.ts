@@ -18,7 +18,7 @@ export class WaiterActiveRowComponent {
     console.log(this.showShifts);
     // this.waiter.shiftTables.fill(1, this.waiter.shiftTables.length, 20);
     const currLength = this.waiter.shiftTables.length;
-    for (let i = currLength; i < 30; i++) {
+    for (let i = currLength; i < 24; i++) {
       this.waiter.shiftTables.push({});
     }
 

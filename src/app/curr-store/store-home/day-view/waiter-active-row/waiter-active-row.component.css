@@ -24,29 +24,31 @@
   min-height: 100px;
 }
 .mini-grid {
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
 
   /* grid-template-columns: 1fr, 1fr, 1fr; */
 }
-/* GRID MINI PARTIES */
+/* GRID PARTIES */
 .grid-box-waiters {
+  padding-left: 10px;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
   overflow-x: scroll;
-  width: min(70vw, 500px);
+  height: 150px;
+  width: min(70vw, 800px);
 }
 .grid-box-waiters::-webkit-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: #dddddd #ffffff;
 }
-.element::-webkit-scrollbar-thumb {
+.grid-box-waiters::-webkit-scrollbar-thumb {
   background-color: #dddddd;
   border-radius: 4px;
 }
 
-.element::-webkit-scrollbar-track {
+.grid-box-waiters::-webkit-scrollbar-track {
   background-color: #ffffff;
   /* border-radius: 10px; */
 }
