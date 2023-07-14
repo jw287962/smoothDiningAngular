@@ -7,19 +7,20 @@ export interface waiterInterface {
   birthdate?: Date;
   preferences?: {
     maxActiveTableForPermission?: number;
-    // waitToSitUntilEntreeOut: { min: number };
+    waitToSitUntilEntreeOut: { min: number };
   };
-  // store: string;
-  // status: Boolean;
+  store: string;
+  status: Boolean;
 }
 
 export interface shiftInterface {
   date: Date;
   section: number;
-  waiter: string;
+  // waiter: { [key: number]: waiterInterface }[];
+  waiter: any;
   store: string;
   shiftNumber: number; //for Grouping
-  shiftTables: {};
+  shiftTables: any[];
 }
 export const cookieOptions: CookieOptions = {
   secure: true, // Mark the cookie as secure
@@ -39,4 +40,12 @@ export function fixDateTimeOffset(date: string) {
   const dateAdj = new Date(date);
   const minutes = dateAdj.getTimezoneOffset() * 60 * 1000;
   return new Date(minutes + dateAdj.getTime());
+}
+
+export function getActiveWaiterFromShiftNumber(result: any, shiftNum: number) {
+  try {
+    return [...result.result?.[shiftNum]];
+  } catch (e) {
+    return [];
+  }
 }

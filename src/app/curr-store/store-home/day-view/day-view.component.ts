@@ -5,6 +5,7 @@ import { selectStoreDate } from 'src/store/reducers/auth.reducer';
 import { StoreApiService } from 'src/store/service/store.service';
 import {
   fixDateTimeOffset,
+  getActiveWaiterFromShiftNumber,
   handleResponseBody,
   shiftInterface,
   waiterInterface,
@@ -45,14 +46,17 @@ export class DayViewComponent {
         fixDateTimeOffset(date)
       );
       this.activeDateCopy = date;
-      try {
-        this.dailyActiveWaiter = [...result.result?.[this.shiftNumber]];
-      } catch (e) {
-        this.dailyActiveWaiter = [];
-      }
-      if (this.dailyActiveWaiter) {
-        this.displayShiftNumber = this.shiftNumber;
-      }
+      this.dailyActiveWaiter = getActiveWaiterFromShiftNumber(
+        result,
+        this.displayShiftNumber
+      );
+      // try {
+      //   this.dailyActiveWaiter = [...result.result?.[this.shiftNumber]];
+      // } catch (e) {
+      //   this.dailyActiveWaiter = [];
+      // }
+
+      this.displayShiftNumber = this.shiftNumber;
     });
 
     // this.cdr.detectChanges();

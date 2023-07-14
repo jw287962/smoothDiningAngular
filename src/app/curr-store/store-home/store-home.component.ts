@@ -37,6 +37,7 @@ export class StoreHomeComponent {
       // on refresh it should be empty
       const result = await this._storeService.fetchStore();
       this.lastStoreData = result;
+      
     }
   }
   ngOnDestroy() {
