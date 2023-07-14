@@ -23,7 +23,66 @@
       <button (click)="createStore()">Add Store</button>
     </div>
   </div>
-  <p *ngIf="!login">Please Log In.</p>
+</div>
+<div *ngIf="!(login$ | async)" class="flex-col-center">
+  <a routerLink="/login" routerLinkActive="active"> <h4>Log In</h4></a>
+  <div class="separation"></div>
+
+  <div class="text flex-col-center">
+    <h2>AN OVERWHELMED WAITER WILL DRAMATICALLY AFFECT YOUR BUSINESS <br /></h2>
+    <p>
+      Besides your cuisine, the waiter experience will greatly affect your
+      customers return rate! By overwhelming waiters, you will dramatically
+      decrease customer service and ultimately affect your bottom line!
+    </p>
+
+    <div class="separation"></div>
+    <h2>SOLUTION:</h2>
+    <ul>
+      <li class="noliststyle">
+        <h4>Hosts must be able to make optimal decision</h4>
+        <ul>
+          <li>
+            Improve waiter service without neglecting customer wait-times! We
+            make every second count!
+          </li>
+        </ul>
+      </li>
+
+      <li class="noliststyle">
+        <h4>Allow a Focus on Customers without forgetting your Waiters</h4>
+
+        <ul>
+          <li>Your waiters can break your business!</li>
+        </ul>
+      </li>
+      <li class="noliststyle">
+        <h4>
+          Effectively streamline customer management in a fast-paced environment
+        </h4>
+        <ul>
+          <li>$$ Maximize Sales and Maximize Profits! $$</li>
+        </ul>
+      </li>
+      <li class="noliststyle">
+        <h4>
+          Intuitively visualize and manage your Waiter's active tables,
+          optimizing the guest-to-customer flow
+        </h4>
+        <ul>
+          <li>Easy to use and easy to learn!</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="separation"></div>
+    <h1>Future Plans</h1>
+    <ul>
+      <li>
+        The ability to send text notifications to guests, informing them when
+        their tables are ready, with accurate timing indicators.
+      </li>
+    </ul>
+  </div>
 </div>
 
 <!--    [attr.data-storeId]="item._id" -->
