@@ -18,9 +18,13 @@ export type activeStore = {
   storeId: string;
   storeName: string;
 };
+// export type activeWaiters = {
+//   waiters:
+// };
 export interface State {
   login: boolean;
   activeStore: activeStore;
+  // activeWaiters: any[];
   counter: number;
   loading: boolean;
   selectedDate: string;
@@ -31,6 +35,7 @@ export const initialState: State = {
   selectedDate: format(new Date(), 'yyyy-MM-dd'),
   counter: 0,
   loading: false,
+  // activeWaiters: [],
 };
 
 //

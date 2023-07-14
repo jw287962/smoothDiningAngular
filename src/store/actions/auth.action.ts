@@ -36,7 +36,17 @@ export const setActiveDate = createActionGroup({
 
     // defining an event with payload using the `props` function
     'Update Date': props<{ date: string }>(),
-
     // defining an event with payload using the props factory
   },
 });
+// export const setActiveWaiter = createActionGroup({
+//   source: 'Active Waiter Component',
+//   events: {
+//     // defining an event without payload using the `emptyProps` function
+//     Opened: emptyProps(),
+
+//     // defining an event with payload using the `props` function
+//     'Set Waiters Array': props<{ date: string }>(),
+//     // defining an event with payload using the props factory
+//   },
+// });
