@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { shiftNumber } from 'src/store/actions/auth.action';
 import { selectStoreDate } from 'src/store/reducers/auth.reducer';
 import { StoreApiService } from 'src/store/service/store.service';
 import {
@@ -151,6 +152,7 @@ export class DayViewComponent {
       this.activeWaiterShiftData,
       this.displayShiftNumber
     );
+    this._store.dispatch(shiftNumber({ shiftNumber: this.displayShiftNumber }));
   }
 
   minimize() {}

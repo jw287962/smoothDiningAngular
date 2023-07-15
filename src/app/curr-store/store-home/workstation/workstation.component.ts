@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChange, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
@@ -13,9 +13,7 @@ import { StoreApiService } from 'src/store/service/store.service';
 import {
   fixDateTimeOffset,
   getActiveWaiterFromShiftNumber,
-  partyInterface,
   shiftInterface,
-  waiterInterface,
 } from 'src/store/service/types';
 
 @Component({
@@ -30,34 +28,39 @@ export class WorkstationComponent {
   shiftNumber: Observable<number> = this._store.select(selectShiftNumber);
   activeShiftNumber: number = 0;
 
+  currentShiftData: [] = [];
   showParty: boolean = false;
   constructor(private _store: Store, private _storeAPI: StoreApiService) {
-    this.date.subscribe(async (date) => {
-      this.activeDate = date;
-    });
-    this.shiftNumber.subscribe((num) => {
-      this.activeShiftNumber = num;
-    });
-
     // this._store
   }
 
   ngOnInit() {
+    this.date.subscribe(async (date) => {
+      this.activeDate = date;
+    });
+    this.shiftNumber.subscribe((num) => {
+      this.activeShiftNumber = num || 0;
+
+      this.activeWaiter = getActiveWaiterFromShiftNumber(
+        this.currentShiftData,
+        this.activeShiftNumber
+      );
+    });
     this.getActiveWaiters();
   }
-
+  ngDoCheck() {}
   ngOnDestroy() {
     this._store.dispatch(shiftNumber({ shiftNumber: this.activeShiftNumber }));
   }
 
   async getActiveWaiters() {
-    const result = await this._storeAPI.getCurrentShift(
+    this.currentShiftData = await this._storeAPI.getCurrentShift(
       fixDateTimeOffset(this.activeDate)
     );
-    console.log('resut', result);
+    // console.log('resut', this.currentShiftData);
 
     this.activeWaiter = getActiveWaiterFromShiftNumber(
-      result,
+      this.currentShiftData,
       this.activeShiftNumber
     );
   }
@@ -76,15 +79,21 @@ export class WorkstationComponent {
   };
 
   increaseShiftNumber() {
-    if (this.activeWaiter.length === 0) {
+    if (this.activeShiftNumber === 5) {
       return;
     }
+    this._store.dispatch(
+      shiftNumber({ shiftNumber: this.activeShiftNumber + 1 })
+    );
     console.log('increase');
   }
   decreaseShiftNumber() {
     if (this.activeShiftNumber === 0) {
       return;
     }
+    this._store.dispatch(
+      shiftNumber({ shiftNumber: this.activeShiftNumber - 1 })
+    );
 
     console.log('decreaseShift');
   }
