@@ -8,8 +8,10 @@
   position: relative;
   width: 100vw;
 }
-.gridActiveWaiters > div {
+.alert-danger {
+  padding: 5px;
 }
+
 .shift-buttons {
   position: fixed;
   bottom: 1px;

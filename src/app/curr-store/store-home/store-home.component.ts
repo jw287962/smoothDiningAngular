@@ -58,6 +58,11 @@ export class StoreHomeComponent {
   processView() {
     this.toggleMini = !this.toggleMini;
   }
+
+  onStoreHome(e: boolean) {
+    console.log('on store home', e);
+    this.onRouterLinkActive(e);
+  }
   onRouterLinkActive(e: boolean) {
     console.log(e);
     if (!e) {
