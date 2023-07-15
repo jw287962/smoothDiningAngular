@@ -21,6 +21,8 @@ export class DayViewComponent {
   filteredWaiter?: waiterInterface[];
   dailyActiveWaiter: shiftInterface[] = [];
 
+  activeWaiterShiftData = [];
+
   timeout?: any;
 
   searchName: string = '';
@@ -42,12 +44,12 @@ export class DayViewComponent {
   }
   getActiveWaiters() {
     this.activeDate.subscribe(async (date) => {
-      const result = await this._storeService.getCurrentShift(
+      this.activeWaiterShiftData = await this._storeService.getCurrentShift(
         fixDateTimeOffset(date)
       );
       this.activeDateCopy = date;
       this.dailyActiveWaiter = getActiveWaiterFromShiftNumber(
-        result,
+        this.activeWaiterShiftData,
         this.displayShiftNumber
       );
       // try {
@@ -144,7 +146,11 @@ export class DayViewComponent {
   }
 
   updateShift() {
-    this.getActiveWaiters();
+    this.displayShiftNumber = this.shiftNumber;
+    this.dailyActiveWaiter = getActiveWaiterFromShiftNumber(
+      this.activeWaiterShiftData,
+      this.displayShiftNumber
+    );
   }
 
   minimize() {}
