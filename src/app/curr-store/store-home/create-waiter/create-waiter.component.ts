@@ -23,11 +23,11 @@ interface waiterFormGroup extends FormGroup {
 }
 
 @Component({
-  selector: 'app-store-view',
-  templateUrl: './store-view.component.html',
-  styleUrls: ['./store-view.component.css'],
+  selector: 'app-create-waiter',
+  templateUrl: './create-waiter.component.html',
+  styleUrls: ['./create-waiter.component.css'],
 })
-export class StoreViewComponent {
+export class CreateWaiterComponent {
   FormAuth: FormGroup;
   error: string = '';
   constructor(

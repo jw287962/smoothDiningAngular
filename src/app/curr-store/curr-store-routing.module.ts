@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StoreViewComponent } from './store-home/store-view/store-view.component';
+import { CreateWaiterComponent } from './store-home/create-waiter/create-waiter.component';
 import { DayViewComponent } from './store-home/day-view/day-view.component';
 import { StoreHomeComponent } from './store-home/store-home.component';
 import { WorkstationComponent } from './store-home/workstation/workstation.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        component: StoreViewComponent,
+        component: CreateWaiterComponent,
       },
       {
         path: 'workstation',

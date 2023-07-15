@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoreViewComponent } from './store-home/store-view/store-view.component';
+import { CreateWaiterComponent } from './store-home/create-waiter/create-waiter.component';
 import { DayViewComponent } from './store-home/day-view/day-view.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
@@ -14,7 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    StoreViewComponent,
+    CreateWaiterComponent,
     DayViewComponent,
     StoreHomeComponent,
     WaiterActiveRowComponent,

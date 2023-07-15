@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
-import { StoreViewComponent } from './curr-store/store-home/store-view/store-view.component';
-import { DayViewComponent } from './curr-store/store-home/day-view/day-view.component';
 const routes: Routes = [
   {
     path: 'login',
