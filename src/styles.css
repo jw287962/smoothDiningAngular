@@ -143,7 +143,9 @@ input[type="number"]::-webkit-outer-spin-button {
   min-width: 400px;
   width: 70%;
 }
-
+.text-emphasis {
+  color: var(--error-color);
+}
 .alert-danger {
   color: white;
   font-weight: 800;
@@ -151,10 +153,10 @@ input[type="number"]::-webkit-outer-spin-button {
   justify-content: center;
   margin-bottom: -15px;
   font-size: 15px;
+  background-color: var(--error-color);
 }
 .alert-danger > * {
   width: fit-content;
-  background-color: var(--error-color);
   border-radius: 10px;
   border: 1px solid var(--error-color);
   padding: 3px;

@@ -37,6 +37,9 @@ h2 {
   text-align: center;
 }
 
+.future > li {
+  list-style: circle;
+}
 p {
   font-size: 17px;
 }
