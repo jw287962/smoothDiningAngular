@@ -80,10 +80,13 @@
     <a routerLink="/store/workstation">
       <button class="primary-color">Start</button></a
     >
-    <h2 class="shift-title">
-      Waiters ({{ dailyActiveWaiter.length }}) for Shift Number:
-      {{ displayShiftNumber }}
-    </h2>
+    <h1>Mini Shift View</h1>
+    <div class="separation"></div>
+
+    <h4 class="shift-title">
+      {{ activeDate | async }} | {{ dailyActiveWaiter.length }} Waiters | Shift
+      #{{ displayShiftNumber }}
+    </h4>
 
     <div class="gridActiveWaiters">
       <div *ngFor="let activeWorker of dailyActiveWaiter">

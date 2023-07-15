@@ -5,3 +5,7 @@
 .add-waiter {
   width: min(300px, 90vw);
 }
+
+.store-view {
+  margin-top: 10px;
+}

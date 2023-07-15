@@ -69,6 +69,10 @@ form {
   padding: 10px;
 }
 
+.active-container > .separation {
+  max-width: 90%;
+  min-width: unset;
+}
 @media (max-width: 450px) {
   form {
     font-size: 20px;
@@ -80,6 +84,9 @@ form {
 @media (max-width: 590px) {
   form {
     min-width: auto;
+  }
+  .shift-create-view {
+    flex-direction: column;
   }
 }
 @media (min-width: 800px) {

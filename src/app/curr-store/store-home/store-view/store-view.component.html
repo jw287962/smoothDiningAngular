@@ -1,10 +1,7 @@
 <div class="flex-col-center store-view">
-  <button class="wide tall primary-color"><h3>View All Waiters</h3></button>
-  <button (click)="addNewWaiter()">
-    <span class="font-emphasis">+</span> Waiter
-  </button>
+  <form class="add-waiter flex-col-center" [formGroup]="FormAuth">
+    <h1>Create Waiter</h1>
 
-  <form class="add-waiter" [formGroup]="FormAuth">
     <div class="form-input">
       <label for="name">Name:</label>
       <input
@@ -39,5 +36,11 @@
     <div class="font-emphasis" [ngClass]="{ 'alert-danger': error }">
       <h3>{{ error }}</h3>
     </div>
+    <button (click)="addNewWaiter()">
+      <span class="font-emphasis">+</span> Waiter
+    </button>
   </form>
+  <button class="wide tall primary-color">
+    <h3>View All Waiters (TBD)</h3>
+  </button>
 </div>
