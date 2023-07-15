@@ -57,7 +57,7 @@ form {
 .active-container {
   border: var(--light-line-color);
   border-radius: 10px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .gridActiveWaiters {
   padding: 2px;
@@ -77,18 +77,18 @@ form {
 @media (max-width: 450px) {
   form {
     font-size: 20px;
-    width: 90vw;
     margin: 10px 0px;
-    padding: 10px 0px;
   }
 }
-@media (max-width: 590px) {
+@media (max-width: 790px) {
   form {
     min-width: auto;
   }
   .shift-create-view {
     flex-direction: column-reverse;
     align-items: center;
+    width: auto;
+    margin: 5px;
   }
 }
 @media (min-width: 800px) {
@@ -98,6 +98,8 @@ form {
   }
   form {
     font-size: 25px;
+    padding: 10px 0px;
+
     width: max(800px, 50vw);
   }
 }

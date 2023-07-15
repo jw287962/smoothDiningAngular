@@ -28,27 +28,7 @@
         {{ waiter.name }}
       </button>
     </div>
-    <!-- <div class="form-input">
-      <button
-        type="button"
-        (click)="addSectionNumber(-1)"
-        class="number-button"
-      >
-        -
-      </button>
-      <label for="section">Section: </label>
-      <input
-        (change)="updateSectionNumber($event)"
-        type="number"
-        name="section"
-        id="section"
-        value="{{ sectionNumber }}"
-        min="1"
-      />
-      <button type="button" (click)="addSectionNumber(1)" class="number-button">
-        +
-      </button>
-    </div> -->
+
     <app-number-input
       (numberEmit)="handleValue($event)"
       [label]="'Section'"
@@ -75,7 +55,7 @@
     </div>
     <button class="wide primary-color">Add Waiter to Day's Shift</button>
   </form>
-
+  <!-- other element -->
   <div class="flex-col-center active-container">
     <a routerLink="/store/workstation">
       <button class="primary-color">Start</button></a
