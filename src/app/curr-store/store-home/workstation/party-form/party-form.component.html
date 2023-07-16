@@ -4,7 +4,7 @@
   (ngSubmit)="addParty()"
 >
   <span class="submission-info"></span>
-  <button (click)="togglePartyForm()">X</button>
+  <button type="button" (click)="togglePartyForm()">X</button>
   <div>
     <h1>Create Party:</h1>
     <div
@@ -28,8 +28,10 @@
     <label for="size">Party: <span class="mini-text">*req</span> </label>
 
     <div class="number-input">
-      <button (click)="updatePartySize(1)" class="mini">1</button>
-      <button (click)="addPartySize(-1)" class="number-button">-</button>
+      <button type="button" (click)="updatePartySize(1)" class="mini">1</button>
+      <button type="button" (click)="addPartySize(-1)" class="number-button">
+        -
+      </button>
 
       <input
         type="number"
@@ -40,13 +42,17 @@
         value="3"
         min="1"
       />
-      <button (click)="addPartySize(1)" class="number-button">+</button>
-      <button (click)="updatePartySize(20)" class="mini">20</button>
+      <button type="button" (click)="addPartySize(1)" class="number-button">
+        +
+      </button>
+      <button type="button" (click)="updatePartySize(20)" class="mini">
+        20
+      </button>
     </div>
   </div>
   <div class="flex-row-center party-button">
-    <button (click)="addPartySize(-4)" class="mini">-4</button>
-    <button (click)="addPartySize(4)" class="mini">+4</button>
+    <button type="button" (click)="addPartySize(-4)" class="mini">-4</button>
+    <button type="button" (click)="addPartySize(4)" class="mini">+4</button>
   </div>
   <div class="form-input">
     <label for="number">Phone: </label>

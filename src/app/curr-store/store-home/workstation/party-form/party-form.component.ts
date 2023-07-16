@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectStoreDate } from 'src/store/reducers/auth.reducer';
 import { StoreApiService } from 'src/store/service/store.service';
-import { formatYYYYMMDD } from 'src/store/service/types';
+import { fixDateTimeOffset, formatYYYYMMDD } from 'src/store/service/types';
 
 @Component({
   selector: 'app-party-form',
@@ -35,7 +35,7 @@ export class PartyFormComponent {
       size: [4, Validators.required],
       phone: [''],
       date: [formatYYYYMMDD()],
-      datetime: [formatYYYYMMDD()],
+      datetime: [''],
     });
 
     // this.shiftNumber.subscribe((num) => {
@@ -78,17 +78,32 @@ export class PartyFormComponent {
     }
   }
 
-  addParty(generic: boolean = false) {
-    if (!(this.name && this.phone && this.getDate)) {
-      generic = true;
+  async addParty(generic: boolean = false) {
+    try {
+      if (!(this.name || this.phone || this.getDate)) {
+        generic = true;
+      }
+      const partyData = {
+        name: this.name || undefined,
+        partySize: this.partySize,
+        phoneNumber: this.phone || undefined,
+        reservationDate: formatYYYYMMDD(this.getDate) || undefined,
+        reservationDateTime: new Date(),
+      };
+      if (this.getDateTime) {
+        const time = this.getDateTime.split(':');
+        // console.log(parseInt(time[0]), parseInt(time[1]));
+        const date = fixDateTimeOffset(this.getDate);
+        date.setHours(parseInt(time[0]), parseInt(time[1]));
+        partyData.reservationDateTime = date;
+        // console.log(partyData.reservationDateTime);
+      }
+
+      const result = await this._storeAPI.createParty(generic, partyData);
+
+      this.togglePartyForm();
+    } catch (e) {
+      console.log(e);
     }
-    const partyData = {
-      name: this.name || undefined,
-      partySize: this.partySize,
-      phoneNumber: this.phone || undefined,
-      reservationDate: new Date(this.getDate).toISOString() || undefined,
-    };
-    this._storeAPI.createParty(generic, partyData);
-    this.togglePartyForm();
   }
 }

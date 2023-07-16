@@ -3,25 +3,23 @@
   <div class="alert-danger">
     <h4>Form Response Messages | Maybe should be Timed and disappear</h4>
   </div>
-  <div class="flex-row-center">
+  <div class="flex-col-center">
     <div class="shift-buttons">
       <button type="button" (click)="decreaseShiftNumber()"><</button>
       <button type="button" (click)="increaseShiftNumber()">></button>
     </div>
-    <div>
-      <button (click)="togglePartyForm()">Add Party</button>
-      <div class="party-list">
-        <ng-container *ngFor="let party of nextParties; let i = index">
-          <button
-            class="mini party-data"
-            *ngIf="i <= 10"
-            (click)="(displayPartyData)"
-          >
-            {{ party.name }}
-            {{ party.partySize }}
-          </button>
-        </ng-container>
-      </div>
+    <button (click)="togglePartyForm()">Add Party</button>
+    <div class="party-list">
+      <ng-container *ngFor="let party of nextParties; let i = index">
+        <button
+          class="mini party-data"
+          *ngIf="i <= 10"
+          (click)="(displayPartyData)"
+        >
+          {{ party.name }}
+          {{ party.partySize }}
+        </button>
+      </ng-container>
     </div>
     <app-party-form
       *ngIf="showParty"

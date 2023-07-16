@@ -57,12 +57,18 @@ export function getActiveWaiterFromShiftNumber(result: any, shiftNum: number) {
     return [];
   }
 }
+export function getHourOffset(date: string) {
+  const dateAdj = new Date(date);
+  const hours = dateAdj.getTimezoneOffset() / 60;
+  console.log(hours);
+  return hours;
+}
 
-export function formatYYYYMMDD(string: string = '', hours: number = 0) {
+export function formatYYYYMMDD(string: string = '') {
   let date;
   if (string === '') {
     date = new Date();
   } else date = new Date(string);
 
-  return format(addHours(date, hours), 'yyyy-MM-dd');
+  return format(addHours(date, getHourOffset(string) || 0), 'yyyy-MM-dd');
 }

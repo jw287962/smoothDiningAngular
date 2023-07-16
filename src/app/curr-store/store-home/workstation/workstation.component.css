@@ -17,13 +17,14 @@
   bottom: 1px;
 }
 
-.separation {
-}
+/* .separation {
+} */
 
 .party-list {
   display: flex;
   flex-direction: row;
   width: 90%;
+  justify-content: center;
   overflow-x: scroll;
 }
 .party-list::-webkit-scrollbar {
@@ -31,6 +32,6 @@
 }
 
 .party-data {
-  width: 60px;
+  width: 70px;
   overflow: hidden;
 }

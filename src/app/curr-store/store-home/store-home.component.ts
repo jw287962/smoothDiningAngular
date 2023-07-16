@@ -51,7 +51,7 @@ export class StoreHomeComponent {
   }
 
   handleDateUpdate(e: any) {
-    this._date = formatYYYYMMDD(e.target.value, 5);
+    this._date = formatYYYYMMDD(e.target.value);
     this._store.dispatch(setActiveDate.updateDate({ date: this._date }));
   }
 
