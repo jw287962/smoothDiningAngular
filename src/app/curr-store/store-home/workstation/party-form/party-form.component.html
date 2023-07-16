@@ -77,4 +77,7 @@
     <button type="button" (click)="addParty(true)">+ Generic</button>
     <button type="button" (click)="addParty(false)">+ Party</button>
   </div>
+  <span class="alert-danger"
+    ><span *ngIf="errorMessage">{{ errorMessage }}</span></span
+  >
 </form>

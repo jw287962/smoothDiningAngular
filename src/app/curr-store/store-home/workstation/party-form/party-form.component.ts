@@ -1,10 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectStoreDate } from 'src/store/reducers/auth.reducer';
 import { StoreApiService } from 'src/store/service/store.service';
-import { fixDateTimeOffset, formatYYYYMMDD } from 'src/store/service/types';
+import {
+  fixDateTimeOffset,
+  formatYYYYMMDD,
+  handleResponseBody,
+} from 'src/store/service/types';
 
 @Component({
   selector: 'app-party-form',
@@ -21,6 +25,8 @@ export class PartyFormComponent {
   showParty: boolean = false;
   partyFormGroup: FormGroup;
 
+  errorMessage: string = '';
+  @Output() error = new EventEmitter<string>();
   constructor(
     private _store: Store,
     private _storeAPI: StoreApiService,
@@ -100,8 +106,16 @@ export class PartyFormComponent {
       }
 
       const result = await this._storeAPI.createParty(generic, partyData);
-
-      this.togglePartyForm();
+      const error = result.message || result['0'].msg;
+      this.error.emit(result.message || '');
+      setTimeout(() => {
+        this.error.emit('');
+      }, 5000);
+      if ((result.message as string)?.includes('Created')) {
+        this.togglePartyForm();
+      } else {
+        this.errorMessage = error;
+      }
     } catch (e) {
       console.log(e);
     }

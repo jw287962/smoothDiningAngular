@@ -35,6 +35,8 @@ export class WorkstationComponent {
   currentShiftData: [] = [];
   showParty: boolean = false;
 
+  createPartyError: string = '';
+
   currentTime: string = new Date().toLocaleTimeString();
   private _timer: any;
   constructor(private _store: Store, private _storeAPI: StoreApiService) {
@@ -112,5 +114,9 @@ export class WorkstationComponent {
 
   getTime() {
     return this.currentTime;
+  }
+
+  processError(e: string) {
+    this.createPartyError = e;
   }
 }

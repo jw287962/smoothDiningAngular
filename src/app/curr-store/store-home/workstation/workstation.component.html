@@ -3,8 +3,8 @@
     Workstation (In Progress) |
     <span class="current-time radius">{{ getTime() }}</span>
   </h2>
-  <div class="alert-danger">
-    <h4>Form Response Messages | Maybe should be Timed and disappear</h4>
+  <div class="alert-danger" *ngIf="createPartyError">
+    <h4>{{ createPartyError }}</h4>
   </div>
   <div class="flex-col-center">
     <div class="shift-buttons">
@@ -17,16 +17,21 @@
         <app-party-data [party]="party" [index]="i"></app-party-data>
       </ng-container>
     </div>
-    <app-party-form *ngIf="showParty" [togglePartyForm]="togglePartyForm">
+    <app-party-form
+      *ngIf="showParty"
+      [togglePartyForm]="togglePartyForm"
+      (error)="processError($event)"
+    >
     </app-party-form>
   </div>
 
-  <div *ngFor="let activeWorkerShift of activeWaiter">
-    <div class="separation"></div>
-
-    <app-waiter-active-row
-      [waiter]="activeWorkerShift"
-      [showShifts]="true"
-    ></app-waiter-active-row>
+  <div class="waiter-data flex-col-center">
+    <ng-container *ngFor="let activeWorkerShift of activeWaiter">
+      <div class="separation"></div>
+      <app-waiter-active-row
+        [waiter]="activeWorkerShift"
+        [showShifts]="true"
+      ></app-waiter-active-row>
+    </ng-container>
   </div>
 </div>
