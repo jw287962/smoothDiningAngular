@@ -185,7 +185,9 @@ export class StoreApiService {
       );
       const responseBody = await result.json();
       return this._helper.manageError(responseBody, result);
-    } catch (e) {}
+    } catch (e) {
+      console.log({ error: e });
+    }
   }
 
   async getCurrentShift(date: Date) {
@@ -207,7 +209,9 @@ export class StoreApiService {
       );
       const responseBody = await result.json();
       return this._helper.manageError(responseBody, result);
-    } catch (e) {}
+    } catch (e) {
+      console.log({ error: e });
+    }
   }
 
   async createParty(generic: boolean = false, partyData: partyInterface) {
@@ -220,13 +224,34 @@ export class StoreApiService {
         }`,
         {
           credentials: 'include',
-          method: 'get',
+          method: 'post',
 
           headers: this.getHeaders(),
           body: body,
         }
       );
       const responseBody = await result.json();
+      return this._helper.manageError(responseBody, result);
+    } catch (e) {
+      console.log({ error: e });
+    }
+  }
+
+  async getParties(date: string | undefined = undefined) {
+    console.log('get Parties', date);
+    try {
+      const result = await fetch(
+        `${getBackEndHref()}/api/account/store/party/${date ? `${date}` : ''}`,
+        {
+          credentials: 'include',
+          method: 'get',
+
+          headers: this.getHeaders(),
+        }
+      );
+
+      const responseBody = await result.json();
+      console.log(responseBody, result);
       return this._helper.manageError(responseBody, result);
     } catch (e) {}
   }
