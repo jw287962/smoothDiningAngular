@@ -40,4 +40,14 @@ export class WaiterActiveRowComponent {
   set setCurrentParty(party: partyInterface) {
     this.viewCurrentPartyDetail = party;
   }
+
+  processWaiterClick(reservation: partyInterface) {
+    if (!reservation?.partySize) {
+      console.log('add new party to waiter');
+    } else {
+      console.log(reservation);
+
+      console.log('edit the party data');
+    }
+  }
 }

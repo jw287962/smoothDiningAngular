@@ -23,13 +23,6 @@
 .containerName {
   min-height: 100px;
 }
-.mini-grid {
-  height: 35px;
-  width: 35px;
-  color: var(--text-color);
-  background-color: unset;
-  /* grid-template-columns: 1fr, 1fr, 1fr; */
-}
 /* GRID PARTIES */
 .grid-box-waiters {
   padding-left: 10px;
@@ -39,7 +32,10 @@
   overflow-x: scroll;
   height: 150px;
   width: min(70vw, 800px);
+  margin-right: 100px;
 }
+/* .grid-box-waiters:first-child */
+
 .grid-box-waiters::-webkit-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: #dddddd #ffffff;
@@ -54,13 +50,17 @@
   /* border-radius: 10px; */
 }
 
+.mini-grid {
+  height: 35px;
+  width: 35px;
+  color: var(--text-color);
+  background-color: unset;
+  /* grid-template-columns: 1fr, 1fr, 1fr; */
+}
 .section {
   font-weight: 900;
   color: rgb(255, 0, 0);
 }
 h3 {
   text-align: center;
-}
-
-.party {
 }

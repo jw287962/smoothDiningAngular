@@ -7,12 +7,14 @@
     <div class="boxes"></div>
   </div> -->
   <div *ngIf="showShifts === true" class="grid-box-waiters">
-    <button *ngFor="let reservation of waiter?.shiftTables" class="mini-grid">
-      <div (click)="setCurrentParty = reservation" class="flex-row-center">
-        {{ reservation.partySize }}
-      </div>
-      <!-- app component of partyDetails that takes the current Store as an Input -->
-      <!-- click should expand party details -->
-    </button>
+    <ng-container *ngFor="let reservation of waiter?.shiftTables">
+      <button (click)="processWaiterClick(reservation)" class="mini-grid">
+        <div class="flex-row-center">
+          {{ reservation.partySize }}
+        </div>
+        <!-- app component of partyDetails that takes the current Store as an Input -->
+        <!-- click should expand party details -->
+      </button>
+    </ng-container>
   </div>
 </div>
