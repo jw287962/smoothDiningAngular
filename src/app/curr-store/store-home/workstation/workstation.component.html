@@ -18,6 +18,7 @@
         >
           {{ party.name }}
           {{ party.partySize }}
+          {{ convertToLocalTime(party?.reservationDateTime) }}
         </button>
       </ng-container>
     </div>
