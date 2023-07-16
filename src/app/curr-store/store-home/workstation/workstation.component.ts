@@ -34,7 +34,13 @@ export class WorkstationComponent {
 
   currentShiftData: [] = [];
   showParty: boolean = false;
+
+  currentTime: string = new Date().toLocaleTimeString();
+  private _timer: any;
   constructor(private _store: Store, private _storeAPI: StoreApiService) {
+    this._timer = setInterval(() => {
+      this.currentTime = new Date().toLocaleTimeString();
+    }, 1000);
     // this._store
   }
 
@@ -55,6 +61,7 @@ export class WorkstationComponent {
   }
   ngDoCheck() {}
   ngOnDestroy() {
+    clearInterval(this._timer);
     this._store.dispatch(shiftNumber({ shiftNumber: this.activeShiftNumber }));
   }
   async getPartyData() {
@@ -103,6 +110,7 @@ export class WorkstationComponent {
     );
   }
 
- 
-
+  getTime() {
+    return this.currentTime;
+  }
 }

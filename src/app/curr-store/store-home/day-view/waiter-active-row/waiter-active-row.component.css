@@ -27,6 +27,7 @@
   height: 35px;
   width: 35px;
   color: var(--text-color);
+  background-color: unset;
   /* grid-template-columns: 1fr, 1fr, 1fr; */
 }
 /* GRID PARTIES */

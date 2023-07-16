@@ -31,4 +31,6 @@
   display: none;
 }
 
-
+.current-time {
+  padding: 2px;
+}

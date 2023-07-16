@@ -1,7 +1,9 @@
 <ng-container *ngIf="index <= 10">
   <button
     class="mini party-data"
-    [ngClass]="displayToggle == false ? 'party-data' : 'focus-party-data'"
+    [ngClass]="
+      displayToggle == false ? 'party-data' : 'focus-party-data primary-color'
+    "
     (mouseenter)="displayPartyData(true)"
     (mouseleave)="displayPartyData(false)"
   >
@@ -14,7 +16,7 @@
       <span>Guest: {{ party.partySize }}</span>
 
       <span>Name: {{ party.name }}</span>
-      <span>Time: {{ convertToLocalTime(party?.reservationDateTime) }}</span>
+      <span>{{ convertToLocalTime(party?.reservationDateTime) }}</span>
       <span>{{ party?.phoneNumber || "000-000-0000" }} </span>
     </ng-container>
   </button>
