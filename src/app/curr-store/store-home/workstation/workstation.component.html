@@ -11,15 +11,17 @@
     <button (click)="togglePartyForm()">Add Party</button>
     <div class="party-list">
       <ng-container *ngFor="let party of nextParties; let i = index">
-        <button
+        <app-party-data [party]="party" [index]="i"></app-party-data>
+        <!-- <button
           class="mini party-data"
           *ngIf="i <= 10"
           (click)="(displayPartyData)"
         >
-          {{ party.name }}
           {{ party.partySize }}
+
+          {{ party.name }}
           {{ convertToLocalTime(party?.reservationDateTime) }}
-        </button>
+        </button> -->
       </ng-container>
     </div>
     <app-party-form

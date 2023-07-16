@@ -103,14 +103,6 @@ export class WorkstationComponent {
     );
   }
 
-  displayPartyData() {
-    console.log(
-      'will display party data  | maybe a new component with @input of data'
-    );
-  }
+ 
 
-  convertToLocalTime(string: any) {
-    const time = new Date(string).toLocaleTimeString();
-    return time.substring(0, time.length - 6) + time.substring(time.length - 2);
-  }
 }

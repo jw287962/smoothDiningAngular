@@ -1,0 +1,12 @@
+.party-data {
+  width: 70px;
+  overflow: hidden;
+}
+
+.focus-party-data {
+  width: 150px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

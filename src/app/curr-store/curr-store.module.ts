@@ -11,6 +11,7 @@ import { WaiterActiveRowComponent } from './store-home/day-view/waiter-active-ro
 import { WorkstationComponent } from './store-home/workstation/workstation.component';
 import { PartyFormComponent } from './store-home/workstation/party-form/party-form.component';
 import { SharedModule } from '../shared/shared.module';
+import { PartyDataComponent } from './store-home/workstation/party-data/party-data.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SharedModule } from '../shared/shared.module';
     WaiterActiveRowComponent,
     WorkstationComponent,
     PartyFormComponent,
+    PartyDataComponent,
   ],
   imports: [
     CommonModule,
