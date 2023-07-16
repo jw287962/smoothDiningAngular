@@ -1,12 +1,18 @@
 .party-data {
-  width: 70px;
+  width: 140px;
+  height: 100px;
   overflow: hidden;
 }
 
+/* .focus-party-data {
+} */
+
+.party-data,
 .focus-party-data {
-  width: 150px;
-  height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* scroll-snap-align:; */
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }

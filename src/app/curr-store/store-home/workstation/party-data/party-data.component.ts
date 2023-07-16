@@ -10,7 +10,20 @@ export class PartyDataComponent {
   @Input() party!: partyInterface;
   @Input() index!: number;
   displayToggle: boolean = false;
-  displayPartyData(boolean: boolean = false) {
+
+  displayPartyData(e: MouseEvent, boolean: boolean = false) {
+    // console.log(e);
+    // const ele = e.target as HTMLElement;
+    // // ele.scrollIntoView({
+    // // behavior: 'smooth',
+    // // block: 'start',
+    // // inline: 'center',
+    // // });
+    // // ele.scroll({
+    // //   top: 0,
+    // //   left: 1000,
+    // //   behavior: 'smooth',
+    // // });
     this.displayToggle = boolean;
   }
 

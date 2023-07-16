@@ -4,13 +4,13 @@
     [ngClass]="
       displayToggle == false ? 'party-data' : 'focus-party-data primary-color'
     "
-    (mouseenter)="displayPartyData(true)"
-    (mouseleave)="displayPartyData(false)"
+    (mouseenter)="displayPartyData($event, true)"
+    (mouseleave)="displayPartyData($event, false)"
   >
     <ng-container *ngIf="!displayToggle">
-      {{ party.partySize }}
-      {{ party.name }}
-      {{ convertToLocalTime(party?.reservationDateTime) }}
+      <span>{{ party.partySize }}</span>
+      <span>{{ party.name }}</span>
+      <span>{{ convertToLocalTime(party?.reservationDateTime) }}</span>
     </ng-container>
     <ng-container *ngIf="displayToggle" class="focus-party-data">
       <span>Guest: {{ party.partySize }}</span>
