@@ -44,8 +44,31 @@ export class PartyFormComponent {
 
     // this._store
   }
+
+  get partySize() {
+    return this.partyFormGroup.get('size')?.value;
+  }
+  get name() {
+    return this.partyFormGroup.get('name')?.value;
+  }
+  get phone() {
+    return this.partyFormGroup.get('phone')?.value;
+  }
+  get getDate() {
+    return this.partyFormGroup.get('date')?.value;
+  }
+  get getDateTime() {
+    return this.partyFormGroup.get('datetime')?.value;
+  }
+  updatePartySize(number: number) {
+    this.partyFormGroup.patchValue({ size: number });
+  }
+  toggleInfo(show: boolean) {
+    this.showInfo = show;
+  }
   addPartySize(number: number) {
-    const value = this.partyFormGroup.get('size')?.value || 0;
+    // UPDATE FORM  DATA
+    const value = this.partySize;
     const update = value + number;
 
     if (value != undefined && update >= 1) {
@@ -54,19 +77,16 @@ export class PartyFormComponent {
       });
     }
   }
-  updatePartySize(number: number) {
-    this.partyFormGroup.patchValue({ size: number });
-  }
-  toggleInfo(show: boolean) {
-    this.showInfo = show;
-  }
 
   addParty(generic: boolean = false) {
+    if (!(this.name && this.phone && this.getDate)) {
+      generic = true;
+    }
     const partyData = {
-      name: ',',
-      partySize: 1,
-      phoneNumber: '1',
-      reservationDate: '',
+      name: this.name || undefined,
+      partySize: this.partySize,
+      phoneNumber: this.phone || undefined,
+      reservationDate: new Date(this.getDate).toISOString() || undefined,
     };
     this._storeAPI.createParty(generic, partyData);
     this.togglePartyForm();

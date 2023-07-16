@@ -1,4 +1,8 @@
-<form class="party-form flex-col-center" [formGroup]="partyFormGroup">
+<form
+  class="party-form flex-col-center"
+  [formGroup]="partyFormGroup"
+  (ngSubmit)="addParty()"
+>
   <span class="submission-info"></span>
   <button (click)="togglePartyForm()">X</button>
   <div>
@@ -64,7 +68,7 @@
   </div>
   <!-- <app-form-error [formData]="username" [name]="'Username'"></app-form-error> -->
   <div>
-    <button (click)="addParty(true)">+ Generic</button>
-    <button (click)="addParty(false)">+ Party</button>
+    <button type="button" (click)="addParty(true)">+ Generic</button>
+    <button type="button" (click)="addParty(false)">+ Party</button>
   </div>
 </form>
