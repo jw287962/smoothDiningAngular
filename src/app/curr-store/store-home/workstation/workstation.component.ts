@@ -13,6 +13,8 @@ import { StoreApiService } from 'src/store/service/store.service';
 import {
   fixDateTimeOffset,
   getActiveWaiterFromShiftNumber,
+  handleResponseBody,
+  partyInterface,
   shiftInterface,
 } from 'src/store/service/types';
 
@@ -27,6 +29,8 @@ export class WorkstationComponent {
   activeDate: string = '';
   shiftNumber: Observable<number> = this._store.select(selectShiftNumber);
   activeShiftNumber: number = 0;
+
+  nextParties: partyInterface[] = [];
 
   currentShiftData: [] = [];
   showParty: boolean = false;
@@ -46,13 +50,17 @@ export class WorkstationComponent {
         this.activeShiftNumber
       );
     });
+    this.getPartyData();
     this.getActiveWaiters();
   }
   ngDoCheck() {}
   ngOnDestroy() {
     this._store.dispatch(shiftNumber({ shiftNumber: this.activeShiftNumber }));
   }
-
+  async getPartyData() {
+    const result = await this._storeAPI.getParties(this.activeDate);
+    this.nextParties = handleResponseBody(result);
+  }
   async getActiveWaiters() {
     this.currentShiftData = await this._storeAPI.getCurrentShift(
       fixDateTimeOffset(this.activeDate)
@@ -85,7 +93,6 @@ export class WorkstationComponent {
     this._store.dispatch(
       shiftNumber({ shiftNumber: this.activeShiftNumber + 1 })
     );
-    console.log('increase');
   }
   decreaseShiftNumber() {
     if (this.activeShiftNumber === 0) {
@@ -94,7 +101,11 @@ export class WorkstationComponent {
     this._store.dispatch(
       shiftNumber({ shiftNumber: this.activeShiftNumber - 1 })
     );
+  }
 
-    console.log('decreaseShift');
+  displayPartyData() {
+    console.log(
+      'will display party data  | maybe a new component with @input of data'
+    );
   }
 }

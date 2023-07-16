@@ -19,3 +19,18 @@
 
 .separation {
 }
+
+.party-list {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  overflow-x: scroll;
+}
+.party-list::-webkit-scrollbar {
+  display: none;
+}
+
+.party-data {
+  width: 60px;
+  overflow: hidden;
+}
