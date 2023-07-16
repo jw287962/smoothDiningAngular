@@ -4,9 +4,6 @@
   overflow: hidden;
 }
 
-/* .focus-party-data {
-} */
-
 .party-data,
 .focus-party-data {
   display: flex;

@@ -20,6 +20,7 @@
   --light-text-color: #c9c9c9;
 }
 body {
+  overflow-x: hidden;
   margin: 0px;
   padding: 0px;
   color: var(--text-color);
@@ -91,6 +92,16 @@ button:active {
   position: relative;
   top: 2px;
 }
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c2c2c2; /* Color of the scrollbar thumb */
+  border-radius: 3px; /* Border radius of the scrollbar thumb */
+}
+
 /* form */
 .form-input {
   display: flex;
