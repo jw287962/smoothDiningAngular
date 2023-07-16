@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import {
   selectLoadingBoolean,
@@ -49,10 +50,12 @@ export class LoginComponent {
     this.isRegister = !this.isRegister;
     console.log(this.isRegister);
   }
+
   constructor(
     private formBuilder: FormBuilder,
     private apiService: LoginApiService,
-    private _store: Store
+    private _store: Store,
+    private _cookie: CookieService
   ) {
     this.FormAuth = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
@@ -80,9 +83,11 @@ export class LoginComponent {
   get rememberMe() {
     return this.FormAuth?.get('rememberMe');
   }
-  ngOnInit(): void {
-    // Perform initialization tasks here
+  ngOnInit() {
+    const username = this._cookie.get('username');
+    this.username?.patchValue(username);
   }
+
   handleChange() {}
   handleSubmit(e: Event) {
     e.preventDefault();
@@ -96,7 +101,10 @@ export class LoginComponent {
   async handleLogin(isLogin: boolean) {
     try {
       if (this.rememberMe) {
-        console.log('remeber me');
+        const date = new Date();
+        date.setFullYear(date.getFullYear() + 1);
+        console.log(this.username?.value);
+        this._cookie.set('username', this.username?.value || '', date);
       }
 
       const result = await this.apiService.tryLogin(
@@ -122,9 +130,7 @@ export class LoginComponent {
 
   processGoogleClick() {
     if (this.isRegister) {
-      console.log('Sign Up....');
     } else {
-      console.log('Sign In...');
     }
   }
 

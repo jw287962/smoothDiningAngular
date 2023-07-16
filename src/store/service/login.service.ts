@@ -73,7 +73,7 @@ export class LoginApiService {
   async logout() {
     try {
       const token = this._cookieService.get('Authorization');
-      this._cookieService.deleteAll();
+      this._cookieService.delete('Authorization');
       const result = await fetch(`${getBackEndHref()}/api/logout`, {
         credentials: 'include',
         method: 'get',

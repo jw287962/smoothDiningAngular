@@ -15,6 +15,7 @@
 .shift-buttons {
   position: fixed;
   bottom: 1px;
+  z-index: 90;
 }
 
 /* .separation {
