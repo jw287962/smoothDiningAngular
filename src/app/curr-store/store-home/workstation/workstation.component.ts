@@ -74,7 +74,7 @@ export class WorkstationComponent {
     this.currentShiftData = await this._storeAPI.getCurrentShift(
       fixDateTimeOffset(this.activeDate)
     );
-    // console.log('resut', this.currentShiftData);
+    console.log('resut', this.currentShiftData);
 
     this.activeWaiter = getActiveWaiterFromShiftNumber(
       this.currentShiftData,

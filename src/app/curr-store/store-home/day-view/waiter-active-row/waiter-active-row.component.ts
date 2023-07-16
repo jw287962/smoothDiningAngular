@@ -14,6 +14,8 @@ export class WaiterActiveRowComponent {
   @Input() waiter!: shiftInterface;
   @Input() showShifts: boolean = false;
 
+  shiftID: string = '';
+
   viewCurrentPartyDetail: partyInterface = {
     name: '',
     partySize: 0,
@@ -23,6 +25,8 @@ export class WaiterActiveRowComponent {
   constructor() {}
 
   ngOnInit() {
+    this.shiftID = this.waiter._id;
+
     // this.waiter.shiftTables.fill(1, this.waiter.shiftTables.length, 20);
     const currLength = this.waiter.shiftTables.length;
     for (let i = currLength; i < 24; i++) {
@@ -43,7 +47,7 @@ export class WaiterActiveRowComponent {
 
   processWaiterClick(reservation: partyInterface) {
     if (!reservation?.partySize) {
-      console.log('add new party to waiter');
+      console.log('add new party to waiter on shiftNumber:', this.shiftID);
     } else {
       console.log(reservation);
 

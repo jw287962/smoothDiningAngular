@@ -21,6 +21,7 @@ export interface shiftInterface {
   store: string;
   shiftNumber: number; //for Grouping
   shiftTables: any[];
+  _id: string;
 }
 
 export interface partyInterface {
