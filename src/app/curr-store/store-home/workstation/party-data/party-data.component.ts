@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+import { toggleBackgroundHidden } from 'src/store/actions/auth.action';
 import { partyInterface } from 'src/store/service/types';
 
 @Component({
@@ -14,7 +16,10 @@ export class PartyDataComponent {
 
   @Output() partyChoice = new EventEmitter<partyInterface>();
   displayToggle: boolean = false;
+
+  // constructor(private _store: Store) {}
   ngOnInit() {}
+
   displayPartyData(e: MouseEvent, boolean: boolean = false) {
     // console.log(e);
     // const ele = e.target as HTMLElement;

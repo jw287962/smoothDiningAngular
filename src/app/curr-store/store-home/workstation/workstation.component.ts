@@ -127,11 +127,14 @@ export class WorkstationComponent {
   processEmitShift(e: any) {
     this.shiftDataID = e;
     this.toggleAddPartyView = true;
+    this._store.dispatch(toggleBackgroundHidden.setTrue());
+
     console.log(e, 'use this emit shift');
   }
 
   emitShiftProcessFinish(e: any) {
     console.log('false now');
     this.toggleAddPartyView = false;
+    this._store.dispatch(toggleBackgroundHidden.setFalse());
   }
 }
