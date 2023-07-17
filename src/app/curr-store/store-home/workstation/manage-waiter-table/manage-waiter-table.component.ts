@@ -30,4 +30,11 @@ export class ManageWaiterTableComponent {
     setTimeout(() => this.processUpdateShifttable(), 1000);
     // this.processUpdateShifttable();
   }
+
+  processError(e: string) {
+    console.log(
+      e,
+      'use the party and the shiftId from input ' + this.shiftDataID
+    );
+  }
 }

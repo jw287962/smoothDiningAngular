@@ -84,31 +84,47 @@ export class PartyFormComponent {
       });
     }
   }
+  generatePartyData() {
+    return {
+      name: this.name || undefined,
+      partySize: this.partySize,
+      phoneNumber: this.phone || undefined,
+      reservationDate: formatYYYYMMDD(this.getDate) || undefined,
+      reservationDateTime: new Date(),
+    };
+  }
+
+  setHourFromFormData(timeFormData: string) {
+    const time = timeFormData.split(':');
+    // console.log(parseInt(time[0]), parseInt(time[1]));
+    const date = fixDateTimeOffset(this.getDate);
+    date.setHours(parseInt(time[0]), parseInt(time[1]));
+    return date;
+  }
 
   async addParty(generic: boolean = false) {
     try {
       if (!(this.name || this.phone || this.getDate)) {
         generic = true;
       }
-      const partyData = {
-        name: this.name || undefined,
-        partySize: this.partySize,
-        phoneNumber: this.phone || undefined,
-        reservationDate: formatYYYYMMDD(this.getDate) || undefined,
-        reservationDateTime: new Date(),
-      };
+      const partyData = this.generatePartyData();
+
       if (this.getDateTime) {
-        const time = this.getDateTime.split(':');
-        // console.log(parseInt(time[0]), parseInt(time[1]));
-        const date = fixDateTimeOffset(this.getDate);
-        date.setHours(parseInt(time[0]), parseInt(time[1]));
-        partyData.reservationDateTime = date;
-        // console.log(partyData.reservationDateTime);
+        partyData.reservationDateTime = this.setHourFromFormData(
+          this.getDateTime
+        );
       }
 
       const result = await this._storeAPI.createParty(generic, partyData);
       const error = result.message || result['0'].msg;
-      this.error.emit(result.message || '');
+
+      if (this.onlyGeneric) {
+        console.log(result);
+        this.error.emit(result.result._id);
+      } else {
+        this.error.emit(result.message || '');
+      }
+
       setTimeout(() => {
         this.error.emit('');
       }, 5000);

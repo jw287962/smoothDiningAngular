@@ -30,7 +30,7 @@
     <label for="size">Party: <span class="mini-text">*req</span> </label>
 
     <div class="number-input">
-      <button type="button" (click)="addPartySize(4)" class="mini">+4</button>
+      <button type="button" (click)="addPartySize(-4)" class="mini">-4</button>
       <button type="button" (click)="addPartySize(-1)" class="number-button">
         -
       </button>
@@ -44,10 +44,11 @@
         value="3"
         min="1"
       />
+
       <button type="button" (click)="addPartySize(1)" class="number-button">
         +
       </button>
-      <button type="button" (click)="addPartySize(-4)" class="mini">-4</button>
+      <button type="button" (click)="addPartySize(4)" class="mini">+4</button>
     </div>
   </div>
   <div class="flex-row-center party-button" *ngIf="!onlyGeneric">
