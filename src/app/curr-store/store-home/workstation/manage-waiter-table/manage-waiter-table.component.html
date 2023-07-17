@@ -1,6 +1,8 @@
 <div class="container">
-  <button class="warning mini" (click)="processUpdateShifttable()">x</button>
-  <h1>Click a Party for Section {{ shiftDataID.section }}</h1>
+  <div class="flex-row-center">
+    <button class="warning mini" (click)="processUpdateShifttable()">x</button>
+    <h1>Click a Party for Section {{ shiftDataID.section }}</h1>
+  </div>
   <ng-container *ngIf="loading">
     <app-loading></app-loading>
   </ng-container>

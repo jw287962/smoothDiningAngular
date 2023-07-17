@@ -121,7 +121,10 @@ export class WorkstationComponent {
   }
 
   processError(e: string) {
+    // error emite from post form
+
     this.createPartyError = e;
+    this.getPartyData();
   }
 
   processEmitShift(e: any) {
