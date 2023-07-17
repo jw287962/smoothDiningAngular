@@ -8,6 +8,7 @@ import {
   fixDateTimeOffset,
   formatYYYYMMDD,
   handleResponseBody,
+  partyInterface,
 } from 'src/store/service/types';
 
 @Component({
@@ -28,7 +29,7 @@ export class PartyFormComponent {
 
   errorMessage: string = '';
   @Output() error = new EventEmitter<string>();
-  @Output() partyID = new EventEmitter<string>();
+  @Output() partyID = new EventEmitter<partyInterface>();
   constructor(
     private _store: Store,
     private _storeAPI: StoreApiService,
@@ -124,7 +125,7 @@ export class PartyFormComponent {
       const error = result.message || result['0'].msg;
 
       if (this.onlyGeneric) {
-        this.partyID.emit(result.result._id);
+        this.partyID.emit(result);
       } else {
         this.error.emit(result.message || '');
       }
