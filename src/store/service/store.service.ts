@@ -255,4 +255,6 @@ export class StoreApiService {
       return this._helper.manageError(responseBody, result);
     } catch (e) {}
   }
+
+  async addPartytoShiftID() {}
 }
