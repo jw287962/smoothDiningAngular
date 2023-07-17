@@ -30,6 +30,7 @@ export interface partyInterface {
   phoneNumber?: string;
   reservationDate?: string;
   reservationDateTime?: Date;
+  _id?: string;
 }
 export const cookieOptions: CookieOptions = {
   secure: true, // Mark the cookie as secure
