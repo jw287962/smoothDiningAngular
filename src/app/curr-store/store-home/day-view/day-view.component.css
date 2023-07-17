@@ -18,18 +18,7 @@
   overflow-y: scroll;
   width: 200px;
 }
-.dropdown::-webkit-scrollbar {
-  width: 10px;
-}
 
-.dropdown::-webkit-scrollbar-thumb {
-  background-color: #979797; /* Color of the scrollbar thumb */
-  border-radius: 4px; /* Border radius of the scrollbar thumb */
-}
-.dropdown::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* Color of the scrollbar track */
-  border-radius: 4px; /* Border radius of the scrollbar track */
-}
 .dropdownselector {
   padding: 5px;
   margin: 0px;
