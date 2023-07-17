@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { identifierShift, partyInterface } from 'src/store/service/types';
 
 @Component({
@@ -7,7 +7,7 @@ import { identifierShift, partyInterface } from 'src/store/service/types';
   styleUrls: ['./manage-waiter-table.component.css'],
 })
 export class ManageWaiterTableComponent {
-  toggleView = new EventEmitter<boolean>();
+  @Output() toggleView = new EventEmitter<boolean>();
   @Input() activeParties!: partyInterface[];
   @Input() shiftDataID!: identifierShift;
   constructor() {}
@@ -19,5 +19,6 @@ export class ManageWaiterTableComponent {
   processPartyChoiceMain(event: partyInterface) {
     console.log('identifier', this.shiftDataID);
     console.log(event, 'party choice');
+    this.processUpdateShifttable();
   }
 }

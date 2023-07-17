@@ -36,7 +36,8 @@
     </ng-container>
   </div>
 
-  <div *ngIf="toggleAddParty" class="container">
+  <div *ngIf="toggleAddPartyView" class="container">
+    <h1>{{ toggleAddPartyView }}</h1>
     <app-manage-waiter-table
       [activeParties]="activeParties"
       (toggleView)="emitShiftProcessFinish($event)"

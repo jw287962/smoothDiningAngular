@@ -39,7 +39,7 @@ export class WorkstationComponent {
   createPartyError: string = '';
   currentTime: string = new Date().toLocaleTimeString();
 
-  toggleAddParty: boolean = false;
+  toggleAddPartyView: boolean = false;
 
   shiftDataID!: identifierShift;
   private _timer: any;
@@ -126,11 +126,12 @@ export class WorkstationComponent {
 
   processEmitShift(e: any) {
     this.shiftDataID = e;
-    this.toggleAddParty = true;
+    this.toggleAddPartyView = true;
     console.log(e, 'use this emit shift');
   }
 
   emitShiftProcessFinish(e: any) {
-    this.toggleAddParty = false;
+    console.log('false now');
+    this.toggleAddPartyView = false;
   }
 }
