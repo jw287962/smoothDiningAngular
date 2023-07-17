@@ -17,6 +17,7 @@ import {
 })
 export class PartyFormComponent {
   @Input() togglePartyForm!: () => void;
+  @Input() onlyGeneric: boolean = false;
   showInfo: boolean = false;
   date: Observable<string> = this._store.select(selectStoreDate);
   activeDate: string = '';

@@ -8,6 +8,11 @@
   min-width: 300px;
   /* transform: translate(150%, 150%); */
 }
+
+.party-form-relative {
+  display: flex;
+  padding: 3px;
+}
 .info {
   border-radius: 50%;
   border: 1px solid black;
@@ -34,6 +39,10 @@
   border-radius: 50%;
   height: 40px;
   width: 40px;
+}
+.submit-button > button,
+.submit-button {
+  margin: 2px;
 }
 
 .party-button {

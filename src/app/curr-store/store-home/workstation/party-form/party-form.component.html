@@ -1,34 +1,36 @@
 <form
-  class="party-form flex-col-center"
+  [ngClass]="!onlyGeneric ? 'party-form' : 'party-form-relative'"
+  class="flex-col-center"
   [formGroup]="partyFormGroup"
   (ngSubmit)="addParty()"
 >
-  <span class="submission-info"></span>
-  <button class="warning" type="button" (click)="togglePartyForm()">X</button>
-  <div>
-    <h1>Create Party:</h1>
-    <div
-      class="info"
-      (mouseenter)="toggleInfo(true)"
-      (mouseleave)="toggleInfo(false)"
-    >
-      i
+  <ng-container *ngIf="!onlyGeneric">
+    <span class="submission-info"></span>
+    <button class="warning" type="button" (click)="togglePartyForm()">X</button>
+    <div>
+      <h1>Create Party:</h1>
+      <div
+        class="info"
+        (mouseenter)="toggleInfo(true)"
+        (mouseleave)="toggleInfo(false)"
+      >
+        i
+      </div>
+      <span *ngIf="showInfo" class="show-info"
+        >Generic only requires Party Size</span
+      >
     </div>
-    <span *ngIf="showInfo" class="show-info"
-      >Generic only requires Party Size</span
-    >
-  </div>
-
-  <div class="form-input">
-    <label for="name">Name: <span class="mini-text"></span></label>
-    <input type="text" id="name" name="name" formControlName="name" />
-    <!-- <app-form-error [formData]="username" [name]="'Username'"></app-form-error> -->
-  </div>
+    <div class="form-input">
+      <label for="name">Name: <span class="mini-text"></span></label>
+      <input type="text" id="name" name="name" formControlName="name" />
+      <!-- <app-form-error [formData]="username" [name]="'Username'"></app-form-error> -->
+    </div>
+  </ng-container>
   <div class="flex-col-center">
     <label for="size">Party: <span class="mini-text">*req</span> </label>
 
     <div class="number-input">
-      <button type="button" (click)="updatePartySize(1)" class="mini">1</button>
+      <button type="button" (click)="addPartySize(4)" class="mini">+4</button>
       <button type="button" (click)="addPartySize(-1)" class="number-button">
         -
       </button>
@@ -45,37 +47,40 @@
       <button type="button" (click)="addPartySize(1)" class="number-button">
         +
       </button>
-      <button type="button" (click)="updatePartySize(20)" class="mini">
-        20
-      </button>
+      <button type="button" (click)="addPartySize(-4)" class="mini">-4</button>
     </div>
   </div>
-  <div class="flex-row-center party-button">
-    <button type="button" (click)="addPartySize(-4)" class="mini">-4</button>
-    <button type="button" (click)="addPartySize(4)" class="mini">+4</button>
+  <div class="flex-row-center party-button" *ngIf="!onlyGeneric">
+    <button type="button" (click)="updatePartySize(1)" class="mini">1</button>
+    <button type="button" (click)="updatePartySize(20)" class="mini">20</button>
   </div>
-  <div class="form-input">
-    <label for="number">Phone: </label>
-    <input type="tel" id="phone" name="phone" formControlName="phone" />
-  </div>
-  <div class="form-input">
-    <label for="date">Date: </label>
-    <input type="date" id="date" name="date" formControlName="date" />
-  </div>
-
-  <div class="form-input">
-    <label for="datetime">Time: </label>
-    <input
-      type="time"
-      id="datetime"
-      name="datetime"
-      formControlName="datetime"
-    />
-  </div>
+  <ng-container *ngIf="!onlyGeneric">
+    <div class="form-input">
+      <label for="number">Phone: </label>
+      <input type="tel" id="phone" name="phone" formControlName="phone" />
+    </div>
+    <div class="form-input">
+      <label for="date">Date: </label>
+      <input type="date" id="date" name="date" formControlName="date" />
+    </div>
+    <div class="form-input">
+      <label for="datetime">Time: </label>
+      <input
+        type="time"
+        id="datetime"
+        name="datetime"
+        formControlName="datetime"
+      />
+    </div>
+  </ng-container>
   <!-- <app-form-error [formData]="username" [name]="'Username'"></app-form-error> -->
-  <div>
+  <div class="submit-button">
     <button type="button" (click)="addParty(true)">+ Generic</button>
-    <button type="button" (click)="addParty(false)">+ Party</button>
+    <ng-container *ngIf="!onlyGeneric"
+      ><button type="button" (click)="addParty(false)">
+        + Party
+      </button></ng-container
+    >
   </div>
   <span class="alert-danger"
     ><span *ngIf="errorMessage">{{ errorMessage }}</span></span
