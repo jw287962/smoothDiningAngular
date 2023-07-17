@@ -123,7 +123,8 @@ export class DayViewComponent {
         fixDateTimeOffset(this.activeDateCopy)
       );
       console.log('result', result);
-      this.formError = handleResponseBody(result);
+
+      this.formError = handleResponseBody(result, true);
 
       // and make a post request to create new shift for person .
     }

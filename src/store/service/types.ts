@@ -41,7 +41,13 @@ type Result = {
   message: string;
   result: any;
 };
-export const handleResponseBody = (result: Result): any => {
+export const handleResponseBody = (
+  result: Result,
+  getMessage: boolean = false
+): any => {
+  if (getMessage) {
+    return result.message || result.error || result;
+  }
   return result.error || result.result || result.message || result;
 };
 
@@ -73,7 +79,6 @@ export function formatYYYYMMDD(string: string = '') {
 
   return format(addHours(date, getHourOffset(string) || 0), 'yyyy-MM-dd');
 }
-
 
 export interface identifierShift {
   _id: string;
