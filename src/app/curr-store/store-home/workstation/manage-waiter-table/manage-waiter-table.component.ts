@@ -5,6 +5,7 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
+import { StoreApiService } from 'src/store/service/store.service';
 import { identifierShift, partyInterface } from 'src/store/service/types';
 
 @Component({
@@ -17,23 +18,31 @@ export class ManageWaiterTableComponent {
   @Input() activeParties!: partyInterface[];
   @Input() shiftDataID!: identifierShift;
   loading: boolean = false;
-  constructor() {}
+  constructor(private _storeAPI: StoreApiService) {}
 
   processUpdateShifttable() {
     this.toggleView.emit(false);
   }
 
-  processPartyChoiceMain(event: partyInterface) {
-    console.log('identifier', this.shiftDataID);
-    console.log(event, 'party choice');
+  async addPartytoShift(party: partyInterface) {
+    return await this._storeAPI.addPartytoShiftID({
+      shiftID: this.shiftDataID._id,
+      partyID: party._id,
+    });
+  }
+  async processPartyChoiceMain(event: partyInterface) {
+    const result = await this.addPartytoShift(event);
+
     this.loading = true;
     // toggle loading screen
     setTimeout(() => this.processUpdateShifttable(), 1000);
     // this.processUpdateShifttable();
   }
-  processPartyId(e: string) {
+  async processPartyId(party: partyInterface) {
+    const result = await this.addPartytoShift(party);
+
     console.log(
-      e,
+      party._id,
       'use the party and the shiftId from input ' + this.shiftDataID
     );
   }
