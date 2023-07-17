@@ -47,6 +47,7 @@ form {
   border: var(--light-line-color);
   border-radius: 10px;
   margin-top: 15px;
+  min-height: 300px;
 }
 .gridActiveWaiters {
   padding: 2px;
