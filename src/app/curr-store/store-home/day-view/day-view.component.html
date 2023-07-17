@@ -53,7 +53,9 @@
     <div class="alert alert-danger" *ngIf="formError">
       <span>{{ formError }}</span>
     </div>
-    <button class="wide primary-color">Add Waiter to Day's Shift</button>
+    <button class="wide primary-color">
+      Add Waiter to Shift (#{{ displayShiftNumber }})
+    </button>
   </form>
   <!-- other element -->
   <div class="flex-col-center active-container">
