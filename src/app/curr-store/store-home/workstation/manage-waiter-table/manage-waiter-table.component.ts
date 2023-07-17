@@ -10,6 +10,7 @@ export class ManageWaiterTableComponent {
   @Output() toggleView = new EventEmitter<boolean>();
   @Input() activeParties!: partyInterface[];
   @Input() shiftDataID!: identifierShift;
+  loading: boolean = false;
   constructor() {}
 
   processUpdateShifttable() {
@@ -19,6 +20,8 @@ export class ManageWaiterTableComponent {
   processPartyChoiceMain(event: partyInterface) {
     console.log('identifier', this.shiftDataID);
     console.log(event, 'party choice');
-    this.processUpdateShifttable();
+    this.loading = true;
+    setTimeout(() => this.processUpdateShifttable(), 1000);
+    // this.processUpdateShifttable();
   }
 }

@@ -1,5 +1,8 @@
 <div class="container">
   <h1>Click a Party for a Section</h1>
+  <ng-container *ngIf="loading">
+    <app-loading></app-loading>
+  </ng-container>
   <div class="active-parties">
     <ng-container *ngFor="let party of activeParties; let i = index">
       <app-party-data
