@@ -43,8 +43,8 @@ export class PartyDataComponent {
   processPartyChoiceEmit() {
     if (this.buttonValue === 'Edit') {
       console.log('edit');
-    } else if (this.buttonValue === 'Choice') {
-      console.log('choice');
+    } else if (this.buttonValue === 'Choose') {
+      console.log('Choose');
       this.partyChoice.emit(this.party);
     }
   }
