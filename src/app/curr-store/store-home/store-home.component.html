@@ -1,18 +1,18 @@
 <div class="flex-col-center">
   <!-- <button><span class="fontEmphasis">+</span> Waiter</button> -->
 
-  <a
-    routerLink="/store/home"
+  <!-- <a
+    routerLink="{{ routerLink }}"
     routerLinkActive="active"
     ariaCurrentWhenActive="page"
-    (isActiveChange)="this.onStoreHome($event)"
-  >
-    <button class="headers">
-      <h1 class="header-text">
-        {{ (storeData$ | async)?.storeName }}
-      </h1>
-    </button>
-  </a>
+    (isActiveChange)="onStoreHome($event)"
+  > -->
+  <button class="headers" (click)="onStoreHome()">
+    <h1 class="header-text">
+      {{ (storeData$ | async)?.storeName }}
+    </h1>
+  </button>
+  <!-- </a> -->
   <!-- <form class="flx-row-center date-form"> -->
   <div class="flex-col-center homeContainer">
     <div class="separation">

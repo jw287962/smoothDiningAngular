@@ -10,9 +10,7 @@ export class PartyDataComponent {
   @Input() party!: partyInterface;
   @Input() index!: number;
   displayToggle: boolean = false;
-  ngOnInit() {
-    console.log(this.party);
-  }
+  ngOnInit() {}
   displayPartyData(e: MouseEvent, boolean: boolean = false) {
     // console.log(e);
     // const ele = e.target as HTMLElement;

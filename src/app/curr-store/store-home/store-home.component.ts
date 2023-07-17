@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { addHours, format } from 'date-fns';
 import { tr } from 'date-fns/locale';
@@ -24,9 +25,12 @@ export class StoreHomeComponent {
   storeDataSubscription: Subscription;
   toggleMini: boolean = false;
   lastStoreData: activeStore = { storeId: '', storeName: '' };
+
+  routerLink: string = '/store/home';
   constructor(
     private _store: Store<State>,
-    private _storeService: StoreApiService
+    private _storeService: StoreApiService,
+    private router: Router
   ) {
     this.toggleMini = false;
 
@@ -59,16 +63,23 @@ export class StoreHomeComponent {
     this.toggleMini = !this.toggleMini;
   }
 
-  onStoreHome(e: boolean) {
-    console.log('on store home', e);
-    this.onRouterLinkActive(e);
-  }
-  onRouterLinkActive(e: boolean) {
-    console.log(e);
-    if (!e) {
-      this.toggleMini = true;
+  onStoreHome() {
+    let string = '';
+    if (this.router.url != '/store/home') {
+      string = '/store/home';
     } else {
-      this.toggleMini = false;
+      string = '/home';
     }
+
+    this.router.navigate([string]);
+    // this.onRouterLinkActive();
   }
+  // onRouterLinkActive(e: boolean) {
+  //   console.log(e);
+  //   if (!e) {
+  //     this.toggleMini = true;
+  //   } else {
+  //     this.toggleMini = false;
+  //   }
+  // }
 }
