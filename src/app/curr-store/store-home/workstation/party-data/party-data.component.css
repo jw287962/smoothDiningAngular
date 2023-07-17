@@ -2,6 +2,9 @@
   width: 140px;
   height: 100px;
   overflow: hidden;
+  padding: 0px;
+  margin: 4px;
+  font-size: 16px;
 }
 
 .party-data,
@@ -12,4 +15,26 @@
   /* scroll-snap-align:; */
   scroll-snap-align: center;
   scroll-snap-stop: always;
+  position: relative;
+}
+
+.party-data:active {
+  padding: 0px;
+  border-style: outset;
+}
+.edit,
+.cancel {
+  padding: 2px;
+  height: 20px;
+  margin: 0px;
+  border: none;
+}
+.cancel {
+  position: absolute;
+  z-index: 99;
+  top: 0px;
+  right: 0px;
+  background-color: unset;
+  width: 15px;
+  color: white;
 }

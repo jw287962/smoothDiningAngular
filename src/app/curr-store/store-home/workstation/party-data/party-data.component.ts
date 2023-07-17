@@ -31,4 +31,8 @@ export class PartyDataComponent {
     const time = new Date(string).toLocaleTimeString();
     return time.substring(0, time.length - 6) + time.substring(time.length - 2);
   }
+
+  updateStatusCancel(e: MouseEvent) {
+    console.log('Status Update: Canceled!');
+  }
 }

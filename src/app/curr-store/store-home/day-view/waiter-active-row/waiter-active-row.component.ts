@@ -30,14 +30,15 @@ export class WaiterActiveRowComponent {
     // this.waiter.shiftTables.fill(1, this.waiter.shiftTables.length, 20);
     const currLength = this.waiter.shiftTables.length;
     for (let i = currLength; i < 24; i++) {
-      if (i < 5) {
-        this.waiter.shiftTables.push({
-          name: 'test',
-          partySize: 5,
-          phoneNumber: '',
-          reservationDate: '07-15-2023',
-        });
-      } else this.waiter.shiftTables.push({});
+      // if (i < 5) {
+      //   this.waiter.shiftTables.push({
+      //     name: 'test',
+      //     partySize: 5,
+      //     phoneNumber: '',
+      //     reservationDate: '07-15-2023',
+      //   });
+      // } else
+      this.waiter.shiftTables.push({});
     }
   }
 
