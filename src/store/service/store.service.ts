@@ -238,7 +238,7 @@ export class StoreApiService {
   }
 
   async getParties(date: string | undefined = undefined) {
-    console.log('get Parties', date);
+    // console.log('get Parties', date);
     try {
       const result = await fetch(
         `${getBackEndHref()}/api/account/store/party/${date ? `${date}` : ''}`,
@@ -251,10 +251,31 @@ export class StoreApiService {
       );
 
       const responseBody = await result.json();
-      console.log(responseBody, result);
+      // console.log(responseBody, result);
       return this._helper.manageError(responseBody, result);
     } catch (e) {}
   }
 
-  async addPartytoShiftID() {}
+  async addPartytoShiftID(identifier: any) {
+    try {
+      console.log(identifier);
+      const body = JSON.stringify(identifier);
+
+      // party/:waiterID/:shiftNumber",
+      const result = await fetch(
+        `${getBackEndHref()}/api/account/store/shifts/party`,
+        {
+          credentials: 'include',
+          method: 'put',
+
+          headers: this.getHeaders(),
+          body: body,
+        }
+      );
+
+      const responseBody = await result.json();
+      console.log(responseBody, result);
+      return this._helper.manageError(responseBody, result);
+    } catch (e) {}
+  }
 }
