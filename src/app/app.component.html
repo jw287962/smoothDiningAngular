@@ -6,7 +6,10 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<body id="{{ (toggleBackground | async) ? 'hide-background' : '' }}">
+<body
+  class="body"
+  id="{{ (toggleBackground | async) ? 'hide-background' : '' }}"
+>
   <div id="{{ (toggleBackground | async) ? 'hide-background' : '' }}">
     <!-- <div>{{ toggleBackground | async }}</div> -->
     <app-nav

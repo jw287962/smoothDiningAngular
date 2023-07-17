@@ -5,3 +5,7 @@
   width: 100%;
   padding: 100vh 100vw;
 }
+
+body {
+  overflow: hidden;
+}
