@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Click a Party for a Section</h1>
+  <div class="active-parties">
+    <ng-container *ngFor="let party of activeParties; let i = index">
+      <app-party-data
+        [party]="party"
+        [index]="i"
+        [minimum]="20"
+        [buttonValue]="'Choice'"
+        (partyChoice)="processPartyChoiceMain($event)"
+      ></app-party-data>
+    </ng-container>
+  </div>
+</div>

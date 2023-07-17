@@ -1,4 +1,4 @@
-<ng-container *ngIf="index <= 10">
+<ng-container *ngIf="index <= minimum">
   <div
     class="button-style mini party-data"
     [ngClass]="
@@ -10,16 +10,18 @@
     <ng-container *ngIf="!displayToggle">
       <span>Guest: {{ party.partySize }}</span>
       <span>{{ party.name }}</span>
-      <span>{{ convertToLocalTime(party?.reservationDateTime) }}</span>
+      <span>{{ convertToLocalTime(party.reservationDateTime) }}</span>
     </ng-container>
     <ng-container *ngIf="displayToggle" class="focus-party-data">
       <span>Guest: {{ party.partySize }}</span>
 
       <span> {{ party.name }}</span>
-      <span>{{ convertToLocalTime(party?.reservationDateTime) }}</span>
-      <span>{{ party?.phoneNumber || "000-000-0000" }} </span>
+      <span>{{ convertToLocalTime(party.reservationDateTime) }}</span>
+      <span>{{ party.phoneNumber || "000-000-0000" }} </span>
       <button class="cancel" (click)="updateStatusCancel($event)">X</button>
-      <button class="edit" (click)="updateStatusCancel($event)">Edit</button>
+      <button class="edit" (click)="processPartyChoiceEmit()">
+        {{ buttonValue }}
+      </button>
     </ng-container>
   </div>
 </ng-container>

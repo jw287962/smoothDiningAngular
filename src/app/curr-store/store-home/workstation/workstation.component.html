@@ -13,7 +13,7 @@
     </div>
     <button (click)="togglePartyForm()">Add Party</button>
     <div class="party-list">
-      <ng-container *ngFor="let party of nextParties; let i = index">
+      <ng-container *ngFor="let party of activeParties; let i = index">
         <app-party-data [party]="party" [index]="i"></app-party-data>
       </ng-container>
     </div>
@@ -31,7 +31,17 @@
       <app-waiter-active-row
         [waiter]="activeWorkerShift"
         [showShifts]="true"
+        (clickedShiftID)="processEmitShift($event)"
       ></app-waiter-active-row>
     </ng-container>
+  </div>
+
+  <div *ngIf="toggleAddParty" class="container">
+    <app-manage-waiter-table
+      [activeParties]="activeParties"
+      (toggleView)="emitShiftProcessFinish($event)"
+      [shiftDataID]="shiftDataID"
+    >
+    </app-manage-waiter-table>
   </div>
 </div>

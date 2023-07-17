@@ -14,6 +14,7 @@ import {
   fixDateTimeOffset,
   getActiveWaiterFromShiftNumber,
   handleResponseBody,
+  identifierShift,
   partyInterface,
   shiftInterface,
 } from 'src/store/service/types';
@@ -30,14 +31,17 @@ export class WorkstationComponent {
   shiftNumber: Observable<number> = this._store.select(selectShiftNumber);
   activeShiftNumber: number = 0;
 
-  nextParties: partyInterface[] = [];
+  activeParties: partyInterface[] = [];
 
   currentShiftData: [] = [];
   showParty: boolean = false;
 
   createPartyError: string = '';
-
   currentTime: string = new Date().toLocaleTimeString();
+
+  toggleAddParty: boolean = false;
+
+  shiftDataID!: identifierShift;
   private _timer: any;
   constructor(private _store: Store, private _storeAPI: StoreApiService) {
     this._timer = setInterval(() => {
@@ -68,7 +72,7 @@ export class WorkstationComponent {
   }
   async getPartyData() {
     const result = await this._storeAPI.getParties(this.activeDate);
-    this.nextParties = handleResponseBody(result);
+    this.activeParties = handleResponseBody(result);
   }
   async getActiveWaiters() {
     this.currentShiftData = await this._storeAPI.getCurrentShift(
@@ -118,5 +122,15 @@ export class WorkstationComponent {
 
   processError(e: string) {
     this.createPartyError = e;
+  }
+
+  processEmitShift(e: any) {
+    this.shiftDataID = e;
+    this.toggleAddParty = true;
+    console.log(e, 'use this emit shift');
+  }
+
+  emitShiftProcessFinish(e: any) {
+    this.toggleAddParty = false;
   }
 }

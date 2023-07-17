@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { partyInterface } from 'src/store/service/types';
 
 @Component({
@@ -9,6 +9,10 @@ import { partyInterface } from 'src/store/service/types';
 export class PartyDataComponent {
   @Input() party!: partyInterface;
   @Input() index!: number;
+  @Input() minimum: number = 10;
+  @Input() buttonValue: string = 'Edit';
+
+  @Output() partyChoice = new EventEmitter<partyInterface>();
   displayToggle: boolean = false;
   ngOnInit() {}
   displayPartyData(e: MouseEvent, boolean: boolean = false) {
@@ -34,5 +38,14 @@ export class PartyDataComponent {
 
   updateStatusCancel(e: MouseEvent) {
     console.log('Status Update: Canceled!');
+  }
+
+  processPartyChoiceEmit() {
+    if (this.buttonValue === 'Edit') {
+      console.log('edit');
+    } else if (this.buttonValue === 'Choice') {
+      console.log('choice');
+      this.partyChoice.emit(this.party);
+    }
   }
 }

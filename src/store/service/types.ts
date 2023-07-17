@@ -73,3 +73,9 @@ export function formatYYYYMMDD(string: string = '') {
 
   return format(addHours(date, getHourOffset(string) || 0), 'yyyy-MM-dd');
 }
+
+
+export interface identifierShift {
+  _id: string;
+  section: number;
+}

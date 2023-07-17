@@ -252,7 +252,10 @@ input[type="number"]::-webkit-outer-spin-button {
   padding: 2px;
   border: 2px solid black;
 }
-
+.container {
+  position: relative;
+  width: 90%;
+}
 @media (max-width: 500px) {
   ::root {
     --mobileWidth: 100vw;

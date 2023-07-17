@@ -12,6 +12,7 @@ import { WorkstationComponent } from './store-home/workstation/workstation.compo
 import { PartyFormComponent } from './store-home/workstation/party-form/party-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { PartyDataComponent } from './store-home/workstation/party-data/party-data.component';
+import { ManageWaiterTableComponent } from './store-home/workstation/manage-waiter-table/manage-waiter-table.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PartyDataComponent } from './store-home/workstation/party-data/party-da
     WorkstationComponent,
     PartyFormComponent,
     PartyDataComponent,
+    ManageWaiterTableComponent,
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
+  identifierShift,
   partyInterface,
   shiftInterface,
   waiterInterface,
@@ -15,6 +16,8 @@ export class WaiterActiveRowComponent {
   @Input() showShifts: boolean = false;
 
   shiftID: string = '';
+  @Output() clickedShiftID = new EventEmitter<identifierShift>();
+  // @Output() sectionNumber = new EventEmitter<shift>();
 
   viewCurrentPartyDetail: partyInterface = {
     name: '',
@@ -48,6 +51,9 @@ export class WaiterActiveRowComponent {
 
   processWaiterClick(reservation: partyInterface) {
     if (!reservation?.partySize) {
+      const shift = { _id: this.waiter._id, section: this.waiter.section };
+      this.clickedShiftID.emit(shift);
+
       console.log('add new party to waiter on shiftNumber:', this.shiftID);
     } else {
       console.log(reservation);
