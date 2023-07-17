@@ -64,6 +64,7 @@ export class StoreHomeComponent {
   }
 
   onStoreHome() {
+    this.toggleMini = false;
     let string = '';
     if (this.router.url != '/store/home') {
       string = '/store/home';
@@ -82,4 +83,7 @@ export class StoreHomeComponent {
   //     this.toggleMini = false;
   //   }
   // }
+  updateToggleMini() {
+    this.toggleMini = true;
+  }
 }
