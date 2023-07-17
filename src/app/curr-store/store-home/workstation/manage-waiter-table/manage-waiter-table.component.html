@@ -1,6 +1,6 @@
 <div class="container">
   <button class="warning mini" (click)="processUpdateShifttable()">x</button>
-  <h1>Click a Party for a Section</h1>
+  <h1>Click a Party for Section {{ shiftDataID.section }}</h1>
   <ng-container *ngIf="loading">
     <app-loading></app-loading>
   </ng-container>
