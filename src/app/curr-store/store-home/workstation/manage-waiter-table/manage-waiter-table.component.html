@@ -20,6 +20,7 @@
   <div class="generic-form">
     <app-party-form
       (error)="processError($event)"
+      (partyID)="processPartyId($event)"
       [onlyGeneric]="true"
       class="party-form"
     ></app-party-form>

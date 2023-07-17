@@ -27,14 +27,17 @@ export class ManageWaiterTableComponent {
     console.log('identifier', this.shiftDataID);
     console.log(event, 'party choice');
     this.loading = true;
+    // toggle loading screen
     setTimeout(() => this.processUpdateShifttable(), 1000);
     // this.processUpdateShifttable();
   }
-
-  processError(e: string) {
+  processPartyId(e: string) {
     console.log(
       e,
       'use the party and the shiftId from input ' + this.shiftDataID
     );
+  }
+  processError(e: string) {
+    console.log(e, 'this is the error or sucess messages');
   }
 }

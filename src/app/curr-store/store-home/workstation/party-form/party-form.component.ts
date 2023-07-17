@@ -28,6 +28,7 @@ export class PartyFormComponent {
 
   errorMessage: string = '';
   @Output() error = new EventEmitter<string>();
+  @Output() partyID = new EventEmitter<string>();
   constructor(
     private _store: Store,
     private _storeAPI: StoreApiService,
@@ -85,13 +86,23 @@ export class PartyFormComponent {
     }
   }
   generatePartyData() {
-    return {
+    const partyData = {
       name: this.name || undefined,
       partySize: this.partySize,
       phoneNumber: this.phone || undefined,
       reservationDate: formatYYYYMMDD(this.getDate) || undefined,
       reservationDateTime: new Date(),
+      status: 'Active',
     };
+    if (this.getDateTime) {
+      partyData.reservationDateTime = this.setHourFromFormData(
+        this.getDateTime
+      );
+    }
+    if (this.onlyGeneric) {
+      partyData.status = 'In-Progress';
+    }
+    return partyData;
   }
 
   setHourFromFormData(timeFormData: string) {
@@ -109,22 +120,16 @@ export class PartyFormComponent {
       }
       const partyData = this.generatePartyData();
 
-      if (this.getDateTime) {
-        partyData.reservationDateTime = this.setHourFromFormData(
-          this.getDateTime
-        );
-      }
-
       const result = await this._storeAPI.createParty(generic, partyData);
       const error = result.message || result['0'].msg;
 
       if (this.onlyGeneric) {
-        console.log(result);
-        this.error.emit(result.result._id);
+        this.partyID.emit(result.result._id);
       } else {
         this.error.emit(result.message || '');
       }
 
+      // remove Error message after 5 seconds
       setTimeout(() => {
         this.error.emit('');
       }, 5000);
