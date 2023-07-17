@@ -8,7 +8,7 @@
     (mouseleave)="displayPartyData($event, false)"
   >
     <ng-container *ngIf="!displayToggle">
-      <span>Guest: {{ party.partySize }}</span>
+      <span class=""> {{ party.partySize }} People</span>
       <span>{{ party.name }}</span>
       <span>{{ convertToLocalTime(party.reservationDateTime) }}</span>
     </ng-container>
