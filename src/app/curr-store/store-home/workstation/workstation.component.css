@@ -62,5 +62,10 @@
 }
 
 .current-time {
-  padding: 2px;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  padding: 3px;
+  margin-bottom: 2px;
+  font-size: 20px;
 }

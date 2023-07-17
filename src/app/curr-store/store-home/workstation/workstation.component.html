@@ -1,8 +1,5 @@
 <div class="gridActiveWaiters flex-col-center">
-  <h2>
-    Workstation (In Progress) |
-    <span class="current-time radius">{{ getTime() }}</span>
-  </h2>
+  <h2>Workstation (In Progress) | Shift:{{ activeShiftNumber }}</h2>
   <div class="alert-danger" *ngIf="createPartyError">
     <h4>{{ createPartyError }}</h4>
   </div>
@@ -11,7 +8,11 @@
       <button type="button" (click)="decreaseShiftNumber()"><</button>
       <button type="button" (click)="increaseShiftNumber()">></button>
     </div>
-    <button (click)="togglePartyForm()">Add Party</button>
+    <div>
+      <button (click)="togglePartyForm()">Add Party</button>
+      <span class="current-time radius">{{ getTime() }}</span>
+    </div>
+
     <div class="party-list">
       <ng-container *ngFor="let party of activeParties; let i = index">
         <app-party-data [party]="party" [index]="i"></app-party-data>
