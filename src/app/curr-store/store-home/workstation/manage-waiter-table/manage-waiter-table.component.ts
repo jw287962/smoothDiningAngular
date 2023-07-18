@@ -28,6 +28,7 @@ export class ManageWaiterTableComponent {
     return await this._storeAPI.addPartytoShiftID({
       shiftID: this.shiftDataID._id,
       partyID: party._id,
+      partySize: party.partySize,
     });
   }
   async processPartyChoiceMain(event: partyInterface) {
