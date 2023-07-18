@@ -1,4 +1,7 @@
 <div class="flex-col-center shift-create-view">
+  <ng-container *ngIf="loading">
+    <app-loading class="loading"></app-loading>
+  </ng-container>
   <form
     class="searchForm flex-col-center"
     (submit)="addActiveToday($event, sectionNumber)"

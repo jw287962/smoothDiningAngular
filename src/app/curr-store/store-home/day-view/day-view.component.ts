@@ -24,6 +24,7 @@ export class DayViewComponent {
 
   activeWaiterShiftData = [];
 
+  loading: boolean = false;
   timeout?: any;
 
   searchName: string = '';
@@ -45,6 +46,7 @@ export class DayViewComponent {
   }
   getActiveWaiters() {
     this.activeDate.subscribe(async (date) => {
+      this.loading = true;
       this.activeWaiterShiftData = await this._storeService.getCurrentShift(
         fixDateTimeOffset(date)
       );
@@ -53,6 +55,7 @@ export class DayViewComponent {
         this.activeWaiterShiftData,
         this.displayShiftNumber
       );
+      this.loading = false;
       // try {
       //   this.dailyActiveWaiter = [...result.result?.[this.shiftNumber]];
       // } catch (e) {
@@ -71,7 +74,9 @@ export class DayViewComponent {
   }
   async fetchWaiters() {
     try {
+      this.loading = true;
       const result = await this._storeService.fetchWaiters();
+      this.loading = false;
       if (result.error) {
         console.log(result);
       } else {
@@ -116,13 +121,15 @@ export class DayViewComponent {
 
     if (found) {
       // this.dailyActiveWaiter.push(found);
+      this.loading = true;
       const result = await this._storeService.createWaiterShift(
         found._id,
         this.shiftNumber,
         sectionNumber,
         fixDateTimeOffset(this.activeDateCopy)
       );
-      console.log('result', result);
+      this.loading = false;
+      // console.log('result', result);
 
       this.formError = handleResponseBody(result, true);
 
