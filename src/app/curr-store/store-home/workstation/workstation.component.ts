@@ -2,13 +2,16 @@ import { Component, SimpleChange, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
+  loadingPage,
   shiftNumber,
   toggleBackgroundHidden,
 } from 'src/store/actions/auth.action';
 import {
+  selectLoadingBoolean,
   selectShiftNumber,
   selectStoreDate,
 } from 'src/store/reducers/auth.reducer';
+import { Helper } from 'src/store/service/helpers';
 import { StoreApiService } from 'src/store/service/store.service';
 import {
   fixDateTimeOffset,
@@ -42,8 +45,14 @@ export class WorkstationComponent {
   toggleAddPartyView: boolean = false;
 
   shiftDataID!: identifierShift;
+
+  loading: Observable<boolean> = this._store.select(selectLoadingBoolean);
   private _timer: any;
-  constructor(private _store: Store, private _storeAPI: StoreApiService) {
+  constructor(
+    private _store: Store,
+    private _storeAPI: StoreApiService,
+    private _helper: Helper
+  ) {
     this._timer = setInterval(() => {
       this.currentTime = new Date().toLocaleTimeString();
     }, 1000);
@@ -72,16 +81,20 @@ export class WorkstationComponent {
   }
   async getPartyData() {
     try {
+      this._helper.dispatchLoading(true);
       const result = await this._storeAPI.getParties(this.activeDate);
+      this._helper.dispatchLoading(false);
       this.activeParties = handleResponseBody(result);
     } catch (e) {
       console.log('getPartyData @ workstation.component', e);
     }
   }
   async getActiveWaiters() {
+    this._helper.dispatchLoading(true);
     this.currentShiftData = await this._storeAPI.getCurrentShift(
       fixDateTimeOffset(this.activeDate)
     );
+    this._helper.dispatchLoading(false);
     // console.log('resut', this.currentShiftData);
 
     this.activeWaiter = getActiveWaiterFromShiftNumber(

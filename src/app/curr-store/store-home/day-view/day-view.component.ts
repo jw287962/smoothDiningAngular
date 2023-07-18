@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { shiftNumber } from 'src/store/actions/auth.action';
 import { selectStoreDate } from 'src/store/reducers/auth.reducer';
+import { Helper } from 'src/store/service/helpers';
 import { StoreApiService } from 'src/store/service/store.service';
 import {
   fixDateTimeOffset,
@@ -39,14 +40,15 @@ export class DayViewComponent {
   constructor(
     private _store: Store,
     private _storeService: StoreApiService,
-    private cdr: ChangeDetectorRef
+    private _helper: Helper
   ) {
     this.fetchWaiters();
     this.getActiveWaiters();
   }
   getActiveWaiters() {
     this.activeDate.subscribe(async (date) => {
-      this.loading = true;
+      this._helper.dispatchLoading(true);
+
       this.activeWaiterShiftData = await this._storeService.getCurrentShift(
         fixDateTimeOffset(date)
       );
@@ -55,7 +57,7 @@ export class DayViewComponent {
         this.activeWaiterShiftData,
         this.displayShiftNumber
       );
-      this.loading = false;
+      this._helper.dispatchLoading(false);
       // try {
       //   this.dailyActiveWaiter = [...result.result?.[this.shiftNumber]];
       // } catch (e) {
@@ -74,9 +76,9 @@ export class DayViewComponent {
   }
   async fetchWaiters() {
     try {
-      this.loading = true;
+      this._helper.dispatchLoading(true);
       const result = await this._storeService.fetchWaiters();
-      this.loading = false;
+      this._helper.dispatchLoading(false);
       if (result.error) {
         console.log(result);
       } else {

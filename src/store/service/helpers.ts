@@ -7,7 +7,7 @@ import { loadingPage, loginFalse, loginTrue } from '../actions/auth.action';
 })
 export class Helper {
   constructor(private store: Store) {}
-
+  
   dispatchLoginTrue() {
     // if(this.store.select())
     this.store.dispatch({ type: '[auth Component] loginTrue' });

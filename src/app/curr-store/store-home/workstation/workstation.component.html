@@ -1,4 +1,7 @@
 <div class="gridActiveWaiters flex-col-center">
+  <ng-container *ngIf="loading | async">
+    <app-loading></app-loading>
+  </ng-container>
   <h2>Workstation | Shift {{ activeShiftNumber }}</h2>
   <div class="alert-danger" *ngIf="createPartyError">
     <h4>{{ createPartyError }}</h4>
