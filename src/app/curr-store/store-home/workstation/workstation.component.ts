@@ -122,21 +122,21 @@ export class WorkstationComponent {
 
   processError(e: string) {
     // error emite from post form
-
     this.createPartyError = e;
     this.getPartyData();
   }
 
-  processEmitShift(e: any) {
+  processClickedShiftBox(e: any) {
+    // show the Form for adding party to shift User
     this.shiftDataID = e;
     this.toggleAddPartyView = true;
     this._store.dispatch(toggleBackgroundHidden.setTrue());
-
-    console.log(e, 'use this emit shift');
   }
 
-  emitShiftProcessFinish(e: any) {
-    console.log('false now');
+  emitPartyClickedforShift(e: any) {
+    if (e === 'success') {
+      this.getActiveWaiters();
+    }
     this.toggleAddPartyView = false;
     this._store.dispatch(toggleBackgroundHidden.setFalse());
   }
