@@ -226,7 +226,7 @@ export class StoreApiService {
           credentials: 'include',
           method: 'post',
 
-          headers: this.getHeaders(),
+          headers: this.getHeaders({ storeid: this.getStoreCookie() }),
           body: body,
         }
       );
@@ -268,7 +268,7 @@ export class StoreApiService {
           credentials: 'include',
           method: 'put',
 
-          headers: this.getHeaders(),
+          headers: this.getHeaders({ storeid: this.getStoreCookie() }),
           body: body,
         }
       );
