@@ -71,14 +71,18 @@ export class WorkstationComponent {
     this._store.dispatch(shiftNumber({ shiftNumber: this.activeShiftNumber }));
   }
   async getPartyData() {
-    const result = await this._storeAPI.getParties(this.activeDate);
-    this.activeParties = handleResponseBody(result);
+    try {
+      const result = await this._storeAPI.getParties(this.activeDate);
+      this.activeParties = handleResponseBody(result);
+    } catch (e) {
+      console.log('getPartyData @ workstation.component', e);
+    }
   }
   async getActiveWaiters() {
     this.currentShiftData = await this._storeAPI.getCurrentShift(
       fixDateTimeOffset(this.activeDate)
     );
-    console.log('resut', this.currentShiftData);
+    // console.log('resut', this.currentShiftData);
 
     this.activeWaiter = getActiveWaiterFromShiftNumber(
       this.currentShiftData,
