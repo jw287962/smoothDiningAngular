@@ -246,7 +246,7 @@ export class StoreApiService {
           credentials: 'include',
           method: 'get',
 
-          headers: this.getHeaders(),
+          headers: this.getHeaders({ storeid: this.getStoreCookie() }),
         }
       );
 
