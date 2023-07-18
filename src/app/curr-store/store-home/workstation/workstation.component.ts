@@ -20,6 +20,7 @@ import {
   identifierShift,
   partyInterface,
   shiftInterface,
+  waiterInterface,
 } from 'src/store/service/types';
 
 @Component({
@@ -45,7 +46,7 @@ export class WorkstationComponent {
   toggleAddPartyView: boolean = false;
 
   shiftDataID!: identifierShift;
-
+  minTable: number = 0;
   loading: Observable<boolean> = this._store.select(selectLoadingBoolean);
   private _timer: any;
   constructor(
@@ -66,15 +67,15 @@ export class WorkstationComponent {
     this.shiftNumber.subscribe((num) => {
       this.activeShiftNumber = num || 0;
 
-      this.activeWaiter = getActiveWaiterFromShiftNumber(
-        this.currentShiftData,
-        this.activeShiftNumber
-      );
+      // this.activeWaiter = getActiveWaiterFromShiftNumber(
+      //   this.currentShiftData,
+      //   this.activeShiftNumber
+      // );
     });
     this.getPartyData();
     this.getActiveWaiters();
   }
-  ngDoCheck() {}
+  // ngDoCheck() {}
   ngOnDestroy() {
     clearInterval(this._timer);
     this._store.dispatch(shiftNumber({ shiftNumber: this.activeShiftNumber }));
@@ -94,6 +95,8 @@ export class WorkstationComponent {
     this.currentShiftData = await this._storeAPI.getCurrentShift(
       fixDateTimeOffset(this.activeDate)
     );
+    console.log(this.currentShiftData);
+
     this._helper.dispatchLoading(false);
     // console.log('resut', this.currentShiftData);
 
@@ -101,6 +104,12 @@ export class WorkstationComponent {
       this.currentShiftData,
       this.activeShiftNumber
     );
+    console.log(this.activeWaiter);
+    // this.activeWaiter.forEach((ele) => {
+    //   console.log(this.minTable);
+
+    //   this.minArrayLength(ele);
+    // });
   }
 
   dispatchBackground = () => {
@@ -156,5 +165,13 @@ export class WorkstationComponent {
     }
     this.toggleAddPartyView = false;
     this._store.dispatch(toggleBackgroundHidden.setFalse());
+  }
+
+  minArrayLength(activeWorker: shiftInterface) {
+    this.minTable = Math.min(activeWorker.shiftTables.length, this.minTable);
+  }
+  getShiftTablesLength(activeWorker: shiftInterface) {
+    // console.log(activeWorker.shiftTables.length);
+    return activeWorker.shiftTables.length;
   }
 }

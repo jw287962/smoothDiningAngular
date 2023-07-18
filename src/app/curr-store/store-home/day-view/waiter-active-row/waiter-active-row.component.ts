@@ -14,6 +14,8 @@ import {
 export class WaiterActiveRowComponent {
   @Input() waiter!: shiftInterface;
   @Input() showShifts: boolean = false;
+  @Input() isMin: boolean = false;
+  shiftTables: any = [];
 
   shiftID: string = '';
   @Output() clickedShiftID = new EventEmitter<identifierShift>();
@@ -29,19 +31,11 @@ export class WaiterActiveRowComponent {
 
   ngOnInit() {
     this.shiftID = this.waiter._id;
-
+    this.shiftTables = [...this.waiter?.shiftTables];
     // this.waiter.shiftTables.fill(1, this.waiter.shiftTables.length, 20);
     const currLength = this.waiter.shiftTables.length;
     for (let i = currLength; i < 24; i++) {
-      // if (i < 5) {
-      //   this.waiter.shiftTables.push({
-      //     name: 'test',
-      //     partySize: 5,
-      //     phoneNumber: '',
-      //     reservationDate: '07-15-2023',
-      //   });
-      // } else
-      this.waiter.shiftTables.push({});
+      this.shiftTables.push({});
     }
   }
 

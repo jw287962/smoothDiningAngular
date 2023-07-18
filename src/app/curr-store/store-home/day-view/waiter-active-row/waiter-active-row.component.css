@@ -1,9 +1,8 @@
 .waiter-container {
   justify-content: center;
-  max-height: 120px;
-  min-height: 60px;
-  height: 100%;
+  /* min-height: 60px; */
   align-items: stretch;
+  /* max-height: 100px; */
 }
 
 .waiter-data {
@@ -19,11 +18,16 @@
   display: flex;
   align-items: center;
   border-radius: 5px;
+  margin: 4px 1px;
 }
-.container,
+
+.priority {
+  border: 1px solid red;
+}
+/* .container,
 .containerName {
   min-height: 100px;
-}
+} */
 /* GRID PARTIES */
 .grid-box-waiters {
   padding-left: 10px;
@@ -31,8 +35,8 @@
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
   overflow-x: scroll;
-  height: 150px;
-  width: min(70vw, 800px);
+  /* width: min(70vw, 800px); */
+  gap: 5px;
   margin-right: 100px;
 }
 /* .grid-box-waiters:first-child */

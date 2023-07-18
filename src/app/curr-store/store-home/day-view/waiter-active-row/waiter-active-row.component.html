@@ -1,5 +1,5 @@
 <div class="flex-row-center waiter-container">
-  <div class="waiter-data flex-col-center">
+  <div class="waiter-data flex-col-center" [ngClass]="isMin ? 'priority' : ''">
     <h3>{{ waiter?.waiter?.[0].name || "" }}</h3>
     <h3 class="section">{{ waiter.section }}</h3>
   </div>
@@ -7,7 +7,7 @@
     <div class="boxes"></div>
   </div> -->
   <div *ngIf="showShifts === true" class="grid-box-waiters">
-    <ng-container *ngFor="let reservation of waiter?.shiftTables">
+    <ng-container *ngFor="let reservation of shiftTables">
       <button (click)="processWaiterClick(reservation)" class="mini-grid">
         <div class="flex-row-center">
           {{ reservation.partySize }}

@@ -24,7 +24,10 @@
 .waiter-data {
   width: 90%;
 }
-
+/* .priority {
+  border: 1px dotted red;
+  border-radius: 10px;
+} */
 .party-list {
   display: flex;
   flex-direction: row;
