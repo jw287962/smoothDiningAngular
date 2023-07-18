@@ -37,7 +37,6 @@
   overflow-x: scroll;
   /* width: min(70vw, 800px); */
   gap: 5px;
-  margin-right: 100px;
 }
 /* .grid-box-waiters:first-child */
 
