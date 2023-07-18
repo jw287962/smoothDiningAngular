@@ -14,14 +14,15 @@ import { identifierShift, partyInterface } from 'src/store/service/types';
   styleUrls: ['./manage-waiter-table.component.css'],
 })
 export class ManageWaiterTableComponent {
-  @Output() toggleView = new EventEmitter<boolean>();
+  @Output() toggleView = new EventEmitter<string>();
   @Input() activeParties!: partyInterface[];
   @Input() shiftDataID!: identifierShift;
   loading: boolean = false;
   constructor(private _storeAPI: StoreApiService) {}
 
-  processUpdateShifttable() {
-    this.toggleView.emit(false);
+  toggleDisplayShifts(string: string) {
+    this.loading = false;
+    this.toggleView.emit(string);
   }
 
   async addPartytoShift(party: partyInterface) {
@@ -32,12 +33,10 @@ export class ManageWaiterTableComponent {
     });
   }
   async processPartyChoiceMain(event: partyInterface) {
-    const result = await this.addPartytoShift(event);
-
     this.loading = true;
-    // toggle loading screen
-    setTimeout(() => this.processUpdateShifttable(), 1000);
-    // this.processUpdateShifttable();
+
+    const result = await this.addPartytoShift(event);
+    this.toggleDisplayShifts('success');
   }
   async processPartyId(party: partyInterface) {
     const result = await this.addPartytoShift(party);
