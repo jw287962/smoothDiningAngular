@@ -40,11 +40,6 @@ export class ManageWaiterTableComponent {
   }
   async processPartyId(party: partyInterface) {
     const result = await this.addPartytoShift(party);
-
-    console.log(
-      party._id,
-      'use the party and the shiftId from input ' + this.shiftDataID
-    );
   }
   processError(e: string) {
     console.log(e, 'this is the error or sucess messages');
