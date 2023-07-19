@@ -1,22 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loadingPage, loginFalse, loginTrue } from '../actions/auth.action';
+import { loadingPage, loginFalse, loginTrue, setActiveStore } from '../actions/auth.action';
+import { CookieService } from 'ngx-cookie-service';
+import { activeStore } from '../reducers/auth.reducer';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Helper {
-  constructor(private store: Store) {}
-  
+  constructor(private _store: Store, private _cookieService: CookieService) {}
+
+  getStoreCookie() {
+    return this._cookieService.get('storeid');
+  }
+
+  getUserCookie() {
+    return this._cookieService.get('user');
+  }
+
+  getAuthBearer() {
+    return this._cookieService.get('Authorization');
+  }
+
+  dispatchStore(data: activeStore) {
+    this._store.dispatch(setActiveStore({ storeData: data }));
+  }
+
   dispatchLoginTrue() {
     // if(this.store.select())
-    this.store.dispatch({ type: '[auth Component] loginTrue' });
+    this._store.dispatch({ type: '[auth Component] loginTrue' });
   }
   dispatchLoginFalse() {
-    this.store.dispatch(loginFalse());
+    this._store.dispatch(loginFalse());
   }
   dispatchLoading(state: boolean) {
-    this.store.dispatch(loadingPage.updateLoading({ loading: state }));
+    this._store.dispatch(loadingPage.updateLoading({ loading: state }));
   }
 
   manageError(responseBody: any, result: any, logout: boolean = false) {

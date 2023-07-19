@@ -17,11 +17,7 @@ export class StoreApiService {
 
   storeDataSub: Subscription;
   activeStore$: Observable<activeStore> = this._store.select(selectStoreData);
-  constructor(
-    private _cookieService: CookieService,
-    private _helper: Helper,
-    private _store: Store
-  ) {
+  constructor(private _helper: Helper, private _store: Store) {
     this.createHeaderWithStore();
     this.storeDataSub = this.activeStore$.subscribe(async (data) => {
       this.currentStore = data;
@@ -32,31 +28,17 @@ export class StoreApiService {
   ngOnDestroy() {
     this.storeDataSub.unsubscribe();
   }
-  getStoreCookie() {
-    return this._cookieService.get('storeid');
-  }
-
-  getUserCookie() {
-    return this._cookieService.get('user');
-  }
-  dispatchStore(data: activeStore) {
-    this._store.dispatch(setActiveStore({ storeData: data }));
-  }
-
-  getAuthBearer() {
-    return this._cookieService.get('Authorization');
-  }
 
   getHeaders(extra: {} = {}) {
     return {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.getAuthBearer()}`,
+      Authorization: `Bearer ${this._helper.getAuthBearer()}`,
       ...extra,
     };
   }
 
   createHeaderWithStore() {
-    const store = this.getStoreCookie();
+    const store = this._helper.getStoreCookie();
     this.myHeaders.append('Content-Type', 'application/json');
     this.myHeaders.append('storeid', store);
   }
@@ -85,7 +67,7 @@ export class StoreApiService {
       // const storeID = this.getStoreCookie();
       const result = await fetch(
         `${getBackEndHref()}/api/account/store/${
-          this.currentStore.storeId || this.getStoreCookie()
+          this.currentStore.storeId || this._helper.getStoreCookie()
         }`,
         {
           credentials: 'include',
@@ -96,7 +78,7 @@ export class StoreApiService {
       );
       const responseBody = await result.json();
       if (this.currentStore.storeId === '') {
-        this.dispatchStore({
+        this._helper.dispatchStore({
           storeName: responseBody.store.name,
           storeId: responseBody.store._id,
         });
@@ -109,7 +91,7 @@ export class StoreApiService {
   }
   // WAITERS
   async fetchWaiters() {
-    const store = this.getStoreCookie() || this.currentStore.storeId;
+    const store = this._helper.getStoreCookie() || this.currentStore.storeId;
     try {
       const result = await fetch(
         `${getBackEndHref()}/api/account/store/waiters`,
@@ -123,7 +105,7 @@ export class StoreApiService {
       );
       const responseBody = await result.json();
       if (responseBody.ok) {
-        this.dispatchStore({
+        this._helper.dispatchStore({
           storeName: responseBody.store.name,
           storeId: responseBody.store._id,
         });
@@ -179,7 +161,7 @@ export class StoreApiService {
           credentials: 'include',
           method: 'post',
 
-          headers: this.getHeaders({ storeid: this.getStoreCookie() }),
+          headers: this.getHeaders({ storeid: this._helper.getStoreCookie() }),
           body: body,
         }
       );
@@ -216,6 +198,7 @@ export class StoreApiService {
 
   async createParty(generic: boolean = false, partyData: partyInterface) {
     try {
+      console.log(generic);
       // const dateFinal = date || new Date();
       const body = JSON.stringify(partyData);
       const result = await fetch(
@@ -226,7 +209,7 @@ export class StoreApiService {
           credentials: 'include',
           method: 'post',
 
-          headers: this.getHeaders({ storeid: this.getStoreCookie() }),
+          headers: this.getHeaders({ storeid: this._helper.getStoreCookie() }),
           body: body,
         }
       );
@@ -246,7 +229,7 @@ export class StoreApiService {
           credentials: 'include',
           method: 'get',
 
-          headers: this.getHeaders({ storeid: this.getStoreCookie() }),
+          headers: this.getHeaders({ storeid: this._helper.getStoreCookie() }),
         }
       );
 
@@ -268,7 +251,7 @@ export class StoreApiService {
           credentials: 'include',
           method: 'put',
 
-          headers: this.getHeaders({ storeid: this.getStoreCookie() }),
+          headers: this.getHeaders({ storeid: this._helper.getStoreCookie() }),
           body: body,
         }
       );
