@@ -125,7 +125,8 @@ export class PartyFormComponent {
       const error = result.message || result['0'].msg;
 
       if (this.onlyGeneric) {
-        this.partyID.emit(result);
+        console.log(result);
+        this.partyID.emit(result.result);
       } else {
         this.error.emit(result.message || '');
       }
