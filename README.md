@@ -3,10 +3,17 @@
 - Angular
 - State: NgRx
 - connected to backend (MONGODB & EXPRESS): https://github.com/jw287962/smoothdining_API
-- a random account: username: admin , password: password@
+- a random account: username: admin , password: password@ 
+
+- Test out 07/17/2023 if you want to test it out
+
+# Backend Notes: https://github.com/jw287962/smoothdining_API
+I should prob add ways to delete a waiter shift's party table, and easy way to change party status with a x button
 
 Username cannot repeat 
 Name in same store cannot repeat
+
+
 # SmoothDiningAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
