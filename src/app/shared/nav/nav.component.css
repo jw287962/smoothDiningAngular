@@ -9,25 +9,25 @@
   right: 0px;
   padding: 0px;
   width: 70px;
+  height: 30px;
   cursor: pointer;
   border-radius: 40%;
+  z-index: 99;
 }
 .button-mode {
-  margin: 0px;
+  margin: -1px;
   padding: 2px;
   height: 30px;
   display: flex;
   align-items: center;
   width: 100%;
-  background-color: var(--always-black);
   outline: none;
-  border: solid 1px #c5c5c5;
+  background-color: var(--always-black);
+  border-radius: 50px;
 
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
+  border: solid 1px #c5c5c5;
 }
+
 
 .light {
   /* background-color: var(--nav-background-color); */
@@ -36,13 +36,16 @@
   animation: 0.2s rightToLeft ease;
 
   background-color: white;
+  font-variation-settings: "FILL" 0, "wght" 700, "GRAD" 200, "opsz" 48;
 }
 .dark {
-  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+  font-variation-settings: "FILL" 1, "wght" 500, "GRAD" 1, "opsz" 48;
   position: absolute;
   left: 54%;
   animation: 0.2s leftToRight ease;
-  background-color: rgb(70, 70, 70);
+  background-color: rgb(255, 255, 255);
+  outline: white;
+  fill: white;
 }
 .no-border {
   border: unset;
@@ -52,10 +55,16 @@
   cursor: pointer;
   user-select: none;
 }
-
+.triangle {
+  width: 50;
+  height: 50;
+  border-left: 50px solid;
+  border-right: 50px solid;
+  border-bottom: 10px solid red; /* Change 'red' to the color you desire */
+}
 /* .dark-mode, */
 
-.material-symbols-outlined {
+.mat-symbol {
   width: fit-content;
 
   border-radius: 50%;
