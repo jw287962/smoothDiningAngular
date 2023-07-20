@@ -6,8 +6,10 @@ import { setActiveStore } from 'src/store/actions/auth.action';
 import {
   State,
   selectCounter,
+  selectLoadingBoolean,
   selectLoginBoolean,
 } from 'src/store/reducers/auth.reducer';
+import { Helper } from 'src/store/service/helpers';
 import { StoreApiService } from 'src/store/service/store.service';
 import { cookieOptions, handleResponseBody } from 'src/store/service/types';
 interface StoreInterface {
@@ -27,11 +29,13 @@ export class HomeComponent {
   count$: Observable<number> = this._store.select(selectCounter);
   stores: StoreInterface[] | undefined;
   // login: boolean = false;
+  loading: Observable<boolean> = this._store.select(selectLoadingBoolean);
 
   constructor(
     private _storeService: StoreApiService,
     private _store: Store<State>,
-    private _cookieService: CookieService
+    private _cookieService: CookieService,
+    private _helper: Helper
   ) {
     this.fetchStores();
   }
@@ -42,7 +46,9 @@ export class HomeComponent {
     console.log('ngondestroy');
   }
   async fetchStores() {
+    this._helper.dispatchLoading(true);
     const result = await this._storeService.fetchStores();
+    this._helper.dispatchLoading(false);
     this.stores = handleResponseBody(result);
   }
 

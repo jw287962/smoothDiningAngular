@@ -1,3 +1,4 @@
+<app-loading *ngIf="loading | async"></app-loading>
 <div *ngIf="login$ | async as login">
   <div *ngIf="login" class="all-stores flex-col-center">
     <h2 class="header-text">Your Stores:</h2>
