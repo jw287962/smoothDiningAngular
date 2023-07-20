@@ -32,6 +32,15 @@
           minTable === getShiftTablesLength(activeWorkerShift) ? 'priority' : ''
         " -->
   <div class="waiter-data flex-col-center">
+    <ng-container *ngIf="activeWaiter.length == 0">
+      <div class="separation"></div>
+      <app-waiter-active-row
+        [isMin]="false"
+        [waiter]="fillerData"
+        [showShifts]="true"
+      ></app-waiter-active-row>
+    </ng-container>
+
     <ng-container *ngFor="let activeWorkerShift of activeWaiter">
       <div class="separation"></div>
       <app-waiter-active-row

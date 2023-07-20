@@ -29,7 +29,9 @@ import {
   styleUrls: ['./workstation.component.css'],
 })
 export class WorkstationComponent {
+  fillerData: shiftInterface;
   activeWaiter: shiftInterface[] = [];
+
   date: Observable<string> = this._store.select(selectStoreDate);
   activeDate: string = '';
   shiftNumber: Observable<number> = this._store.select(selectShiftNumber);
@@ -54,6 +56,27 @@ export class WorkstationComponent {
     private _storeAPI: StoreApiService,
     private _helper: Helper
   ) {
+    this.fillerData = {
+      _id: '64b5942227f0001c460024',
+      date: new Date(),
+      section: 1,
+      store: '649e05b1509a6fa8fe07ccd2',
+      shiftNumber: 0,
+      shiftTables: [],
+      waiter: [
+        {
+          _id: '64ab8cfaee668a666d30442a',
+          name: 'Add Waiter',
+          birthdate: '1997-01-01T00:00:00.000Z',
+          preferences: {
+            maxActiveTableForPermission: 6,
+          },
+          store: '649e05b1509a6fa8fe07ccd2',
+          status: true,
+          __v: 0,
+        },
+      ],
+    };
     this._timer = setInterval(() => {
       this.currentTime = new Date().toLocaleTimeString();
     }, 1000);
@@ -104,7 +127,6 @@ export class WorkstationComponent {
       this.currentShiftData,
       this.activeShiftNumber
     );
-    console.log(this.activeWaiter);
     // this.activeWaiter.forEach((ele) => {
     //   console.log(this.minTable);
 
