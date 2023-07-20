@@ -1,3 +1,86 @@
+.mode {
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+  background-color: var(--nav-background-color);
+  /* border-color: var(--always-black); */
+  position: absolute;
+  margin: 0px;
+  right: 0px;
+  padding: 0px;
+  width: 70px;
+  cursor: pointer;
+  border-radius: 40%;
+}
+.button-mode {
+  margin: 0px;
+  padding: 2px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: var(--always-black);
+  outline: none;
+  border: solid 1px #c5c5c5;
+
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.light {
+  /* background-color: var(--nav-background-color); */
+  position: absolute;
+  left: 5px;
+  animation: 0.2s rightToLeft ease;
+
+  background-color: white;
+}
+.dark {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+  position: absolute;
+  left: 54%;
+  animation: 0.2s leftToRight ease;
+  background-color: rgb(70, 70, 70);
+}
+.no-border {
+  border: unset;
+}
+.light,
+.dark {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* .dark-mode, */
+
+.material-symbols-outlined {
+  width: fit-content;
+
+  border-radius: 50%;
+  margin: 0px;
+  padding: 2px;
+}
+@keyframes leftToRight {
+  0% {
+    left: 5px;
+  }
+  100% {
+    left: 51%;
+  }
+}
+@keyframes rightToLeft {
+  100% {
+    left: 5px;
+  }
+  0% {
+    left: 54%;
+  }
+}
+.hidden {
+  display: none;
+}
 .header {
   margin: 10px;
   display: flex;
@@ -6,6 +89,12 @@
   height: fit-content;
   vertical-align: center;
   margin-top: 3px;
+  padding-left: 2px;
+}
+.github > img {
+  border-radius: 50%;
+  /* box-shadow: inset 0 0 100px 500px #333; */
+  border-color: var(--background-color);
 }
 nav {
   font-size: 30px;
@@ -14,8 +103,9 @@ nav {
   right: 10px;
   bottom: 0px;
 }
+
 nav > a {
-  padding: 10px;
+  padding: 0px 10px;
 }
 
 @media (max-width: 450px) {

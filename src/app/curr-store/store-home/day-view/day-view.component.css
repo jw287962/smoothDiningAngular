@@ -17,6 +17,7 @@
   max-height: 150px;
   overflow-y: scroll;
   width: 200px;
+  background-color: var(--background-color);
 }
 
 .dropdownselector {

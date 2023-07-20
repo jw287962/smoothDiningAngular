@@ -1,21 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+@import "material-symbols";
 :root {
-  --primary-color: #0099ff;
-  --secondary-color: #cbe4f3;
-  --text-color: black;
+  --primary-color: #0099ff; /*background color*/
+  --secondary-color: #cbe4f3; /*background color*/
+  --second-text-color: black;
   --light-text-color: #0d0e0f;
+  --text-color: black;
   --background-color: #fbfcfc;
   --nav-background-color: white;
   --error-color: rgb(255, 92, 92);
   --wideButton: 300px;
-
   --light-line-color: 1px solid rgb(179, 179, 179);
+
+  --always-black: #f0f0f0;
 
   /* --warning: rgb(255, 87, 87); */
 }
 
-[data-theme="dark"] {
-  --background-color: black;
+html[data-theme="dark"] {
+  --secondary-color: #e9e9e9;
+  --background-color: rgb(19, 19, 19);
+  --nav-background-color: var(--always-black);
+  --always-black: #c2c2c2;
+  --second-text-color: black;
   --text-color: white;
   --light-text-color: #c9c9c9;
 }
@@ -27,8 +34,9 @@ body {
   margin: 0px;
   min-width: 300px;
   position: relative;
-  background-color: var(--nav-background-color);
+  background-color: var(--background-color);
 }
+
 h1,
 h2,
 h3,
@@ -41,7 +49,7 @@ h1 {
   font-weight: 800;
 }
 .black {
-  color: black;
+  color: var(--text-color);
 }
 a {
   text-decoration: none;
@@ -54,7 +62,9 @@ button,
 .button-style {
   width: 100px;
   background-color: var(--secondary-color);
-  border: 1px solid white;
+  border: 1px solid;
+  border-color: var(--background-color);
+  color: var(--second-text-color);
   border-radius: 6px;
   justify-content: center;
   padding: 10px 5px;

@@ -1,10 +1,33 @@
 <title>SmoothDiningAngular</title>
+
 <div class="header">
   <h1>Smooth Dining</h1>
   <a href="https://github.com/jw287962" class="github">
     <img height="35px" src="assets/Github.png" />
   </a>
-
+  <div class="mode button-style" (click)="toggleDataTheme()">
+    <!-- <button class="dark-mode">
+      <span
+        class="material-symbols-outlined"
+        [ngClass]="!themeToggle ? 'hidden' : ''"
+        >dark_mode</span
+      >
+    </button> -->
+    <div class="button-mode" [ngClass]="!themeToggle ? '' : ''">
+      <button
+        class="material-symbols-outlined"
+        [ngClass]="!themeToggle ? 'light ' : 'dark'"
+      >
+        {{ !themeToggle ? "light_mode" : "dark_mode" }}
+      </button>
+      <!-- <span
+        class="material-symbols-outlined"
+        [ngClass]="!themeToggle ? 'hidden ' : 'dark'"
+        >dark_mode
+      </span> -->
+    </div>
+    <!-- Outlined -->
+  </div>
   <nav>
     <a routerLink="/home" routerLinkActive="active">Stores</a>
     <a routerLink="/login" routerLinkActive="active">Login</a>

@@ -11,6 +11,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.1.0",
+    "@angular/cdk": "^16.1.5",
     "@angular/common": "^16.1.0",
     "@angular/compiler": "^16.1.0",
     "@angular/core": "^16.1.0",
@@ -23,6 +24,7 @@
     "@ngrx/store": "^16.1.0",
     "@ngrx/store-devtools": "^16.1.0",
     "date-fns": "^2.30.0",
+    "material-symbols": "^0.10.0",
     "ngx-cookie-service": "^16.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

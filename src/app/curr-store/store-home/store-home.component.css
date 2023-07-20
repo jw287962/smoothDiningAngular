@@ -9,7 +9,7 @@
   margin-top: 10px;
   padding: 8px;
   color: black;
-  opacity: calc(75%);
+  /* opacity: calc(75%); */
   font-weight: 600;
   border-radius: 10px;
   border: 1px solid black;
@@ -24,6 +24,8 @@ a {
   cursor: pointer;
   background-color: var(--background-color);
   border: 2px solid black;
+  color: var(--text-color);
+  border-color: var(--text-color);
 }
 
 .minimize {

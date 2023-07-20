@@ -1,0 +1,4 @@
+input[type="number"] {
+  color: var(--text-color);
+  background-color: var(--background-color);
+}

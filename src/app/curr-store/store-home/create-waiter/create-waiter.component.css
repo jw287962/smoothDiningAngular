@@ -12,4 +12,5 @@
 
 form {
   padding: 15px;
+  border-color: var(--text-color);
 }

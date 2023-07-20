@@ -9,3 +9,7 @@
 body {
   overflow: hidden;
 }
+
+.navbar {
+  background-color: var(--nav-background-color);
+}
