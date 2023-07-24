@@ -65,6 +65,10 @@ export function getActiveWaiterFromShiftNumber(result: any, shiftNum: number) {
     return [];
   }
 }
+// add timezone time difference when handling DATE INPUT
+// Need to add timezone difference to match the user's location time/day
+// the time will be assumed as UTC and then converted to user time, which will subtract or add that amount,
+// This will negate the time changes automatically applied by the new Date() constructor
 export function getHourOffset(date: string) {
   const dateAdj = new Date(date);
   const hours = dateAdj.getTimezoneOffset() / 60;

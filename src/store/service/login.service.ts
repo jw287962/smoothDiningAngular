@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { getBackEndHref } from 'base-href';
 import { CookieService } from 'ngx-cookie-service';
-import { loadingPage, loginFalse, loginTrue } from '../actions/auth.action';
+import { loadingPage, loginFalse } from '../actions/auth.action';
 import { Helper } from './helpers';
 import { cookieOptions } from './types';
 
@@ -24,7 +24,8 @@ export class LoginApiService {
     this._store.dispatch(loginFalse());
   }
   dispatchLoading(state: boolean) {
-    this._store.dispatch(loadingPage.updateLoading({ loading: state }));
+    // this._store.dispatch(loadingPage.updateLoading({ loading: state }));
+    this._helper.dispatchLoading(state);
   }
 
   setAuthHeader(result: any) {
