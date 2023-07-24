@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
@@ -30,16 +31,31 @@ export class HomeComponent {
   stores: StoreInterface[] | undefined;
   // login: boolean = false;
   loading: Observable<boolean> = this._store.select(selectLoadingBoolean);
-
+  FormAuth: FormGroup;
   constructor(
+    private formBuilder: FormBuilder,
     private _storeService: StoreApiService,
     private _store: Store<State>,
     private _cookieService: CookieService,
     private _helper: Helper
   ) {
     this.fetchStores();
-  }
 
+    this.FormAuth = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      state: ['', [Validators.required]],
+    });
+  }
+  get nameStore() {
+    return this.FormAuth?.get('name');
+  }
+  get address() {
+    return this.FormAuth?.get('address');
+  }
+  get state() {
+    return this.FormAuth?.get('state');
+  }
   // this.state$ = this._store.pipe(select((state) => state));
   ngOnInit() {}
   ngOnDestroy() {
@@ -52,8 +68,17 @@ export class HomeComponent {
     this.stores = handleResponseBody(result);
   }
 
-  async createStore() {
-    console.log('MAKE STORE');
+  async createStore(e: MouseEvent) {
+    e.preventDefault();
+    const body = {
+      name: this.nameStore?.value,
+      address: this.address?.value,
+      state: this.state?.value,
+    };
+    this._helper.dispatchLoading(true);
+    this._storeService.createStore(body);
+    // this._helper.dispatchLoading(false);
+    this.fetchStores();
   }
 
   clickStore(storeID: string, storeName: string) {

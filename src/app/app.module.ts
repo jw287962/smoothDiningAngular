@@ -23,6 +23,7 @@ import { CurrStoreModule } from './curr-store/curr-store.module';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { SharedModule } from './shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, NavComponent, HomeComponent],
@@ -38,7 +39,7 @@ import { SharedModule } from './shared/shared.module';
     }),
     CurrStoreModule,
     SharedModule,
-    
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: getBaseHref() },

@@ -5,6 +5,8 @@
     <div class="separation"></div>
 
     <div *ngFor="let item of stores; index as i">
+      <h4>{{ item.address }}</h4>
+
       <a
         routerLink="/store/home"
         routerLinkActive="active"
@@ -16,12 +18,46 @@
           {{ item.name }}
         </button></a
       >
-      <h4>{{ item.address }}</h4>
     </div>
     <div class="separation"></div>
 
     <div>
-      <button (click)="createStore()">Add Store</button>
+      <form class="flex-col-center" [formGroup]="FormAuth">
+        <h3>Add Store</h3>
+        <div class="form-input">
+          <label for="name">Name: <span class="mini-text">*req</span></label>
+          <input
+            type="name"
+            id="name"
+            name="name"
+            formControlName="name"
+            required="true"
+          />
+        </div>
+        <div class="form-input">
+          <label for="address"
+            >Address: <span class="mini-text">*req</span></label
+          >
+          <input
+            type="address"
+            id="address"
+            name="address"
+            formControlName="address"
+            required="true"
+          />
+        </div>
+        <div class="form-input">
+          <label for="state">State: <span class="mini-text">*req</span></label>
+          <input
+            type="state"
+            id="state"
+            name="state"
+            formControlName="state"
+            required="true"
+          />
+        </div>
+        <button type="submit" (click)="createStore($event)">Add Store</button>
+      </form>
     </div>
   </div>
 </div>

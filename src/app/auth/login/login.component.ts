@@ -16,7 +16,7 @@ import {
   selectLoginBoolean,
 } from 'src/store/reducers/auth.reducer';
 import { LoginApiService } from 'src/store/service/login.service';
-import { handleResponseBody } from 'src/store/service/types';
+import { cookieOptions, handleResponseBody } from 'src/store/service/types';
 interface AuthGroup extends FormGroup {
   controls: {
     username: FormControl;
@@ -130,7 +130,20 @@ export class LoginComponent {
   }
 
   processGoogleClick() {
-    this.loginApiService.OAuthLogin();
+    window.open(
+      'http://localhost:3000/api/login/oauth',
+      'mywindow',
+      'location=1,status=1,scrollbars=1, width=800,height=800'
+    );
+
+    const setToken = (data: any) => {
+      this._cookie.set('Authorization', data.data.token, cookieOptions);
+      //message will contain facebook user and details
+      window.removeEventListener('message', setToken);
+    };
+    window.addEventListener('message', setToken);
+
+    // this.loginApiService.OAuthLogin();
     // window.open(`${getBackEndHref()}/api/login/oauth`, '_self');
   }
 

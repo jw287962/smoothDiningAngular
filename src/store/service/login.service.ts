@@ -44,8 +44,6 @@ export class LoginApiService {
         throw new Error('Network response was not ok');
       }
       const result = await responseBody.json();
-      console.log(responseBody);
-      console.log(result);
       this.setAuthHeader(result);
       return this._helper.manageError(responseBody, result);
     } catch (error: any) {

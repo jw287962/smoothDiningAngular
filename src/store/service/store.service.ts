@@ -62,6 +62,28 @@ export class StoreApiService {
     }
   }
 
+  async createStore(body: any) {
+    try {
+      const bodyData = JSON.stringify({ body });
+      console.log(body);
+      // this.activeStore$.subscribe((data) => {
+      //   data;
+      // });
+      // const userId = this.getStoreCookie();
+      const result = await fetch(`${getBackEndHref()}/api/account/store`, {
+        credentials: 'include',
+
+        headers: this.getHeaders(),
+        method: 'post',
+        body: JSON.stringify(body),
+      });
+      const responseBody = await result.json();
+      return this._helper.manageError(responseBody, result);
+    } catch (e) {
+      console.log({ error: e });
+    }
+  }
+
   async fetchStore() {
     try {
       // const storeID = this.getStoreCookie();
