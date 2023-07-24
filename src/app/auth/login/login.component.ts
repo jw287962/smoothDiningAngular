@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { getBackEndHref } from 'base-href';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import {
@@ -53,7 +54,7 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: LoginApiService,
+    private loginApiService: LoginApiService,
     private _store: Store,
     private _cookie: CookieService
   ) {
@@ -107,7 +108,7 @@ export class LoginComponent {
         this._cookie.set('username', this.username?.value || '', date);
       }
 
-      const result = await this.apiService.tryLogin(
+      const result = await this.loginApiService.tryLogin(
         !isLogin,
         this.username?.value,
         this.password?.value,
@@ -120,7 +121,7 @@ export class LoginComponent {
   }
   async handleLogout() {
     try {
-      const result = await this.apiService.logout();
+      const result = await this.loginApiService.logout();
       this.message = handleResponseBody(result);
       console.log(result);
     } catch (e) {
@@ -129,9 +130,8 @@ export class LoginComponent {
   }
 
   processGoogleClick() {
-    if (this.isRegister) {
-    } else {
-    }
+    this.loginApiService.OAuthLogin();
+    // window.open(`${getBackEndHref()}/api/login/oauth`, '_self');
   }
 
   processTestAccount() {

@@ -87,12 +87,23 @@
 
     <span *ngIf="message.length > 1"> Note: {{ message }}</span>
     <div class="line"></div>
+    <!-- <form
+      target="_blank"
+      action="http://localhost:3000/api/login/oauth"
+      method="get"
+    > -->
+
     <button type="button" class="wide google" (click)="processGoogleClick()">
+      <!-- <a target="_blank" href="http://localhost:3000/api/login/oauth"> -->
+      <!-- <button type="button" class="wide google"> -->
       <span class="lower-font-weight">{{
         isRegister ? "Sign Up with " : "Log in with "
       }}</span
       >Google
     </button>
+    <!-- </a> -->
+    <!-- </form> -->
+
     <button type="button" class="wide google" (click)="processTestAccount()">
       user: <span class="lower-font-weight">admin</span> | pass:
       <span class="lower-font-weight">password@</span>

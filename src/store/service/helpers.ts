@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loadingPage, loginFalse, loginTrue, setActiveStore } from '../actions/auth.action';
+import {
+  loadingPage,
+  loginFalse,
+  loginTrue,
+  setActiveStore,
+} from '../actions/auth.action';
 import { CookieService } from 'ngx-cookie-service';
 import { activeStore } from '../reducers/auth.reducer';
 
@@ -20,6 +25,14 @@ export class Helper {
 
   getAuthBearer() {
     return this._cookieService.get('Authorization');
+  }
+
+  getHeaders(extra: {} = {}) {
+    return {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.getAuthBearer()}`,
+      ...extra,
+    };
   }
 
   dispatchStore(data: activeStore) {

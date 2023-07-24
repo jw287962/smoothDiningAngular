@@ -26,6 +26,33 @@ export class LoginApiService {
   dispatchLoading(state: boolean) {
     this._store.dispatch(loadingPage.updateLoading({ loading: state }));
   }
+
+  setAuthHeader(result: any) {
+    const auth = result.headers.get('x-access-token') || '';
+    this._cookieService.set('Authorization', auth, cookieOptions);
+  }
+  async OAuthLogin() {
+    try {
+      const responseBody = await fetch(`${getBackEndHref()}/api/login/oauth`, {
+        credentials: 'include',
+        method: 'GET',
+        headers: this._helper.getHeaders(),
+      });
+
+      if (!responseBody.ok) {
+        // Handle non-successful responses
+        throw new Error('Network response was not ok');
+      }
+      const result = await responseBody.json();
+      console.log(responseBody);
+      console.log(result);
+      this.setAuthHeader(result);
+      return this._helper.manageError(responseBody, result);
+    } catch (error: any) {
+      console.error('Error:', error);
+      return error.message;
+    }
+  }
   async tryLogin(
     isLogin: boolean,
     username: string,
@@ -60,8 +87,7 @@ export class LoginApiService {
       });
       const responseBody = await result.json();
 
-      const auth = result.headers.get('x-access-token') || '';
-      this._cookieService.set('Authorization', auth, cookieOptions);
+      this.setAuthHeader(result);
 
       return this._helper.manageError(responseBody, result, !isLogin);
     } catch (e: any) {
@@ -77,10 +103,7 @@ export class LoginApiService {
       const result = await fetch(`${getBackEndHref()}/api/logout`, {
         credentials: 'include',
         method: 'get',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
+        headers: this._helper.getHeaders(),
       });
       const responseBody = await result.json();
       return this._helper.manageError(responseBody, result, true);
