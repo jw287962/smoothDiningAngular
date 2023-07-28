@@ -110,15 +110,15 @@
     </button>
   </form>
 
-  <div *ngIf="loading$ | async" class="loading">
-    <app-loading></app-loading>
-  </div>
   <h4 *ngIf="login$ | async" (click)="handleLogout()" class="">
     Welcome to Smooth Dining!
   </h4>
+  <div *ngIf="loading$ | async" class="loading">
+    <app-loading></app-loading>
+  </div>
+  <p *ngIf="!(login$ | async)">
+    NOTE: Backend is <strong><em>Free-tier</em></strong
+    >, and may be asleep due to inactivity. Extended loading may be due to
+    server starting.
+  </p>
 </div>
-
-<p>
-  NOTE: Backend is free-tier, and may be asleep due to inactivity. Extended
-  loading is due to server starting.
-</p>
