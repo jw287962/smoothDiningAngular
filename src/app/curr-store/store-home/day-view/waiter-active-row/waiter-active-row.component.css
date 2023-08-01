@@ -12,6 +12,7 @@
   justify-content: space-around;
   margin-bottom: 5px;
   min-height: 100%;
+  cursor: default;
 }
 
 .container,

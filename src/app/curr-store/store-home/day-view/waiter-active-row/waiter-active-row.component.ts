@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   identifierShift,
   partyInterface,
@@ -27,7 +28,7 @@ export class WaiterActiveRowComponent {
     phoneNumber: '',
     reservationDate: '',
   };
-  constructor() {}
+  constructor(private _router: Router) {}
 
   ngOnInit() {
     this.shiftID = this.waiter._id;
@@ -47,12 +48,14 @@ export class WaiterActiveRowComponent {
     if (!reservation?.partySize) {
       const shift = { _id: this.waiter._id, section: this.waiter.section };
       this.clickedShiftID.emit(shift);
-
-      console.log('add new party to waiter on shiftNumber:', this.shiftID);
     } else {
       console.log(reservation);
 
       console.log('edit the party data');
     }
+  }
+
+  navigateAddWaiterRoute(name: string) {
+    if (name.includes('Add Waiter')) this._router.navigate(['/store/day']);
   }
 }

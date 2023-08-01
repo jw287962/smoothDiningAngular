@@ -1,6 +1,8 @@
 <div class="flex-row-center waiter-container">
   <div class="waiter-data flex-col-center" [ngClass]="isMin ? 'priority' : ''">
-    <h3>{{ waiter?.waiter?.[0].name || "" }}</h3>
+    <h3 (click)="navigateAddWaiterRoute(waiter?.waiter?.[0].name || '')">
+      {{ waiter?.waiter?.[0].name || "" }}
+    </h3>
     <h3 class="section">{{ waiter.section }}</h3>
   </div>
   <!-- <div class="container">
