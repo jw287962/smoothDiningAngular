@@ -37,6 +37,8 @@ export class DayViewComponent {
   formError: string = '';
 
   activeDateCopy: string = '';
+
+  showInfo: string = 'hidden';
   constructor(
     private _store: Store,
     private _storeService: StoreApiService,
@@ -166,4 +168,12 @@ export class DayViewComponent {
   }
 
   minimize() {}
+
+  onHoverInfo() {
+    this.showInfo = 'show-info';
+  }
+
+  onHoverLeave() {
+    this.showInfo = 'hidden';
+  }
 }

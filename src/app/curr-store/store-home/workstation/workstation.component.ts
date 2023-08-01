@@ -66,7 +66,7 @@ export class WorkstationComponent {
       waiter: [
         {
           _id: '64ab8cfaee668a666d30442a',
-          name: 'Add Waiter',
+          name: 'Add Waiter Shift',
           birthdate: '1997-01-01T00:00:00.000Z',
           preferences: {
             maxActiveTableForPermission: 6,

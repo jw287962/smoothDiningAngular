@@ -6,7 +6,17 @@
     class="searchForm flex-col-center"
     (submit)="addActiveToday($event, sectionNumber)"
   >
-    <h2 class="black">Create Shifts</h2>
+    <div class="flex-row-center">
+      <h2 class="black">Create Shifts</h2>
+      <span
+        class="info"
+        (mouseenter)="onHoverInfo()"
+        (mouseleave)="onHoverLeave()"
+        >I</span
+      >
+      <span [ngClass]="showInfo">Add waiters to active shift first!</span>
+    </div>
+
     <div class="form-input">
       <label for="search">Search: </label>
       <input

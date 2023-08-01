@@ -72,6 +72,32 @@ form {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.info {
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  font-size: 15px;
+  position: absolute;
+  top: 0px;
+  right: -20px;
+  cursor: default;
+}
+
+.show-info {
+  position: absolute;
+  background-color: var(--background-color);
+  font-size: 18px;
+  right: 0px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.hidden {
+  display: none;
+}
 @media (max-width: 450px) {
   form {
     font-size: 20px;
