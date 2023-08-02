@@ -111,6 +111,20 @@ button:active {
   border-radius: 3px; /* Border radius of the scrollbar thumb */
 }
 
+/* INFO Button */
+.info {
+  border: 1px solid var(--text-color);
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  font-size: 15px;
+  position: absolute;
+  top: 0px;
+  right: -20px;
+  cursor: default;
+  text-align: center;
+}
+
 /* form */
 .form-input {
   display: flex;
